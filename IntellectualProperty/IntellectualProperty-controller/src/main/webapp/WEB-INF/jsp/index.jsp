@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    This is my first step.<br>
+    This is my first step.HOHOHO.<br>
     <div class="loginput" >
     	<ul>
     		<li>用户名：<input type="text"></li>
