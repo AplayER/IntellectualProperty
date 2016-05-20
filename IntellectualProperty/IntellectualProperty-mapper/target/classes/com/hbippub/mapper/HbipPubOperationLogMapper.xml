@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubOperationLogMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubOperationLog" >
+    <id column="RiZhiID" property="rizhiid" jdbcType="INTEGER" />
+    <id column="ShiFouYiShanChu" property="shifouyishanchu" jdbcType="INTEGER" />
+    <result column="MoKuaiID" property="mokuaiid" jdbcType="INTEGER" />
+    <result column="CaoZuoRenID" property="caozuorenid" jdbcType="INTEGER" />
+    <result column="CaoZuoRenMing" property="caozuorenming" jdbcType="CHAR" />
+    <result column="IPDiZhi" property="ipdizhi" jdbcType="CHAR" />
+    <result column="MoKuaiMing" property="mokuaiming" jdbcType="CHAR" />
+    <result column="CaoZuoNeiRong" property="caozuoneirong" jdbcType="VARCHAR" />
+    <result column="LeiMing" property="leiming" jdbcType="CHAR" />
+    <result column="FangFaMing" property="fangfaming" jdbcType="CHAR" />
+    <result column="ShiFouChengGong" property="shifouchenggong" jdbcType="INTEGER" />
+    <result column="CaoZuoShiJian" property="caozuoshijian" jdbcType="TIMESTAMP" />
+    <result column="BeiZhu" property="beizhu" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    RiZhiID, ShiFouYiShanChu, MoKuaiID, CaoZuoRenID, CaoZuoRenMing, IPDiZhi, MoKuaiMing, 
+    CaoZuoNeiRong, LeiMing, FangFaMing, ShiFouChengGong, CaoZuoShiJian, BeiZhu
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubOperationLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_operation_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubOperationLogKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from hbip_pub_operation_log
+    where RiZhiID = #{rizhiid,jdbcType=INTEGER}
+      and ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubOperationLogKey" >
+    delete from hbip_pub_operation_log
+    where RiZhiID = #{rizhiid,jdbcType=INTEGER}
+      and ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubOperationLogExample" >
+    delete from hbip_pub_operation_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubOperationLog" >
+    insert into hbip_pub_operation_log (RiZhiID, ShiFouYiShanChu, MoKuaiID, 
+      CaoZuoRenID, CaoZuoRenMing, IPDiZhi, 
+      MoKuaiMing, CaoZuoNeiRong, LeiMing, 
+      FangFaMing, ShiFouChengGong, CaoZuoShiJian, 
+      BeiZhu)
+    values (#{rizhiid,jdbcType=INTEGER}, #{shifouyishanchu,jdbcType=INTEGER}, #{mokuaiid,jdbcType=INTEGER}, 
+      #{caozuorenid,jdbcType=INTEGER}, #{caozuorenming,jdbcType=CHAR}, #{ipdizhi,jdbcType=CHAR}, 
+      #{mokuaiming,jdbcType=CHAR}, #{caozuoneirong,jdbcType=VARCHAR}, #{leiming,jdbcType=CHAR}, 
+      #{fangfaming,jdbcType=CHAR}, #{shifouchenggong,jdbcType=INTEGER}, #{caozuoshijian,jdbcType=TIMESTAMP}, 
+      #{beizhu,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubOperationLog" >
+    insert into hbip_pub_operation_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rizhiid != null" >
+        RiZhiID,
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu,
+      </if>
+      <if test="mokuaiid != null" >
+        MoKuaiID,
+      </if>
+      <if test="caozuorenid != null" >
+        CaoZuoRenID,
+      </if>
+      <if test="caozuorenming != null" >
+        CaoZuoRenMing,
+      </if>
+      <if test="ipdizhi != null" >
+        IPDiZhi,
+      </if>
+      <if test="mokuaiming != null" >
+        MoKuaiMing,
+      </if>
+      <if test="caozuoneirong != null" >
+        CaoZuoNeiRong,
+      </if>
+      <if test="leiming != null" >
+        LeiMing,
+      </if>
+      <if test="fangfaming != null" >
+        FangFaMing,
+      </if>
+      <if test="shifouchenggong != null" >
+        ShiFouChengGong,
+      </if>
+      <if test="caozuoshijian != null" >
+        CaoZuoShiJian,
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rizhiid != null" >
+        #{rizhiid,jdbcType=INTEGER},
+      </if>
+      <if test="shifouyishanchu != null" >
+        #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="mokuaiid != null" >
+        #{mokuaiid,jdbcType=INTEGER},
+      </if>
+      <if test="caozuorenid != null" >
+        #{caozuorenid,jdbcType=INTEGER},
+      </if>
+      <if test="caozuorenming != null" >
+        #{caozuorenming,jdbcType=CHAR},
+      </if>
+      <if test="ipdizhi != null" >
+        #{ipdizhi,jdbcType=CHAR},
+      </if>
+      <if test="mokuaiming != null" >
+        #{mokuaiming,jdbcType=CHAR},
+      </if>
+      <if test="caozuoneirong != null" >
+        #{caozuoneirong,jdbcType=VARCHAR},
+      </if>
+      <if test="leiming != null" >
+        #{leiming,jdbcType=CHAR},
+      </if>
+      <if test="fangfaming != null" >
+        #{fangfaming,jdbcType=CHAR},
+      </if>
+      <if test="shifouchenggong != null" >
+        #{shifouchenggong,jdbcType=INTEGER},
+      </if>
+      <if test="caozuoshijian != null" >
+        #{caozuoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubOperationLogExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_operation_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_operation_log
+    <set >
+      <if test="record.rizhiid != null" >
+        RiZhiID = #{record.rizhiid,jdbcType=INTEGER},
+      </if>
+      <if test="record.shifouyishanchu != null" >
+        ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="record.mokuaiid != null" >
+        MoKuaiID = #{record.mokuaiid,jdbcType=INTEGER},
+      </if>
+      <if test="record.caozuorenid != null" >
+        CaoZuoRenID = #{record.caozuorenid,jdbcType=INTEGER},
+      </if>
+      <if test="record.caozuorenming != null" >
+        CaoZuoRenMing = #{record.caozuorenming,jdbcType=CHAR},
+      </if>
+      <if test="record.ipdizhi != null" >
+        IPDiZhi = #{record.ipdizhi,jdbcType=CHAR},
+      </if>
+      <if test="record.mokuaiming != null" >
+        MoKuaiMing = #{record.mokuaiming,jdbcType=CHAR},
+      </if>
+      <if test="record.caozuoneirong != null" >
+        CaoZuoNeiRong = #{record.caozuoneirong,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leiming != null" >
+        LeiMing = #{record.leiming,jdbcType=CHAR},
+      </if>
+      <if test="record.fangfaming != null" >
+        FangFaMing = #{record.fangfaming,jdbcType=CHAR},
+      </if>
+      <if test="record.shifouchenggong != null" >
+        ShiFouChengGong = #{record.shifouchenggong,jdbcType=INTEGER},
+      </if>
+      <if test="record.caozuoshijian != null" >
+        CaoZuoShiJian = #{record.caozuoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.beizhu != null" >
+        BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_operation_log
+    set RiZhiID = #{record.rizhiid,jdbcType=INTEGER},
+      ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      MoKuaiID = #{record.mokuaiid,jdbcType=INTEGER},
+      CaoZuoRenID = #{record.caozuorenid,jdbcType=INTEGER},
+      CaoZuoRenMing = #{record.caozuorenming,jdbcType=CHAR},
+      IPDiZhi = #{record.ipdizhi,jdbcType=CHAR},
+      MoKuaiMing = #{record.mokuaiming,jdbcType=CHAR},
+      CaoZuoNeiRong = #{record.caozuoneirong,jdbcType=VARCHAR},
+      LeiMing = #{record.leiming,jdbcType=CHAR},
+      FangFaMing = #{record.fangfaming,jdbcType=CHAR},
+      ShiFouChengGong = #{record.shifouchenggong,jdbcType=INTEGER},
+      CaoZuoShiJian = #{record.caozuoshijian,jdbcType=TIMESTAMP},
+      BeiZhu = #{record.beizhu,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubOperationLog" >
+    update hbip_pub_operation_log
+    <set >
+      <if test="mokuaiid != null" >
+        MoKuaiID = #{mokuaiid,jdbcType=INTEGER},
+      </if>
+      <if test="caozuorenid != null" >
+        CaoZuoRenID = #{caozuorenid,jdbcType=INTEGER},
+      </if>
+      <if test="caozuorenming != null" >
+        CaoZuoRenMing = #{caozuorenming,jdbcType=CHAR},
+      </if>
+      <if test="ipdizhi != null" >
+        IPDiZhi = #{ipdizhi,jdbcType=CHAR},
+      </if>
+      <if test="mokuaiming != null" >
+        MoKuaiMing = #{mokuaiming,jdbcType=CHAR},
+      </if>
+      <if test="caozuoneirong != null" >
+        CaoZuoNeiRong = #{caozuoneirong,jdbcType=VARCHAR},
+      </if>
+      <if test="leiming != null" >
+        LeiMing = #{leiming,jdbcType=CHAR},
+      </if>
+      <if test="fangfaming != null" >
+        FangFaMing = #{fangfaming,jdbcType=CHAR},
+      </if>
+      <if test="shifouchenggong != null" >
+        ShiFouChengGong = #{shifouchenggong,jdbcType=INTEGER},
+      </if>
+      <if test="caozuoshijian != null" >
+        CaoZuoShiJian = #{caozuoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RiZhiID = #{rizhiid,jdbcType=INTEGER}
+      and ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubOperationLog" >
+    update hbip_pub_operation_log
+    set MoKuaiID = #{mokuaiid,jdbcType=INTEGER},
+      CaoZuoRenID = #{caozuorenid,jdbcType=INTEGER},
+      CaoZuoRenMing = #{caozuorenming,jdbcType=CHAR},
+      IPDiZhi = #{ipdizhi,jdbcType=CHAR},
+      MoKuaiMing = #{mokuaiming,jdbcType=CHAR},
+      CaoZuoNeiRong = #{caozuoneirong,jdbcType=VARCHAR},
+      LeiMing = #{leiming,jdbcType=CHAR},
+      FangFaMing = #{fangfaming,jdbcType=CHAR},
+      ShiFouChengGong = #{shifouchenggong,jdbcType=INTEGER},
+      CaoZuoShiJian = #{caozuoshijian,jdbcType=TIMESTAMP},
+      BeiZhu = #{beizhu,jdbcType=VARCHAR}
+    where RiZhiID = #{rizhiid,jdbcType=INTEGER}
+      and ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+  </update>
+</mapper>

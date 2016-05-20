@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubDiscussionPostMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubDiscussionPost" >
+    <id column="TieZiID" property="tieziid" jdbcType="INTEGER" />
+    <result column="TaoLunQuID" property="taolunquid" jdbcType="INTEGER" />
+    <result column="YongHuID" property="yonghuid" jdbcType="INTEGER" />
+    <result column="BiaoTi" property="biaoti" jdbcType="CHAR" />
+    <result column="NeiRong" property="neirong" jdbcType="VARCHAR" />
+    <result column="FaBiaoShiJian" property="fabiaoshijian" jdbcType="TIMESTAMP" />
+    <result column="FaBuZheXingMing" property="fabuzhexingming" jdbcType="CHAR" />
+    <result column="ZhuangTai" property="zhuangtai" jdbcType="INTEGER" />
+    <result column="HuiFuShu" property="huifushu" jdbcType="INTEGER" />
+    <result column="ZuiHouHuiFuShiJian" property="zuihouhuifushijian" jdbcType="TIMESTAMP" />
+    <result column="ShiFouYiShanChu" property="shifouyishanchu" jdbcType="INTEGER" />
+    <result column="BeiZhu" property="beizhu" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TieZiID, TaoLunQuID, YongHuID, BiaoTi, NeiRong, FaBiaoShiJian, FaBuZheXingMing, ZhuangTai, 
+    HuiFuShu, ZuiHouHuiFuShiJian, ShiFouYiShanChu, BeiZhu
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubDiscussionPostExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_discussion_post
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hbip_pub_discussion_post
+    where TieZiID = #{tieziid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_discussion_post
+    where TieZiID = #{tieziid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubDiscussionPostExample" >
+    delete from hbip_pub_discussion_post
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubDiscussionPost" >
+    insert into hbip_pub_discussion_post (TieZiID, TaoLunQuID, YongHuID, 
+      BiaoTi, NeiRong, FaBiaoShiJian, 
+      FaBuZheXingMing, ZhuangTai, HuiFuShu, 
+      ZuiHouHuiFuShiJian, ShiFouYiShanChu, 
+      BeiZhu)
+    values (#{tieziid,jdbcType=INTEGER}, #{taolunquid,jdbcType=INTEGER}, #{yonghuid,jdbcType=INTEGER}, 
+      #{biaoti,jdbcType=CHAR}, #{neirong,jdbcType=VARCHAR}, #{fabiaoshijian,jdbcType=TIMESTAMP}, 
+      #{fabuzhexingming,jdbcType=CHAR}, #{zhuangtai,jdbcType=INTEGER}, #{huifushu,jdbcType=INTEGER}, 
+      #{zuihouhuifushijian,jdbcType=TIMESTAMP}, #{shifouyishanchu,jdbcType=INTEGER}, 
+      #{beizhu,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubDiscussionPost" >
+    insert into hbip_pub_discussion_post
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tieziid != null" >
+        TieZiID,
+      </if>
+      <if test="taolunquid != null" >
+        TaoLunQuID,
+      </if>
+      <if test="yonghuid != null" >
+        YongHuID,
+      </if>
+      <if test="biaoti != null" >
+        BiaoTi,
+      </if>
+      <if test="neirong != null" >
+        NeiRong,
+      </if>
+      <if test="fabiaoshijian != null" >
+        FaBiaoShiJian,
+      </if>
+      <if test="fabuzhexingming != null" >
+        FaBuZheXingMing,
+      </if>
+      <if test="zhuangtai != null" >
+        ZhuangTai,
+      </if>
+      <if test="huifushu != null" >
+        HuiFuShu,
+      </if>
+      <if test="zuihouhuifushijian != null" >
+        ZuiHouHuiFuShiJian,
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu,
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tieziid != null" >
+        #{tieziid,jdbcType=INTEGER},
+      </if>
+      <if test="taolunquid != null" >
+        #{taolunquid,jdbcType=INTEGER},
+      </if>
+      <if test="yonghuid != null" >
+        #{yonghuid,jdbcType=INTEGER},
+      </if>
+      <if test="biaoti != null" >
+        #{biaoti,jdbcType=CHAR},
+      </if>
+      <if test="neirong != null" >
+        #{neirong,jdbcType=VARCHAR},
+      </if>
+      <if test="fabiaoshijian != null" >
+        #{fabiaoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fabuzhexingming != null" >
+        #{fabuzhexingming,jdbcType=CHAR},
+      </if>
+      <if test="zhuangtai != null" >
+        #{zhuangtai,jdbcType=INTEGER},
+      </if>
+      <if test="huifushu != null" >
+        #{huifushu,jdbcType=INTEGER},
+      </if>
+      <if test="zuihouhuifushijian != null" >
+        #{zuihouhuifushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shifouyishanchu != null" >
+        #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubDiscussionPostExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_discussion_post
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_discussion_post
+    <set >
+      <if test="record.tieziid != null" >
+        TieZiID = #{record.tieziid,jdbcType=INTEGER},
+      </if>
+      <if test="record.taolunquid != null" >
+        TaoLunQuID = #{record.taolunquid,jdbcType=INTEGER},
+      </if>
+      <if test="record.yonghuid != null" >
+        YongHuID = #{record.yonghuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.biaoti != null" >
+        BiaoTi = #{record.biaoti,jdbcType=CHAR},
+      </if>
+      <if test="record.neirong != null" >
+        NeiRong = #{record.neirong,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fabiaoshijian != null" >
+        FaBiaoShiJian = #{record.fabiaoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fabuzhexingming != null" >
+        FaBuZheXingMing = #{record.fabuzhexingming,jdbcType=CHAR},
+      </if>
+      <if test="record.zhuangtai != null" >
+        ZhuangTai = #{record.zhuangtai,jdbcType=INTEGER},
+      </if>
+      <if test="record.huifushu != null" >
+        HuiFuShu = #{record.huifushu,jdbcType=INTEGER},
+      </if>
+      <if test="record.zuihouhuifushijian != null" >
+        ZuiHouHuiFuShiJian = #{record.zuihouhuifushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shifouyishanchu != null" >
+        ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="record.beizhu != null" >
+        BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_discussion_post
+    set TieZiID = #{record.tieziid,jdbcType=INTEGER},
+      TaoLunQuID = #{record.taolunquid,jdbcType=INTEGER},
+      YongHuID = #{record.yonghuid,jdbcType=INTEGER},
+      BiaoTi = #{record.biaoti,jdbcType=CHAR},
+      NeiRong = #{record.neirong,jdbcType=VARCHAR},
+      FaBiaoShiJian = #{record.fabiaoshijian,jdbcType=TIMESTAMP},
+      FaBuZheXingMing = #{record.fabuzhexingming,jdbcType=CHAR},
+      ZhuangTai = #{record.zhuangtai,jdbcType=INTEGER},
+      HuiFuShu = #{record.huifushu,jdbcType=INTEGER},
+      ZuiHouHuiFuShiJian = #{record.zuihouhuifushijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      BeiZhu = #{record.beizhu,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubDiscussionPost" >
+    update hbip_pub_discussion_post
+    <set >
+      <if test="taolunquid != null" >
+        TaoLunQuID = #{taolunquid,jdbcType=INTEGER},
+      </if>
+      <if test="yonghuid != null" >
+        YongHuID = #{yonghuid,jdbcType=INTEGER},
+      </if>
+      <if test="biaoti != null" >
+        BiaoTi = #{biaoti,jdbcType=CHAR},
+      </if>
+      <if test="neirong != null" >
+        NeiRong = #{neirong,jdbcType=VARCHAR},
+      </if>
+      <if test="fabiaoshijian != null" >
+        FaBiaoShiJian = #{fabiaoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fabuzhexingming != null" >
+        FaBuZheXingMing = #{fabuzhexingming,jdbcType=CHAR},
+      </if>
+      <if test="zhuangtai != null" >
+        ZhuangTai = #{zhuangtai,jdbcType=INTEGER},
+      </if>
+      <if test="huifushu != null" >
+        HuiFuShu = #{huifushu,jdbcType=INTEGER},
+      </if>
+      <if test="zuihouhuifushijian != null" >
+        ZuiHouHuiFuShiJian = #{zuihouhuifushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TieZiID = #{tieziid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubDiscussionPost" >
+    update hbip_pub_discussion_post
+    set TaoLunQuID = #{taolunquid,jdbcType=INTEGER},
+      YongHuID = #{yonghuid,jdbcType=INTEGER},
+      BiaoTi = #{biaoti,jdbcType=CHAR},
+      NeiRong = #{neirong,jdbcType=VARCHAR},
+      FaBiaoShiJian = #{fabiaoshijian,jdbcType=TIMESTAMP},
+      FaBuZheXingMing = #{fabuzhexingming,jdbcType=CHAR},
+      ZhuangTai = #{zhuangtai,jdbcType=INTEGER},
+      HuiFuShu = #{huifushu,jdbcType=INTEGER},
+      ZuiHouHuiFuShiJian = #{zuihouhuifushijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      BeiZhu = #{beizhu,jdbcType=VARCHAR}
+    where TieZiID = #{tieziid,jdbcType=INTEGER}
+  </update>
+</mapper>

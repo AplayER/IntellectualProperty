@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubNewsCaptureMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubNewsCapture" >
+    <id column="XinWenID" property="xinwenid" jdbcType="INTEGER" />
+    <result column="XinWenBiaoTi" property="xinwenbiaoti" jdbcType="CHAR" />
+    <result column="XinWenFaBuRiQi" property="xinwenfaburiqi" jdbcType="CHAR" />
+    <result column="XinWenHuoQuRiQi" property="xinwenhuoquriqi" jdbcType="DATE" />
+    <result column="XinWenURL" property="xinwenurl" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XinWenID, XinWenBiaoTi, XinWenFaBuRiQi, XinWenHuoQuRiQi, XinWenURL
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubNewsCaptureExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_news_capture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hbip_pub_news_capture
+    where XinWenID = #{xinwenid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_news_capture
+    where XinWenID = #{xinwenid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubNewsCaptureExample" >
+    delete from hbip_pub_news_capture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubNewsCapture" >
+    insert into hbip_pub_news_capture (XinWenID, XinWenBiaoTi, XinWenFaBuRiQi, 
+      XinWenHuoQuRiQi, XinWenURL)
+    values (#{xinwenid,jdbcType=INTEGER}, #{xinwenbiaoti,jdbcType=CHAR}, #{xinwenfaburiqi,jdbcType=CHAR}, 
+      #{xinwenhuoquriqi,jdbcType=DATE}, #{xinwenurl,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubNewsCapture" >
+    insert into hbip_pub_news_capture
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xinwenid != null" >
+        XinWenID,
+      </if>
+      <if test="xinwenbiaoti != null" >
+        XinWenBiaoTi,
+      </if>
+      <if test="xinwenfaburiqi != null" >
+        XinWenFaBuRiQi,
+      </if>
+      <if test="xinwenhuoquriqi != null" >
+        XinWenHuoQuRiQi,
+      </if>
+      <if test="xinwenurl != null" >
+        XinWenURL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xinwenid != null" >
+        #{xinwenid,jdbcType=INTEGER},
+      </if>
+      <if test="xinwenbiaoti != null" >
+        #{xinwenbiaoti,jdbcType=CHAR},
+      </if>
+      <if test="xinwenfaburiqi != null" >
+        #{xinwenfaburiqi,jdbcType=CHAR},
+      </if>
+      <if test="xinwenhuoquriqi != null" >
+        #{xinwenhuoquriqi,jdbcType=DATE},
+      </if>
+      <if test="xinwenurl != null" >
+        #{xinwenurl,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubNewsCaptureExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_news_capture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_news_capture
+    <set >
+      <if test="record.xinwenid != null" >
+        XinWenID = #{record.xinwenid,jdbcType=INTEGER},
+      </if>
+      <if test="record.xinwenbiaoti != null" >
+        XinWenBiaoTi = #{record.xinwenbiaoti,jdbcType=CHAR},
+      </if>
+      <if test="record.xinwenfaburiqi != null" >
+        XinWenFaBuRiQi = #{record.xinwenfaburiqi,jdbcType=CHAR},
+      </if>
+      <if test="record.xinwenhuoquriqi != null" >
+        XinWenHuoQuRiQi = #{record.xinwenhuoquriqi,jdbcType=DATE},
+      </if>
+      <if test="record.xinwenurl != null" >
+        XinWenURL = #{record.xinwenurl,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_news_capture
+    set XinWenID = #{record.xinwenid,jdbcType=INTEGER},
+      XinWenBiaoTi = #{record.xinwenbiaoti,jdbcType=CHAR},
+      XinWenFaBuRiQi = #{record.xinwenfaburiqi,jdbcType=CHAR},
+      XinWenHuoQuRiQi = #{record.xinwenhuoquriqi,jdbcType=DATE},
+      XinWenURL = #{record.xinwenurl,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubNewsCapture" >
+    update hbip_pub_news_capture
+    <set >
+      <if test="xinwenbiaoti != null" >
+        XinWenBiaoTi = #{xinwenbiaoti,jdbcType=CHAR},
+      </if>
+      <if test="xinwenfaburiqi != null" >
+        XinWenFaBuRiQi = #{xinwenfaburiqi,jdbcType=CHAR},
+      </if>
+      <if test="xinwenhuoquriqi != null" >
+        XinWenHuoQuRiQi = #{xinwenhuoquriqi,jdbcType=DATE},
+      </if>
+      <if test="xinwenurl != null" >
+        XinWenURL = #{xinwenurl,jdbcType=CHAR},
+      </if>
+    </set>
+    where XinWenID = #{xinwenid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubNewsCapture" >
+    update hbip_pub_news_capture
+    set XinWenBiaoTi = #{xinwenbiaoti,jdbcType=CHAR},
+      XinWenFaBuRiQi = #{xinwenfaburiqi,jdbcType=CHAR},
+      XinWenHuoQuRiQi = #{xinwenhuoquriqi,jdbcType=DATE},
+      XinWenURL = #{xinwenurl,jdbcType=CHAR}
+    where XinWenID = #{xinwenid,jdbcType=INTEGER}
+  </update>
+</mapper>

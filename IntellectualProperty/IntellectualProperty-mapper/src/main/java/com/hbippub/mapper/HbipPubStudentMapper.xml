@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubStudentMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubStudent" >
+    <id column="XueShengID" property="xueshengid" jdbcType="INTEGER" />
+    <result column="XueShengXingMing" property="xueshengxingming" jdbcType="CHAR" />
+    <result column="XueShengNianLing" property="xueshengnianling" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XueShengID, XueShengXingMing, XueShengNianLing
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubStudentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hbip_pub_student
+    where XueShengID = #{xueshengid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_student
+    where XueShengID = #{xueshengid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubStudentExample" >
+    delete from hbip_pub_student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubStudent" >
+    insert into hbip_pub_student (XueShengID, XueShengXingMing, XueShengNianLing
+      )
+    values (#{xueshengid,jdbcType=INTEGER}, #{xueshengxingming,jdbcType=CHAR}, #{xueshengnianling,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubStudent" >
+    insert into hbip_pub_student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xueshengid != null" >
+        XueShengID,
+      </if>
+      <if test="xueshengxingming != null" >
+        XueShengXingMing,
+      </if>
+      <if test="xueshengnianling != null" >
+        XueShengNianLing,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xueshengid != null" >
+        #{xueshengid,jdbcType=INTEGER},
+      </if>
+      <if test="xueshengxingming != null" >
+        #{xueshengxingming,jdbcType=CHAR},
+      </if>
+      <if test="xueshengnianling != null" >
+        #{xueshengnianling,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubStudentExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_student
+    <set >
+      <if test="record.xueshengid != null" >
+        XueShengID = #{record.xueshengid,jdbcType=INTEGER},
+      </if>
+      <if test="record.xueshengxingming != null" >
+        XueShengXingMing = #{record.xueshengxingming,jdbcType=CHAR},
+      </if>
+      <if test="record.xueshengnianling != null" >
+        XueShengNianLing = #{record.xueshengnianling,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_student
+    set XueShengID = #{record.xueshengid,jdbcType=INTEGER},
+      XueShengXingMing = #{record.xueshengxingming,jdbcType=CHAR},
+      XueShengNianLing = #{record.xueshengnianling,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubStudent" >
+    update hbip_pub_student
+    <set >
+      <if test="xueshengxingming != null" >
+        XueShengXingMing = #{xueshengxingming,jdbcType=CHAR},
+      </if>
+      <if test="xueshengnianling != null" >
+        XueShengNianLing = #{xueshengnianling,jdbcType=INTEGER},
+      </if>
+    </set>
+    where XueShengID = #{xueshengid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubStudent" >
+    update hbip_pub_student
+    set XueShengXingMing = #{xueshengxingming,jdbcType=CHAR},
+      XueShengNianLing = #{xueshengnianling,jdbcType=INTEGER}
+    where XueShengID = #{xueshengid,jdbcType=INTEGER}
+  </update>
+</mapper>

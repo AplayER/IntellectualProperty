@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubCommodityPictureMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubCommodityPicture" >
+    <id column="TuPianID" property="tupianid" jdbcType="INTEGER" />
+    <result column="ShangPinID" property="shangpinid" jdbcType="INTEGER" />
+    <result column="TuPianLeiXing" property="tupianleixing" jdbcType="INTEGER" />
+    <result column="URL1" property="url1" jdbcType="VARCHAR" />
+    <result column="ShiFouYiShanChu" property="shifouyishanchu" jdbcType="INTEGER" />
+    <result column="BeiZhu" property="beizhu" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TuPianID, ShangPinID, TuPianLeiXing, URL1, ShiFouYiShanChu, BeiZhu
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubCommodityPictureExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_commodity_picture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hbip_pub_commodity_picture
+    where TuPianID = #{tupianid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_commodity_picture
+    where TuPianID = #{tupianid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubCommodityPictureExample" >
+    delete from hbip_pub_commodity_picture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubCommodityPicture" >
+    insert into hbip_pub_commodity_picture (TuPianID, ShangPinID, TuPianLeiXing, 
+      URL1, ShiFouYiShanChu, BeiZhu
+      )
+    values (#{tupianid,jdbcType=INTEGER}, #{shangpinid,jdbcType=INTEGER}, #{tupianleixing,jdbcType=INTEGER}, 
+      #{url1,jdbcType=VARCHAR}, #{shifouyishanchu,jdbcType=INTEGER}, #{beizhu,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubCommodityPicture" >
+    insert into hbip_pub_commodity_picture
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tupianid != null" >
+        TuPianID,
+      </if>
+      <if test="shangpinid != null" >
+        ShangPinID,
+      </if>
+      <if test="tupianleixing != null" >
+        TuPianLeiXing,
+      </if>
+      <if test="url1 != null" >
+        URL1,
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu,
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tupianid != null" >
+        #{tupianid,jdbcType=INTEGER},
+      </if>
+      <if test="shangpinid != null" >
+        #{shangpinid,jdbcType=INTEGER},
+      </if>
+      <if test="tupianleixing != null" >
+        #{tupianleixing,jdbcType=INTEGER},
+      </if>
+      <if test="url1 != null" >
+        #{url1,jdbcType=VARCHAR},
+      </if>
+      <if test="shifouyishanchu != null" >
+        #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubCommodityPictureExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_commodity_picture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_commodity_picture
+    <set >
+      <if test="record.tupianid != null" >
+        TuPianID = #{record.tupianid,jdbcType=INTEGER},
+      </if>
+      <if test="record.shangpinid != null" >
+        ShangPinID = #{record.shangpinid,jdbcType=INTEGER},
+      </if>
+      <if test="record.tupianleixing != null" >
+        TuPianLeiXing = #{record.tupianleixing,jdbcType=INTEGER},
+      </if>
+      <if test="record.url1 != null" >
+        URL1 = #{record.url1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shifouyishanchu != null" >
+        ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="record.beizhu != null" >
+        BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_commodity_picture
+    set TuPianID = #{record.tupianid,jdbcType=INTEGER},
+      ShangPinID = #{record.shangpinid,jdbcType=INTEGER},
+      TuPianLeiXing = #{record.tupianleixing,jdbcType=INTEGER},
+      URL1 = #{record.url1,jdbcType=VARCHAR},
+      ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      BeiZhu = #{record.beizhu,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubCommodityPicture" >
+    update hbip_pub_commodity_picture
+    <set >
+      <if test="shangpinid != null" >
+        ShangPinID = #{shangpinid,jdbcType=INTEGER},
+      </if>
+      <if test="tupianleixing != null" >
+        TuPianLeiXing = #{tupianleixing,jdbcType=INTEGER},
+      </if>
+      <if test="url1 != null" >
+        URL1 = #{url1,jdbcType=VARCHAR},
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TuPianID = #{tupianid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubCommodityPicture" >
+    update hbip_pub_commodity_picture
+    set ShangPinID = #{shangpinid,jdbcType=INTEGER},
+      TuPianLeiXing = #{tupianleixing,jdbcType=INTEGER},
+      URL1 = #{url1,jdbcType=VARCHAR},
+      ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      BeiZhu = #{beizhu,jdbcType=VARCHAR}
+    where TuPianID = #{tupianid,jdbcType=INTEGER}
+  </update>
+</mapper>

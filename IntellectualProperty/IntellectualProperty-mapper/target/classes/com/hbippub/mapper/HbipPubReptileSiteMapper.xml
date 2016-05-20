@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubReptileSiteMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubReptileSite" >
+    <id column="WangZhanID" property="wangzhanid" jdbcType="INTEGER" />
+    <id column="ShiFouYiShanChu" property="shifouyishanchu" jdbcType="INTEGER" />
+    <result column="WangZhan" property="wangzhan" jdbcType="CHAR" />
+    <result column="BeiZhu" property="beizhu" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    WangZhanID, ShiFouYiShanChu, WangZhan, BeiZhu
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubReptileSiteExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_reptile_site
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubReptileSiteKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from hbip_pub_reptile_site
+    where WangZhanID = #{wangzhanid,jdbcType=INTEGER}
+      and ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubReptileSiteKey" >
+    delete from hbip_pub_reptile_site
+    where WangZhanID = #{wangzhanid,jdbcType=INTEGER}
+      and ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubReptileSiteExample" >
+    delete from hbip_pub_reptile_site
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubReptileSite" >
+    insert into hbip_pub_reptile_site (WangZhanID, ShiFouYiShanChu, WangZhan, 
+      BeiZhu)
+    values (#{wangzhanid,jdbcType=INTEGER}, #{shifouyishanchu,jdbcType=INTEGER}, #{wangzhan,jdbcType=CHAR}, 
+      #{beizhu,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubReptileSite" >
+    insert into hbip_pub_reptile_site
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wangzhanid != null" >
+        WangZhanID,
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu,
+      </if>
+      <if test="wangzhan != null" >
+        WangZhan,
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wangzhanid != null" >
+        #{wangzhanid,jdbcType=INTEGER},
+      </if>
+      <if test="shifouyishanchu != null" >
+        #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="wangzhan != null" >
+        #{wangzhan,jdbcType=CHAR},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubReptileSiteExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_reptile_site
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_reptile_site
+    <set >
+      <if test="record.wangzhanid != null" >
+        WangZhanID = #{record.wangzhanid,jdbcType=INTEGER},
+      </if>
+      <if test="record.shifouyishanchu != null" >
+        ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="record.wangzhan != null" >
+        WangZhan = #{record.wangzhan,jdbcType=CHAR},
+      </if>
+      <if test="record.beizhu != null" >
+        BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_reptile_site
+    set WangZhanID = #{record.wangzhanid,jdbcType=INTEGER},
+      ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      WangZhan = #{record.wangzhan,jdbcType=CHAR},
+      BeiZhu = #{record.beizhu,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubReptileSite" >
+    update hbip_pub_reptile_site
+    <set >
+      <if test="wangzhan != null" >
+        WangZhan = #{wangzhan,jdbcType=CHAR},
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where WangZhanID = #{wangzhanid,jdbcType=INTEGER}
+      and ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubReptileSite" >
+    update hbip_pub_reptile_site
+    set WangZhan = #{wangzhan,jdbcType=CHAR},
+      BeiZhu = #{beizhu,jdbcType=VARCHAR}
+    where WangZhanID = #{wangzhanid,jdbcType=INTEGER}
+      and ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubMailAccessoryMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubMailAccessory" >
+    <id column="FuJianID" property="fujianid" jdbcType="INTEGER" />
+    <result column="YouJianID" property="youjianid" jdbcType="INTEGER" />
+    <result column="FuJianMingCheng" property="fujianmingcheng" jdbcType="CHAR" />
+    <result column="FuJianURL" property="fujianurl" jdbcType="CHAR" />
+    <result column="ShiFouShanChu" property="shifoushanchu" jdbcType="INTEGER" />
+    <result column="BeiZhu" property="beizhu" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    FuJianID, YouJianID, FuJianMingCheng, FuJianURL, ShiFouShanChu, BeiZhu
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubMailAccessoryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_mail_accessory
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hbip_pub_mail_accessory
+    where FuJianID = #{fujianid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_mail_accessory
+    where FuJianID = #{fujianid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubMailAccessoryExample" >
+    delete from hbip_pub_mail_accessory
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubMailAccessory" >
+    insert into hbip_pub_mail_accessory (FuJianID, YouJianID, FuJianMingCheng, 
+      FuJianURL, ShiFouShanChu, BeiZhu
+      )
+    values (#{fujianid,jdbcType=INTEGER}, #{youjianid,jdbcType=INTEGER}, #{fujianmingcheng,jdbcType=CHAR}, 
+      #{fujianurl,jdbcType=CHAR}, #{shifoushanchu,jdbcType=INTEGER}, #{beizhu,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubMailAccessory" >
+    insert into hbip_pub_mail_accessory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fujianid != null" >
+        FuJianID,
+      </if>
+      <if test="youjianid != null" >
+        YouJianID,
+      </if>
+      <if test="fujianmingcheng != null" >
+        FuJianMingCheng,
+      </if>
+      <if test="fujianurl != null" >
+        FuJianURL,
+      </if>
+      <if test="shifoushanchu != null" >
+        ShiFouShanChu,
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fujianid != null" >
+        #{fujianid,jdbcType=INTEGER},
+      </if>
+      <if test="youjianid != null" >
+        #{youjianid,jdbcType=INTEGER},
+      </if>
+      <if test="fujianmingcheng != null" >
+        #{fujianmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="fujianurl != null" >
+        #{fujianurl,jdbcType=CHAR},
+      </if>
+      <if test="shifoushanchu != null" >
+        #{shifoushanchu,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubMailAccessoryExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_mail_accessory
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_mail_accessory
+    <set >
+      <if test="record.fujianid != null" >
+        FuJianID = #{record.fujianid,jdbcType=INTEGER},
+      </if>
+      <if test="record.youjianid != null" >
+        YouJianID = #{record.youjianid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fujianmingcheng != null" >
+        FuJianMingCheng = #{record.fujianmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="record.fujianurl != null" >
+        FuJianURL = #{record.fujianurl,jdbcType=CHAR},
+      </if>
+      <if test="record.shifoushanchu != null" >
+        ShiFouShanChu = #{record.shifoushanchu,jdbcType=INTEGER},
+      </if>
+      <if test="record.beizhu != null" >
+        BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_mail_accessory
+    set FuJianID = #{record.fujianid,jdbcType=INTEGER},
+      YouJianID = #{record.youjianid,jdbcType=INTEGER},
+      FuJianMingCheng = #{record.fujianmingcheng,jdbcType=CHAR},
+      FuJianURL = #{record.fujianurl,jdbcType=CHAR},
+      ShiFouShanChu = #{record.shifoushanchu,jdbcType=INTEGER},
+      BeiZhu = #{record.beizhu,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubMailAccessory" >
+    update hbip_pub_mail_accessory
+    <set >
+      <if test="youjianid != null" >
+        YouJianID = #{youjianid,jdbcType=INTEGER},
+      </if>
+      <if test="fujianmingcheng != null" >
+        FuJianMingCheng = #{fujianmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="fujianurl != null" >
+        FuJianURL = #{fujianurl,jdbcType=CHAR},
+      </if>
+      <if test="shifoushanchu != null" >
+        ShiFouShanChu = #{shifoushanchu,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FuJianID = #{fujianid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubMailAccessory" >
+    update hbip_pub_mail_accessory
+    set YouJianID = #{youjianid,jdbcType=INTEGER},
+      FuJianMingCheng = #{fujianmingcheng,jdbcType=CHAR},
+      FuJianURL = #{fujianurl,jdbcType=CHAR},
+      ShiFouShanChu = #{shifoushanchu,jdbcType=INTEGER},
+      BeiZhu = #{beizhu,jdbcType=VARCHAR}
+    where FuJianID = #{fujianid,jdbcType=INTEGER}
+  </update>
+</mapper>

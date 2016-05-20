@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubSurveyQuestionMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubSurveyQuestion" >
+    <id column="TiMuID" property="timuid" jdbcType="INTEGER" />
+    <result column="WenJuanID" property="wenjuanid" jdbcType="INTEGER" />
+    <result column="TiMuMingCheng" property="timumingcheng" jdbcType="CHAR" />
+    <result column="XuanXiangA" property="xuanxianga" jdbcType="CHAR" />
+    <result column="XuanXiangB" property="xuanxiangb" jdbcType="CHAR" />
+    <result column="XuanXiangC" property="xuanxiangc" jdbcType="CHAR" />
+    <result column="XuanXiangD" property="xuanxiangd" jdbcType="CHAR" />
+    <result column="XuanXiangE" property="xuanxiange" jdbcType="CHAR" />
+    <result column="XuanXiangF" property="xuanxiangf" jdbcType="CHAR" />
+    <result column="XuanXiangG" property="xuanxiangg" jdbcType="CHAR" />
+    <result column="XuanXiangH" property="xuanxiangh" jdbcType="CHAR" />
+    <result column="XuanXiangAJiShu" property="xuanxiangajishu" jdbcType="INTEGER" />
+    <result column="XuanXiangBJiShu" property="xuanxiangbjishu" jdbcType="INTEGER" />
+    <result column="XuanXiangCJiShu" property="xuanxiangcjishu" jdbcType="INTEGER" />
+    <result column="XuanXiangDJiShu" property="xuanxiangdjishu" jdbcType="INTEGER" />
+    <result column="XuanXiangEJiShu" property="xuanxiangejishu" jdbcType="INTEGER" />
+    <result column="XuanXiangFJiShu" property="xuanxiangfjishu" jdbcType="INTEGER" />
+    <result column="XuanXiangGJiShu" property="xuanxianggjishu" jdbcType="INTEGER" />
+    <result column="XuanXiangHJiShu" property="xuanxianghjishu" jdbcType="INTEGER" />
+    <result column="ShiFouShanChu" property="shifoushanchu" jdbcType="INTEGER" />
+    <result column="BeiZhu" property="beizhu" jdbcType="VARCHAR" />
+    <result column="TiMuLeiXing" property="timuleixing" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TiMuID, WenJuanID, TiMuMingCheng, XuanXiangA, XuanXiangB, XuanXiangC, XuanXiangD, 
+    XuanXiangE, XuanXiangF, XuanXiangG, XuanXiangH, XuanXiangAJiShu, XuanXiangBJiShu, 
+    XuanXiangCJiShu, XuanXiangDJiShu, XuanXiangEJiShu, XuanXiangFJiShu, XuanXiangGJiShu, 
+    XuanXiangHJiShu, ShiFouShanChu, BeiZhu, TiMuLeiXing
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubSurveyQuestionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_survey_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hbip_pub_survey_question
+    where TiMuID = #{timuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_survey_question
+    where TiMuID = #{timuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubSurveyQuestionExample" >
+    delete from hbip_pub_survey_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubSurveyQuestion" >
+    insert into hbip_pub_survey_question (TiMuID, WenJuanID, TiMuMingCheng, 
+      XuanXiangA, XuanXiangB, XuanXiangC, 
+      XuanXiangD, XuanXiangE, XuanXiangF, 
+      XuanXiangG, XuanXiangH, XuanXiangAJiShu, 
+      XuanXiangBJiShu, XuanXiangCJiShu, XuanXiangDJiShu, 
+      XuanXiangEJiShu, XuanXiangFJiShu, XuanXiangGJiShu, 
+      XuanXiangHJiShu, ShiFouShanChu, BeiZhu, 
+      TiMuLeiXing)
+    values (#{timuid,jdbcType=INTEGER}, #{wenjuanid,jdbcType=INTEGER}, #{timumingcheng,jdbcType=CHAR}, 
+      #{xuanxianga,jdbcType=CHAR}, #{xuanxiangb,jdbcType=CHAR}, #{xuanxiangc,jdbcType=CHAR}, 
+      #{xuanxiangd,jdbcType=CHAR}, #{xuanxiange,jdbcType=CHAR}, #{xuanxiangf,jdbcType=CHAR}, 
+      #{xuanxiangg,jdbcType=CHAR}, #{xuanxiangh,jdbcType=CHAR}, #{xuanxiangajishu,jdbcType=INTEGER}, 
+      #{xuanxiangbjishu,jdbcType=INTEGER}, #{xuanxiangcjishu,jdbcType=INTEGER}, #{xuanxiangdjishu,jdbcType=INTEGER}, 
+      #{xuanxiangejishu,jdbcType=INTEGER}, #{xuanxiangfjishu,jdbcType=INTEGER}, #{xuanxianggjishu,jdbcType=INTEGER}, 
+      #{xuanxianghjishu,jdbcType=INTEGER}, #{shifoushanchu,jdbcType=INTEGER}, #{beizhu,jdbcType=VARCHAR}, 
+      #{timuleixing,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubSurveyQuestion" >
+    insert into hbip_pub_survey_question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="timuid != null" >
+        TiMuID,
+      </if>
+      <if test="wenjuanid != null" >
+        WenJuanID,
+      </if>
+      <if test="timumingcheng != null" >
+        TiMuMingCheng,
+      </if>
+      <if test="xuanxianga != null" >
+        XuanXiangA,
+      </if>
+      <if test="xuanxiangb != null" >
+        XuanXiangB,
+      </if>
+      <if test="xuanxiangc != null" >
+        XuanXiangC,
+      </if>
+      <if test="xuanxiangd != null" >
+        XuanXiangD,
+      </if>
+      <if test="xuanxiange != null" >
+        XuanXiangE,
+      </if>
+      <if test="xuanxiangf != null" >
+        XuanXiangF,
+      </if>
+      <if test="xuanxiangg != null" >
+        XuanXiangG,
+      </if>
+      <if test="xuanxiangh != null" >
+        XuanXiangH,
+      </if>
+      <if test="xuanxiangajishu != null" >
+        XuanXiangAJiShu,
+      </if>
+      <if test="xuanxiangbjishu != null" >
+        XuanXiangBJiShu,
+      </if>
+      <if test="xuanxiangcjishu != null" >
+        XuanXiangCJiShu,
+      </if>
+      <if test="xuanxiangdjishu != null" >
+        XuanXiangDJiShu,
+      </if>
+      <if test="xuanxiangejishu != null" >
+        XuanXiangEJiShu,
+      </if>
+      <if test="xuanxiangfjishu != null" >
+        XuanXiangFJiShu,
+      </if>
+      <if test="xuanxianggjishu != null" >
+        XuanXiangGJiShu,
+      </if>
+      <if test="xuanxianghjishu != null" >
+        XuanXiangHJiShu,
+      </if>
+      <if test="shifoushanchu != null" >
+        ShiFouShanChu,
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu,
+      </if>
+      <if test="timuleixing != null" >
+        TiMuLeiXing,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="timuid != null" >
+        #{timuid,jdbcType=INTEGER},
+      </if>
+      <if test="wenjuanid != null" >
+        #{wenjuanid,jdbcType=INTEGER},
+      </if>
+      <if test="timumingcheng != null" >
+        #{timumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="xuanxianga != null" >
+        #{xuanxianga,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiangb != null" >
+        #{xuanxiangb,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiangc != null" >
+        #{xuanxiangc,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiangd != null" >
+        #{xuanxiangd,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiange != null" >
+        #{xuanxiange,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiangf != null" >
+        #{xuanxiangf,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiangg != null" >
+        #{xuanxiangg,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiangh != null" >
+        #{xuanxiangh,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiangajishu != null" >
+        #{xuanxiangajishu,jdbcType=INTEGER},
+      </if>
+      <if test="xuanxiangbjishu != null" >
+        #{xuanxiangbjishu,jdbcType=INTEGER},
+      </if>
+      <if test="xuanxiangcjishu != null" >
+        #{xuanxiangcjishu,jdbcType=INTEGER},
+      </if>
+      <if test="xuanxiangdjishu != null" >
+        #{xuanxiangdjishu,jdbcType=INTEGER},
+      </if>
+      <if test="xuanxiangejishu != null" >
+        #{xuanxiangejishu,jdbcType=INTEGER},
+      </if>
+      <if test="xuanxiangfjishu != null" >
+        #{xuanxiangfjishu,jdbcType=INTEGER},
+      </if>
+      <if test="xuanxianggjishu != null" >
+        #{xuanxianggjishu,jdbcType=INTEGER},
+      </if>
+      <if test="xuanxianghjishu != null" >
+        #{xuanxianghjishu,jdbcType=INTEGER},
+      </if>
+      <if test="shifoushanchu != null" >
+        #{shifoushanchu,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="timuleixing != null" >
+        #{timuleixing,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubSurveyQuestionExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_survey_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_survey_question
+    <set >
+      <if test="record.timuid != null" >
+        TiMuID = #{record.timuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.wenjuanid != null" >
+        WenJuanID = #{record.wenjuanid,jdbcType=INTEGER},
+      </if>
+      <if test="record.timumingcheng != null" >
+        TiMuMingCheng = #{record.timumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="record.xuanxianga != null" >
+        XuanXiangA = #{record.xuanxianga,jdbcType=CHAR},
+      </if>
+      <if test="record.xuanxiangb != null" >
+        XuanXiangB = #{record.xuanxiangb,jdbcType=CHAR},
+      </if>
+      <if test="record.xuanxiangc != null" >
+        XuanXiangC = #{record.xuanxiangc,jdbcType=CHAR},
+      </if>
+      <if test="record.xuanxiangd != null" >
+        XuanXiangD = #{record.xuanxiangd,jdbcType=CHAR},
+      </if>
+      <if test="record.xuanxiange != null" >
+        XuanXiangE = #{record.xuanxiange,jdbcType=CHAR},
+      </if>
+      <if test="record.xuanxiangf != null" >
+        XuanXiangF = #{record.xuanxiangf,jdbcType=CHAR},
+      </if>
+      <if test="record.xuanxiangg != null" >
+        XuanXiangG = #{record.xuanxiangg,jdbcType=CHAR},
+      </if>
+      <if test="record.xuanxiangh != null" >
+        XuanXiangH = #{record.xuanxiangh,jdbcType=CHAR},
+      </if>
+      <if test="record.xuanxiangajishu != null" >
+        XuanXiangAJiShu = #{record.xuanxiangajishu,jdbcType=INTEGER},
+      </if>
+      <if test="record.xuanxiangbjishu != null" >
+        XuanXiangBJiShu = #{record.xuanxiangbjishu,jdbcType=INTEGER},
+      </if>
+      <if test="record.xuanxiangcjishu != null" >
+        XuanXiangCJiShu = #{record.xuanxiangcjishu,jdbcType=INTEGER},
+      </if>
+      <if test="record.xuanxiangdjishu != null" >
+        XuanXiangDJiShu = #{record.xuanxiangdjishu,jdbcType=INTEGER},
+      </if>
+      <if test="record.xuanxiangejishu != null" >
+        XuanXiangEJiShu = #{record.xuanxiangejishu,jdbcType=INTEGER},
+      </if>
+      <if test="record.xuanxiangfjishu != null" >
+        XuanXiangFJiShu = #{record.xuanxiangfjishu,jdbcType=INTEGER},
+      </if>
+      <if test="record.xuanxianggjishu != null" >
+        XuanXiangGJiShu = #{record.xuanxianggjishu,jdbcType=INTEGER},
+      </if>
+      <if test="record.xuanxianghjishu != null" >
+        XuanXiangHJiShu = #{record.xuanxianghjishu,jdbcType=INTEGER},
+      </if>
+      <if test="record.shifoushanchu != null" >
+        ShiFouShanChu = #{record.shifoushanchu,jdbcType=INTEGER},
+      </if>
+      <if test="record.beizhu != null" >
+        BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timuleixing != null" >
+        TiMuLeiXing = #{record.timuleixing,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_survey_question
+    set TiMuID = #{record.timuid,jdbcType=INTEGER},
+      WenJuanID = #{record.wenjuanid,jdbcType=INTEGER},
+      TiMuMingCheng = #{record.timumingcheng,jdbcType=CHAR},
+      XuanXiangA = #{record.xuanxianga,jdbcType=CHAR},
+      XuanXiangB = #{record.xuanxiangb,jdbcType=CHAR},
+      XuanXiangC = #{record.xuanxiangc,jdbcType=CHAR},
+      XuanXiangD = #{record.xuanxiangd,jdbcType=CHAR},
+      XuanXiangE = #{record.xuanxiange,jdbcType=CHAR},
+      XuanXiangF = #{record.xuanxiangf,jdbcType=CHAR},
+      XuanXiangG = #{record.xuanxiangg,jdbcType=CHAR},
+      XuanXiangH = #{record.xuanxiangh,jdbcType=CHAR},
+      XuanXiangAJiShu = #{record.xuanxiangajishu,jdbcType=INTEGER},
+      XuanXiangBJiShu = #{record.xuanxiangbjishu,jdbcType=INTEGER},
+      XuanXiangCJiShu = #{record.xuanxiangcjishu,jdbcType=INTEGER},
+      XuanXiangDJiShu = #{record.xuanxiangdjishu,jdbcType=INTEGER},
+      XuanXiangEJiShu = #{record.xuanxiangejishu,jdbcType=INTEGER},
+      XuanXiangFJiShu = #{record.xuanxiangfjishu,jdbcType=INTEGER},
+      XuanXiangGJiShu = #{record.xuanxianggjishu,jdbcType=INTEGER},
+      XuanXiangHJiShu = #{record.xuanxianghjishu,jdbcType=INTEGER},
+      ShiFouShanChu = #{record.shifoushanchu,jdbcType=INTEGER},
+      BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      TiMuLeiXing = #{record.timuleixing,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubSurveyQuestion" >
+    update hbip_pub_survey_question
+    <set >
+      <if test="wenjuanid != null" >
+        WenJuanID = #{wenjuanid,jdbcType=INTEGER},
+      </if>
+      <if test="timumingcheng != null" >
+        TiMuMingCheng = #{timumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="xuanxianga != null" >
+        XuanXiangA = #{xuanxianga,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiangb != null" >
+        XuanXiangB = #{xuanxiangb,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiangc != null" >
+        XuanXiangC = #{xuanxiangc,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiangd != null" >
+        XuanXiangD = #{xuanxiangd,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiange != null" >
+        XuanXiangE = #{xuanxiange,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiangf != null" >
+        XuanXiangF = #{xuanxiangf,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiangg != null" >
+        XuanXiangG = #{xuanxiangg,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiangh != null" >
+        XuanXiangH = #{xuanxiangh,jdbcType=CHAR},
+      </if>
+      <if test="xuanxiangajishu != null" >
+        XuanXiangAJiShu = #{xuanxiangajishu,jdbcType=INTEGER},
+      </if>
+      <if test="xuanxiangbjishu != null" >
+        XuanXiangBJiShu = #{xuanxiangbjishu,jdbcType=INTEGER},
+      </if>
+      <if test="xuanxiangcjishu != null" >
+        XuanXiangCJiShu = #{xuanxiangcjishu,jdbcType=INTEGER},
+      </if>
+      <if test="xuanxiangdjishu != null" >
+        XuanXiangDJiShu = #{xuanxiangdjishu,jdbcType=INTEGER},
+      </if>
+      <if test="xuanxiangejishu != null" >
+        XuanXiangEJiShu = #{xuanxiangejishu,jdbcType=INTEGER},
+      </if>
+      <if test="xuanxiangfjishu != null" >
+        XuanXiangFJiShu = #{xuanxiangfjishu,jdbcType=INTEGER},
+      </if>
+      <if test="xuanxianggjishu != null" >
+        XuanXiangGJiShu = #{xuanxianggjishu,jdbcType=INTEGER},
+      </if>
+      <if test="xuanxianghjishu != null" >
+        XuanXiangHJiShu = #{xuanxianghjishu,jdbcType=INTEGER},
+      </if>
+      <if test="shifoushanchu != null" >
+        ShiFouShanChu = #{shifoushanchu,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="timuleixing != null" >
+        TiMuLeiXing = #{timuleixing,jdbcType=INTEGER},
+      </if>
+    </set>
+    where TiMuID = #{timuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubSurveyQuestion" >
+    update hbip_pub_survey_question
+    set WenJuanID = #{wenjuanid,jdbcType=INTEGER},
+      TiMuMingCheng = #{timumingcheng,jdbcType=CHAR},
+      XuanXiangA = #{xuanxianga,jdbcType=CHAR},
+      XuanXiangB = #{xuanxiangb,jdbcType=CHAR},
+      XuanXiangC = #{xuanxiangc,jdbcType=CHAR},
+      XuanXiangD = #{xuanxiangd,jdbcType=CHAR},
+      XuanXiangE = #{xuanxiange,jdbcType=CHAR},
+      XuanXiangF = #{xuanxiangf,jdbcType=CHAR},
+      XuanXiangG = #{xuanxiangg,jdbcType=CHAR},
+      XuanXiangH = #{xuanxiangh,jdbcType=CHAR},
+      XuanXiangAJiShu = #{xuanxiangajishu,jdbcType=INTEGER},
+      XuanXiangBJiShu = #{xuanxiangbjishu,jdbcType=INTEGER},
+      XuanXiangCJiShu = #{xuanxiangcjishu,jdbcType=INTEGER},
+      XuanXiangDJiShu = #{xuanxiangdjishu,jdbcType=INTEGER},
+      XuanXiangEJiShu = #{xuanxiangejishu,jdbcType=INTEGER},
+      XuanXiangFJiShu = #{xuanxiangfjishu,jdbcType=INTEGER},
+      XuanXiangGJiShu = #{xuanxianggjishu,jdbcType=INTEGER},
+      XuanXiangHJiShu = #{xuanxianghjishu,jdbcType=INTEGER},
+      ShiFouShanChu = #{shifoushanchu,jdbcType=INTEGER},
+      BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      TiMuLeiXing = #{timuleixing,jdbcType=INTEGER}
+    where TiMuID = #{timuid,jdbcType=INTEGER}
+  </update>
+</mapper>

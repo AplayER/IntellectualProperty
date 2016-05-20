@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubReptileResultMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubReptileResult" >
+    <id column="PaQuJieGuoID" property="paqujieguoid" jdbcType="INTEGER" />
+    <id column="ShiFouYiShanChu" property="shifouyishanchu" jdbcType="INTEGER" />
+    <result column="WangZhi" property="wangzhi" jdbcType="CHAR" />
+    <result column="WenZhangBiaoTi" property="wenzhangbiaoti" jdbcType="CHAR" />
+    <result column="FaBiaoShiJian" property="fabiaoshijian" jdbcType="TIMESTAMP" />
+    <result column="ZuoZheXingMing" property="zuozhexingming" jdbcType="CHAR" />
+    <result column="TuPianURL" property="tupianurl" jdbcType="VARCHAR" />
+    <result column="PaQuShiJian" property="paqushijian" jdbcType="TIMESTAMP" />
+    <result column="BeiZhu" property="beizhu" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hbippub.pojo.HbipPubReptileResult" extends="BaseResultMap" >
+    <result column="WenZhangNeiRong" property="wenzhangneirong" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PaQuJieGuoID, ShiFouYiShanChu, WangZhi, WenZhangBiaoTi, FaBiaoShiJian, ZuoZheXingMing, 
+    TuPianURL, PaQuShiJian, BeiZhu
+  </sql>
+  <sql id="Blob_Column_List" >
+    WenZhangNeiRong
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.hbippub.pojo.HbipPubReptileResultExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hbip_pub_reptile_result
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubReptileResultExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_reptile_result
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="com.hbippub.pojo.HbipPubReptileResultKey" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hbip_pub_reptile_result
+    where PaQuJieGuoID = #{paqujieguoid,jdbcType=INTEGER}
+      and ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubReptileResultKey" >
+    delete from hbip_pub_reptile_result
+    where PaQuJieGuoID = #{paqujieguoid,jdbcType=INTEGER}
+      and ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubReptileResultExample" >
+    delete from hbip_pub_reptile_result
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubReptileResult" >
+    insert into hbip_pub_reptile_result (PaQuJieGuoID, ShiFouYiShanChu, WangZhi, 
+      WenZhangBiaoTi, FaBiaoShiJian, ZuoZheXingMing, 
+      TuPianURL, PaQuShiJian, BeiZhu, 
+      WenZhangNeiRong)
+    values (#{paqujieguoid,jdbcType=INTEGER}, #{shifouyishanchu,jdbcType=INTEGER}, #{wangzhi,jdbcType=CHAR}, 
+      #{wenzhangbiaoti,jdbcType=CHAR}, #{fabiaoshijian,jdbcType=TIMESTAMP}, #{zuozhexingming,jdbcType=CHAR}, 
+      #{tupianurl,jdbcType=VARCHAR}, #{paqushijian,jdbcType=TIMESTAMP}, #{beizhu,jdbcType=VARCHAR}, 
+      #{wenzhangneirong,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubReptileResult" >
+    insert into hbip_pub_reptile_result
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paqujieguoid != null" >
+        PaQuJieGuoID,
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu,
+      </if>
+      <if test="wangzhi != null" >
+        WangZhi,
+      </if>
+      <if test="wenzhangbiaoti != null" >
+        WenZhangBiaoTi,
+      </if>
+      <if test="fabiaoshijian != null" >
+        FaBiaoShiJian,
+      </if>
+      <if test="zuozhexingming != null" >
+        ZuoZheXingMing,
+      </if>
+      <if test="tupianurl != null" >
+        TuPianURL,
+      </if>
+      <if test="paqushijian != null" >
+        PaQuShiJian,
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu,
+      </if>
+      <if test="wenzhangneirong != null" >
+        WenZhangNeiRong,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paqujieguoid != null" >
+        #{paqujieguoid,jdbcType=INTEGER},
+      </if>
+      <if test="shifouyishanchu != null" >
+        #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="wangzhi != null" >
+        #{wangzhi,jdbcType=CHAR},
+      </if>
+      <if test="wenzhangbiaoti != null" >
+        #{wenzhangbiaoti,jdbcType=CHAR},
+      </if>
+      <if test="fabiaoshijian != null" >
+        #{fabiaoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zuozhexingming != null" >
+        #{zuozhexingming,jdbcType=CHAR},
+      </if>
+      <if test="tupianurl != null" >
+        #{tupianurl,jdbcType=VARCHAR},
+      </if>
+      <if test="paqushijian != null" >
+        #{paqushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="wenzhangneirong != null" >
+        #{wenzhangneirong,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubReptileResultExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_reptile_result
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_reptile_result
+    <set >
+      <if test="record.paqujieguoid != null" >
+        PaQuJieGuoID = #{record.paqujieguoid,jdbcType=INTEGER},
+      </if>
+      <if test="record.shifouyishanchu != null" >
+        ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="record.wangzhi != null" >
+        WangZhi = #{record.wangzhi,jdbcType=CHAR},
+      </if>
+      <if test="record.wenzhangbiaoti != null" >
+        WenZhangBiaoTi = #{record.wenzhangbiaoti,jdbcType=CHAR},
+      </if>
+      <if test="record.fabiaoshijian != null" >
+        FaBiaoShiJian = #{record.fabiaoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.zuozhexingming != null" >
+        ZuoZheXingMing = #{record.zuozhexingming,jdbcType=CHAR},
+      </if>
+      <if test="record.tupianurl != null" >
+        TuPianURL = #{record.tupianurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paqushijian != null" >
+        PaQuShiJian = #{record.paqushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.beizhu != null" >
+        BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wenzhangneirong != null" >
+        WenZhangNeiRong = #{record.wenzhangneirong,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update hbip_pub_reptile_result
+    set PaQuJieGuoID = #{record.paqujieguoid,jdbcType=INTEGER},
+      ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      WangZhi = #{record.wangzhi,jdbcType=CHAR},
+      WenZhangBiaoTi = #{record.wenzhangbiaoti,jdbcType=CHAR},
+      FaBiaoShiJian = #{record.fabiaoshijian,jdbcType=TIMESTAMP},
+      ZuoZheXingMing = #{record.zuozhexingming,jdbcType=CHAR},
+      TuPianURL = #{record.tupianurl,jdbcType=VARCHAR},
+      PaQuShiJian = #{record.paqushijian,jdbcType=TIMESTAMP},
+      BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      WenZhangNeiRong = #{record.wenzhangneirong,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_reptile_result
+    set PaQuJieGuoID = #{record.paqujieguoid,jdbcType=INTEGER},
+      ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      WangZhi = #{record.wangzhi,jdbcType=CHAR},
+      WenZhangBiaoTi = #{record.wenzhangbiaoti,jdbcType=CHAR},
+      FaBiaoShiJian = #{record.fabiaoshijian,jdbcType=TIMESTAMP},
+      ZuoZheXingMing = #{record.zuozhexingming,jdbcType=CHAR},
+      TuPianURL = #{record.tupianurl,jdbcType=VARCHAR},
+      PaQuShiJian = #{record.paqushijian,jdbcType=TIMESTAMP},
+      BeiZhu = #{record.beizhu,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubReptileResult" >
+    update hbip_pub_reptile_result
+    <set >
+      <if test="wangzhi != null" >
+        WangZhi = #{wangzhi,jdbcType=CHAR},
+      </if>
+      <if test="wenzhangbiaoti != null" >
+        WenZhangBiaoTi = #{wenzhangbiaoti,jdbcType=CHAR},
+      </if>
+      <if test="fabiaoshijian != null" >
+        FaBiaoShiJian = #{fabiaoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zuozhexingming != null" >
+        ZuoZheXingMing = #{zuozhexingming,jdbcType=CHAR},
+      </if>
+      <if test="tupianurl != null" >
+        TuPianURL = #{tupianurl,jdbcType=VARCHAR},
+      </if>
+      <if test="paqushijian != null" >
+        PaQuShiJian = #{paqushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="wenzhangneirong != null" >
+        WenZhangNeiRong = #{wenzhangneirong,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where PaQuJieGuoID = #{paqujieguoid,jdbcType=INTEGER}
+      and ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hbippub.pojo.HbipPubReptileResult" >
+    update hbip_pub_reptile_result
+    set WangZhi = #{wangzhi,jdbcType=CHAR},
+      WenZhangBiaoTi = #{wenzhangbiaoti,jdbcType=CHAR},
+      FaBiaoShiJian = #{fabiaoshijian,jdbcType=TIMESTAMP},
+      ZuoZheXingMing = #{zuozhexingming,jdbcType=CHAR},
+      TuPianURL = #{tupianurl,jdbcType=VARCHAR},
+      PaQuShiJian = #{paqushijian,jdbcType=TIMESTAMP},
+      BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      WenZhangNeiRong = #{wenzhangneirong,jdbcType=LONGVARCHAR}
+    where PaQuJieGuoID = #{paqujieguoid,jdbcType=INTEGER}
+      and ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubReptileResult" >
+    update hbip_pub_reptile_result
+    set WangZhi = #{wangzhi,jdbcType=CHAR},
+      WenZhangBiaoTi = #{wenzhangbiaoti,jdbcType=CHAR},
+      FaBiaoShiJian = #{fabiaoshijian,jdbcType=TIMESTAMP},
+      ZuoZheXingMing = #{zuozhexingming,jdbcType=CHAR},
+      TuPianURL = #{tupianurl,jdbcType=VARCHAR},
+      PaQuShiJian = #{paqushijian,jdbcType=TIMESTAMP},
+      BeiZhu = #{beizhu,jdbcType=VARCHAR}
+    where PaQuJieGuoID = #{paqujieguoid,jdbcType=INTEGER}
+      and ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubNewsMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubNews" >
+    <id column="XinWenID" property="xinwenid" jdbcType="INTEGER" />
+    <result column="FaBuZheID" property="fabuzheid" jdbcType="INTEGER" />
+    <result column="FenLeiID" property="fenleiid" jdbcType="INTEGER" />
+    <result column="XinWenMingCheng" property="xinwenmingcheng" jdbcType="CHAR" />
+    <result column="XinXiLaiYuan" property="xinxilaiyuan" jdbcType="CHAR" />
+    <result column="FengMianURL" property="fengmianurl" jdbcType="CHAR" />
+    <result column="LiuLanCiShu" property="liulancishu" jdbcType="INTEGER" />
+    <result column="ShiFouZhiDing" property="shifouzhiding" jdbcType="INTEGER" />
+    <result column="FaBuShiJian" property="fabushijian" jdbcType="TIMESTAMP" />
+    <result column="ZhiDingShiJian" property="zhidingshijian" jdbcType="TIMESTAMP" />
+    <result column="ShiFouYiShanChu" property="shifouyishanchu" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hbippub.pojo.HbipPubNews" extends="BaseResultMap" >
+    <result column="NeiRong" property="neirong" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XinWenID, FaBuZheID, FenLeiID, XinWenMingCheng, XinXiLaiYuan, FengMianURL, LiuLanCiShu, 
+    ShiFouZhiDing, FaBuShiJian, ZhiDingShiJian, ShiFouYiShanChu
+  </sql>
+  <sql id="Blob_Column_List" >
+    NeiRong
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.hbippub.pojo.HbipPubNewsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hbip_pub_news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubNewsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hbip_pub_news
+    where XinWenID = #{xinwenid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_news
+    where XinWenID = #{xinwenid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubNewsExample" >
+    delete from hbip_pub_news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubNews" >
+    insert into hbip_pub_news (XinWenID, FaBuZheID, FenLeiID, 
+      XinWenMingCheng, XinXiLaiYuan, FengMianURL, 
+      LiuLanCiShu, ShiFouZhiDing, FaBuShiJian, 
+      ZhiDingShiJian, ShiFouYiShanChu, NeiRong
+      )
+    values (#{xinwenid,jdbcType=INTEGER}, #{fabuzheid,jdbcType=INTEGER}, #{fenleiid,jdbcType=INTEGER}, 
+      #{xinwenmingcheng,jdbcType=CHAR}, #{xinxilaiyuan,jdbcType=CHAR}, #{fengmianurl,jdbcType=CHAR}, 
+      #{liulancishu,jdbcType=INTEGER}, #{shifouzhiding,jdbcType=INTEGER}, #{fabushijian,jdbcType=TIMESTAMP}, 
+      #{zhidingshijian,jdbcType=TIMESTAMP}, #{shifouyishanchu,jdbcType=INTEGER}, #{neirong,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubNews" >
+    insert into hbip_pub_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xinwenid != null" >
+        XinWenID,
+      </if>
+      <if test="fabuzheid != null" >
+        FaBuZheID,
+      </if>
+      <if test="fenleiid != null" >
+        FenLeiID,
+      </if>
+      <if test="xinwenmingcheng != null" >
+        XinWenMingCheng,
+      </if>
+      <if test="xinxilaiyuan != null" >
+        XinXiLaiYuan,
+      </if>
+      <if test="fengmianurl != null" >
+        FengMianURL,
+      </if>
+      <if test="liulancishu != null" >
+        LiuLanCiShu,
+      </if>
+      <if test="shifouzhiding != null" >
+        ShiFouZhiDing,
+      </if>
+      <if test="fabushijian != null" >
+        FaBuShiJian,
+      </if>
+      <if test="zhidingshijian != null" >
+        ZhiDingShiJian,
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu,
+      </if>
+      <if test="neirong != null" >
+        NeiRong,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xinwenid != null" >
+        #{xinwenid,jdbcType=INTEGER},
+      </if>
+      <if test="fabuzheid != null" >
+        #{fabuzheid,jdbcType=INTEGER},
+      </if>
+      <if test="fenleiid != null" >
+        #{fenleiid,jdbcType=INTEGER},
+      </if>
+      <if test="xinwenmingcheng != null" >
+        #{xinwenmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="xinxilaiyuan != null" >
+        #{xinxilaiyuan,jdbcType=CHAR},
+      </if>
+      <if test="fengmianurl != null" >
+        #{fengmianurl,jdbcType=CHAR},
+      </if>
+      <if test="liulancishu != null" >
+        #{liulancishu,jdbcType=INTEGER},
+      </if>
+      <if test="shifouzhiding != null" >
+        #{shifouzhiding,jdbcType=INTEGER},
+      </if>
+      <if test="fabushijian != null" >
+        #{fabushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zhidingshijian != null" >
+        #{zhidingshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shifouyishanchu != null" >
+        #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="neirong != null" >
+        #{neirong,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubNewsExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_news
+    <set >
+      <if test="record.xinwenid != null" >
+        XinWenID = #{record.xinwenid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fabuzheid != null" >
+        FaBuZheID = #{record.fabuzheid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fenleiid != null" >
+        FenLeiID = #{record.fenleiid,jdbcType=INTEGER},
+      </if>
+      <if test="record.xinwenmingcheng != null" >
+        XinWenMingCheng = #{record.xinwenmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="record.xinxilaiyuan != null" >
+        XinXiLaiYuan = #{record.xinxilaiyuan,jdbcType=CHAR},
+      </if>
+      <if test="record.fengmianurl != null" >
+        FengMianURL = #{record.fengmianurl,jdbcType=CHAR},
+      </if>
+      <if test="record.liulancishu != null" >
+        LiuLanCiShu = #{record.liulancishu,jdbcType=INTEGER},
+      </if>
+      <if test="record.shifouzhiding != null" >
+        ShiFouZhiDing = #{record.shifouzhiding,jdbcType=INTEGER},
+      </if>
+      <if test="record.fabushijian != null" >
+        FaBuShiJian = #{record.fabushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.zhidingshijian != null" >
+        ZhiDingShiJian = #{record.zhidingshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shifouyishanchu != null" >
+        ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="record.neirong != null" >
+        NeiRong = #{record.neirong,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update hbip_pub_news
+    set XinWenID = #{record.xinwenid,jdbcType=INTEGER},
+      FaBuZheID = #{record.fabuzheid,jdbcType=INTEGER},
+      FenLeiID = #{record.fenleiid,jdbcType=INTEGER},
+      XinWenMingCheng = #{record.xinwenmingcheng,jdbcType=CHAR},
+      XinXiLaiYuan = #{record.xinxilaiyuan,jdbcType=CHAR},
+      FengMianURL = #{record.fengmianurl,jdbcType=CHAR},
+      LiuLanCiShu = #{record.liulancishu,jdbcType=INTEGER},
+      ShiFouZhiDing = #{record.shifouzhiding,jdbcType=INTEGER},
+      FaBuShiJian = #{record.fabushijian,jdbcType=TIMESTAMP},
+      ZhiDingShiJian = #{record.zhidingshijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      NeiRong = #{record.neirong,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_news
+    set XinWenID = #{record.xinwenid,jdbcType=INTEGER},
+      FaBuZheID = #{record.fabuzheid,jdbcType=INTEGER},
+      FenLeiID = #{record.fenleiid,jdbcType=INTEGER},
+      XinWenMingCheng = #{record.xinwenmingcheng,jdbcType=CHAR},
+      XinXiLaiYuan = #{record.xinxilaiyuan,jdbcType=CHAR},
+      FengMianURL = #{record.fengmianurl,jdbcType=CHAR},
+      LiuLanCiShu = #{record.liulancishu,jdbcType=INTEGER},
+      ShiFouZhiDing = #{record.shifouzhiding,jdbcType=INTEGER},
+      FaBuShiJian = #{record.fabushijian,jdbcType=TIMESTAMP},
+      ZhiDingShiJian = #{record.zhidingshijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubNews" >
+    update hbip_pub_news
+    <set >
+      <if test="fabuzheid != null" >
+        FaBuZheID = #{fabuzheid,jdbcType=INTEGER},
+      </if>
+      <if test="fenleiid != null" >
+        FenLeiID = #{fenleiid,jdbcType=INTEGER},
+      </if>
+      <if test="xinwenmingcheng != null" >
+        XinWenMingCheng = #{xinwenmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="xinxilaiyuan != null" >
+        XinXiLaiYuan = #{xinxilaiyuan,jdbcType=CHAR},
+      </if>
+      <if test="fengmianurl != null" >
+        FengMianURL = #{fengmianurl,jdbcType=CHAR},
+      </if>
+      <if test="liulancishu != null" >
+        LiuLanCiShu = #{liulancishu,jdbcType=INTEGER},
+      </if>
+      <if test="shifouzhiding != null" >
+        ShiFouZhiDing = #{shifouzhiding,jdbcType=INTEGER},
+      </if>
+      <if test="fabushijian != null" >
+        FaBuShiJian = #{fabushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zhidingshijian != null" >
+        ZhiDingShiJian = #{zhidingshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="neirong != null" >
+        NeiRong = #{neirong,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where XinWenID = #{xinwenid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hbippub.pojo.HbipPubNews" >
+    update hbip_pub_news
+    set FaBuZheID = #{fabuzheid,jdbcType=INTEGER},
+      FenLeiID = #{fenleiid,jdbcType=INTEGER},
+      XinWenMingCheng = #{xinwenmingcheng,jdbcType=CHAR},
+      XinXiLaiYuan = #{xinxilaiyuan,jdbcType=CHAR},
+      FengMianURL = #{fengmianurl,jdbcType=CHAR},
+      LiuLanCiShu = #{liulancishu,jdbcType=INTEGER},
+      ShiFouZhiDing = #{shifouzhiding,jdbcType=INTEGER},
+      FaBuShiJian = #{fabushijian,jdbcType=TIMESTAMP},
+      ZhiDingShiJian = #{zhidingshijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      NeiRong = #{neirong,jdbcType=LONGVARCHAR}
+    where XinWenID = #{xinwenid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubNews" >
+    update hbip_pub_news
+    set FaBuZheID = #{fabuzheid,jdbcType=INTEGER},
+      FenLeiID = #{fenleiid,jdbcType=INTEGER},
+      XinWenMingCheng = #{xinwenmingcheng,jdbcType=CHAR},
+      XinXiLaiYuan = #{xinxilaiyuan,jdbcType=CHAR},
+      FengMianURL = #{fengmianurl,jdbcType=CHAR},
+      LiuLanCiShu = #{liulancishu,jdbcType=INTEGER},
+      ShiFouZhiDing = #{shifouzhiding,jdbcType=INTEGER},
+      FaBuShiJian = #{fabushijian,jdbcType=TIMESTAMP},
+      ZhiDingShiJian = #{zhidingshijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+    where XinWenID = #{xinwenid,jdbcType=INTEGER}
+  </update>
+</mapper>

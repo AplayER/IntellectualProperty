@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubProjectAuditMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubProjectAudit" >
+    <id column="ShenHeID" property="shenheid" jdbcType="INTEGER" />
+    <result column="XiangMuID" property="xiangmuid" jdbcType="INTEGER" />
+    <result column="YongHuID" property="yonghuid" jdbcType="INTEGER" />
+    <result column="ShenHeShiJian" property="shenheshijian" jdbcType="TIMESTAMP" />
+    <result column="ShiFouYiShanChu" property="shifouyishanchu" jdbcType="INTEGER" />
+    <result column="ShenHeNeiRong" property="shenheneirong" jdbcType="VARCHAR" />
+    <result column="BeiZhu" property="beizhu" jdbcType="VARCHAR" />
+    <result column="YongHuXingMing" property="yonghuxingming" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ShenHeID, XiangMuID, YongHuID, ShenHeShiJian, ShiFouYiShanChu, ShenHeNeiRong, BeiZhu, 
+    YongHuXingMing
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubProjectAuditExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_project_audit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hbip_pub_project_audit
+    where ShenHeID = #{shenheid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_project_audit
+    where ShenHeID = #{shenheid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubProjectAuditExample" >
+    delete from hbip_pub_project_audit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubProjectAudit" >
+    insert into hbip_pub_project_audit (ShenHeID, XiangMuID, YongHuID, 
+      ShenHeShiJian, ShiFouYiShanChu, ShenHeNeiRong, 
+      BeiZhu, YongHuXingMing)
+    values (#{shenheid,jdbcType=INTEGER}, #{xiangmuid,jdbcType=INTEGER}, #{yonghuid,jdbcType=INTEGER}, 
+      #{shenheshijian,jdbcType=TIMESTAMP}, #{shifouyishanchu,jdbcType=INTEGER}, #{shenheneirong,jdbcType=VARCHAR}, 
+      #{beizhu,jdbcType=VARCHAR}, #{yonghuxingming,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubProjectAudit" >
+    insert into hbip_pub_project_audit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shenheid != null" >
+        ShenHeID,
+      </if>
+      <if test="xiangmuid != null" >
+        XiangMuID,
+      </if>
+      <if test="yonghuid != null" >
+        YongHuID,
+      </if>
+      <if test="shenheshijian != null" >
+        ShenHeShiJian,
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu,
+      </if>
+      <if test="shenheneirong != null" >
+        ShenHeNeiRong,
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu,
+      </if>
+      <if test="yonghuxingming != null" >
+        YongHuXingMing,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shenheid != null" >
+        #{shenheid,jdbcType=INTEGER},
+      </if>
+      <if test="xiangmuid != null" >
+        #{xiangmuid,jdbcType=INTEGER},
+      </if>
+      <if test="yonghuid != null" >
+        #{yonghuid,jdbcType=INTEGER},
+      </if>
+      <if test="shenheshijian != null" >
+        #{shenheshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shifouyishanchu != null" >
+        #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="shenheneirong != null" >
+        #{shenheneirong,jdbcType=VARCHAR},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="yonghuxingming != null" >
+        #{yonghuxingming,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubProjectAuditExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_project_audit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_project_audit
+    <set >
+      <if test="record.shenheid != null" >
+        ShenHeID = #{record.shenheid,jdbcType=INTEGER},
+      </if>
+      <if test="record.xiangmuid != null" >
+        XiangMuID = #{record.xiangmuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.yonghuid != null" >
+        YongHuID = #{record.yonghuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.shenheshijian != null" >
+        ShenHeShiJian = #{record.shenheshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shifouyishanchu != null" >
+        ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="record.shenheneirong != null" >
+        ShenHeNeiRong = #{record.shenheneirong,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beizhu != null" >
+        BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yonghuxingming != null" >
+        YongHuXingMing = #{record.yonghuxingming,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_project_audit
+    set ShenHeID = #{record.shenheid,jdbcType=INTEGER},
+      XiangMuID = #{record.xiangmuid,jdbcType=INTEGER},
+      YongHuID = #{record.yonghuid,jdbcType=INTEGER},
+      ShenHeShiJian = #{record.shenheshijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      ShenHeNeiRong = #{record.shenheneirong,jdbcType=VARCHAR},
+      BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      YongHuXingMing = #{record.yonghuxingming,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubProjectAudit" >
+    update hbip_pub_project_audit
+    <set >
+      <if test="xiangmuid != null" >
+        XiangMuID = #{xiangmuid,jdbcType=INTEGER},
+      </if>
+      <if test="yonghuid != null" >
+        YongHuID = #{yonghuid,jdbcType=INTEGER},
+      </if>
+      <if test="shenheshijian != null" >
+        ShenHeShiJian = #{shenheshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="shenheneirong != null" >
+        ShenHeNeiRong = #{shenheneirong,jdbcType=VARCHAR},
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="yonghuxingming != null" >
+        YongHuXingMing = #{yonghuxingming,jdbcType=CHAR},
+      </if>
+    </set>
+    where ShenHeID = #{shenheid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubProjectAudit" >
+    update hbip_pub_project_audit
+    set XiangMuID = #{xiangmuid,jdbcType=INTEGER},
+      YongHuID = #{yonghuid,jdbcType=INTEGER},
+      ShenHeShiJian = #{shenheshijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      ShenHeNeiRong = #{shenheneirong,jdbcType=VARCHAR},
+      BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      YongHuXingMing = #{yonghuxingming,jdbcType=CHAR}
+    where ShenHeID = #{shenheid,jdbcType=INTEGER}
+  </update>
+</mapper>

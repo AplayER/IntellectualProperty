@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubEntrustMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubEntrust" >
+    <id column="JiLuID" property="jiluid" jdbcType="INTEGER" />
+    <result column="ShangPinID" property="shangpinid" jdbcType="INTEGER" />
+    <result column="ShangPinMingCheng" property="shangpinmingcheng" jdbcType="CHAR" />
+    <result column="ShangPinLeiXingID" property="shangpinleixingid" jdbcType="INTEGER" />
+    <result column="ShangPinLeiXing" property="shangpinleixing" jdbcType="CHAR" />
+    <result column="WeiTuoRenID" property="weituorenid" jdbcType="INTEGER" />
+    <result column="WeiTuoRenXingMing" property="weituorenxingming" jdbcType="CHAR" />
+    <result column="BeiWeiTuoDianPuID" property="beiweituodianpuid" jdbcType="INTEGER" />
+    <result column="DianPuMingCheng" property="dianpumingcheng" jdbcType="CHAR" />
+    <result column="WeiTuoZhuangTai" property="weituozhuangtai" jdbcType="INTEGER" />
+    <result column="ShenQingWeiTuoShiJian" property="shenqingweituoshijian" jdbcType="TIMESTAMP" />
+    <result column="WeiTuoKaiShiShiJian" property="weituokaishishijian" jdbcType="TIMESTAMP" />
+    <result column="ShenQingJieChuWeiTuoShiJian" property="shenqingjiechuweituoshijian" jdbcType="TIMESTAMP" />
+    <result column="WeiTuoJieShuShiJian" property="weituojieshushijian" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    JiLuID, ShangPinID, ShangPinMingCheng, ShangPinLeiXingID, ShangPinLeiXing, WeiTuoRenID, 
+    WeiTuoRenXingMing, BeiWeiTuoDianPuID, DianPuMingCheng, WeiTuoZhuangTai, ShenQingWeiTuoShiJian, 
+    WeiTuoKaiShiShiJian, ShenQingJieChuWeiTuoShiJian, WeiTuoJieShuShiJian
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubEntrustExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_entrust
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hbip_pub_entrust
+    where JiLuID = #{jiluid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_entrust
+    where JiLuID = #{jiluid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubEntrustExample" >
+    delete from hbip_pub_entrust
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubEntrust" >
+    insert into hbip_pub_entrust (JiLuID, ShangPinID, ShangPinMingCheng, 
+      ShangPinLeiXingID, ShangPinLeiXing, WeiTuoRenID, 
+      WeiTuoRenXingMing, BeiWeiTuoDianPuID, DianPuMingCheng, 
+      WeiTuoZhuangTai, ShenQingWeiTuoShiJian, 
+      WeiTuoKaiShiShiJian, ShenQingJieChuWeiTuoShiJian, 
+      WeiTuoJieShuShiJian)
+    values (#{jiluid,jdbcType=INTEGER}, #{shangpinid,jdbcType=INTEGER}, #{shangpinmingcheng,jdbcType=CHAR}, 
+      #{shangpinleixingid,jdbcType=INTEGER}, #{shangpinleixing,jdbcType=CHAR}, #{weituorenid,jdbcType=INTEGER}, 
+      #{weituorenxingming,jdbcType=CHAR}, #{beiweituodianpuid,jdbcType=INTEGER}, #{dianpumingcheng,jdbcType=CHAR}, 
+      #{weituozhuangtai,jdbcType=INTEGER}, #{shenqingweituoshijian,jdbcType=TIMESTAMP}, 
+      #{weituokaishishijian,jdbcType=TIMESTAMP}, #{shenqingjiechuweituoshijian,jdbcType=TIMESTAMP}, 
+      #{weituojieshushijian,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubEntrust" >
+    insert into hbip_pub_entrust
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jiluid != null" >
+        JiLuID,
+      </if>
+      <if test="shangpinid != null" >
+        ShangPinID,
+      </if>
+      <if test="shangpinmingcheng != null" >
+        ShangPinMingCheng,
+      </if>
+      <if test="shangpinleixingid != null" >
+        ShangPinLeiXingID,
+      </if>
+      <if test="shangpinleixing != null" >
+        ShangPinLeiXing,
+      </if>
+      <if test="weituorenid != null" >
+        WeiTuoRenID,
+      </if>
+      <if test="weituorenxingming != null" >
+        WeiTuoRenXingMing,
+      </if>
+      <if test="beiweituodianpuid != null" >
+        BeiWeiTuoDianPuID,
+      </if>
+      <if test="dianpumingcheng != null" >
+        DianPuMingCheng,
+      </if>
+      <if test="weituozhuangtai != null" >
+        WeiTuoZhuangTai,
+      </if>
+      <if test="shenqingweituoshijian != null" >
+        ShenQingWeiTuoShiJian,
+      </if>
+      <if test="weituokaishishijian != null" >
+        WeiTuoKaiShiShiJian,
+      </if>
+      <if test="shenqingjiechuweituoshijian != null" >
+        ShenQingJieChuWeiTuoShiJian,
+      </if>
+      <if test="weituojieshushijian != null" >
+        WeiTuoJieShuShiJian,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jiluid != null" >
+        #{jiluid,jdbcType=INTEGER},
+      </if>
+      <if test="shangpinid != null" >
+        #{shangpinid,jdbcType=INTEGER},
+      </if>
+      <if test="shangpinmingcheng != null" >
+        #{shangpinmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="shangpinleixingid != null" >
+        #{shangpinleixingid,jdbcType=INTEGER},
+      </if>
+      <if test="shangpinleixing != null" >
+        #{shangpinleixing,jdbcType=CHAR},
+      </if>
+      <if test="weituorenid != null" >
+        #{weituorenid,jdbcType=INTEGER},
+      </if>
+      <if test="weituorenxingming != null" >
+        #{weituorenxingming,jdbcType=CHAR},
+      </if>
+      <if test="beiweituodianpuid != null" >
+        #{beiweituodianpuid,jdbcType=INTEGER},
+      </if>
+      <if test="dianpumingcheng != null" >
+        #{dianpumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="weituozhuangtai != null" >
+        #{weituozhuangtai,jdbcType=INTEGER},
+      </if>
+      <if test="shenqingweituoshijian != null" >
+        #{shenqingweituoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weituokaishishijian != null" >
+        #{weituokaishishijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shenqingjiechuweituoshijian != null" >
+        #{shenqingjiechuweituoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weituojieshushijian != null" >
+        #{weituojieshushijian,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubEntrustExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_entrust
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_entrust
+    <set >
+      <if test="record.jiluid != null" >
+        JiLuID = #{record.jiluid,jdbcType=INTEGER},
+      </if>
+      <if test="record.shangpinid != null" >
+        ShangPinID = #{record.shangpinid,jdbcType=INTEGER},
+      </if>
+      <if test="record.shangpinmingcheng != null" >
+        ShangPinMingCheng = #{record.shangpinmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="record.shangpinleixingid != null" >
+        ShangPinLeiXingID = #{record.shangpinleixingid,jdbcType=INTEGER},
+      </if>
+      <if test="record.shangpinleixing != null" >
+        ShangPinLeiXing = #{record.shangpinleixing,jdbcType=CHAR},
+      </if>
+      <if test="record.weituorenid != null" >
+        WeiTuoRenID = #{record.weituorenid,jdbcType=INTEGER},
+      </if>
+      <if test="record.weituorenxingming != null" >
+        WeiTuoRenXingMing = #{record.weituorenxingming,jdbcType=CHAR},
+      </if>
+      <if test="record.beiweituodianpuid != null" >
+        BeiWeiTuoDianPuID = #{record.beiweituodianpuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dianpumingcheng != null" >
+        DianPuMingCheng = #{record.dianpumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="record.weituozhuangtai != null" >
+        WeiTuoZhuangTai = #{record.weituozhuangtai,jdbcType=INTEGER},
+      </if>
+      <if test="record.shenqingweituoshijian != null" >
+        ShenQingWeiTuoShiJian = #{record.shenqingweituoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.weituokaishishijian != null" >
+        WeiTuoKaiShiShiJian = #{record.weituokaishishijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shenqingjiechuweituoshijian != null" >
+        ShenQingJieChuWeiTuoShiJian = #{record.shenqingjiechuweituoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.weituojieshushijian != null" >
+        WeiTuoJieShuShiJian = #{record.weituojieshushijian,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_entrust
+    set JiLuID = #{record.jiluid,jdbcType=INTEGER},
+      ShangPinID = #{record.shangpinid,jdbcType=INTEGER},
+      ShangPinMingCheng = #{record.shangpinmingcheng,jdbcType=CHAR},
+      ShangPinLeiXingID = #{record.shangpinleixingid,jdbcType=INTEGER},
+      ShangPinLeiXing = #{record.shangpinleixing,jdbcType=CHAR},
+      WeiTuoRenID = #{record.weituorenid,jdbcType=INTEGER},
+      WeiTuoRenXingMing = #{record.weituorenxingming,jdbcType=CHAR},
+      BeiWeiTuoDianPuID = #{record.beiweituodianpuid,jdbcType=INTEGER},
+      DianPuMingCheng = #{record.dianpumingcheng,jdbcType=CHAR},
+      WeiTuoZhuangTai = #{record.weituozhuangtai,jdbcType=INTEGER},
+      ShenQingWeiTuoShiJian = #{record.shenqingweituoshijian,jdbcType=TIMESTAMP},
+      WeiTuoKaiShiShiJian = #{record.weituokaishishijian,jdbcType=TIMESTAMP},
+      ShenQingJieChuWeiTuoShiJian = #{record.shenqingjiechuweituoshijian,jdbcType=TIMESTAMP},
+      WeiTuoJieShuShiJian = #{record.weituojieshushijian,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubEntrust" >
+    update hbip_pub_entrust
+    <set >
+      <if test="shangpinid != null" >
+        ShangPinID = #{shangpinid,jdbcType=INTEGER},
+      </if>
+      <if test="shangpinmingcheng != null" >
+        ShangPinMingCheng = #{shangpinmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="shangpinleixingid != null" >
+        ShangPinLeiXingID = #{shangpinleixingid,jdbcType=INTEGER},
+      </if>
+      <if test="shangpinleixing != null" >
+        ShangPinLeiXing = #{shangpinleixing,jdbcType=CHAR},
+      </if>
+      <if test="weituorenid != null" >
+        WeiTuoRenID = #{weituorenid,jdbcType=INTEGER},
+      </if>
+      <if test="weituorenxingming != null" >
+        WeiTuoRenXingMing = #{weituorenxingming,jdbcType=CHAR},
+      </if>
+      <if test="beiweituodianpuid != null" >
+        BeiWeiTuoDianPuID = #{beiweituodianpuid,jdbcType=INTEGER},
+      </if>
+      <if test="dianpumingcheng != null" >
+        DianPuMingCheng = #{dianpumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="weituozhuangtai != null" >
+        WeiTuoZhuangTai = #{weituozhuangtai,jdbcType=INTEGER},
+      </if>
+      <if test="shenqingweituoshijian != null" >
+        ShenQingWeiTuoShiJian = #{shenqingweituoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weituokaishishijian != null" >
+        WeiTuoKaiShiShiJian = #{weituokaishishijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shenqingjiechuweituoshijian != null" >
+        ShenQingJieChuWeiTuoShiJian = #{shenqingjiechuweituoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weituojieshushijian != null" >
+        WeiTuoJieShuShiJian = #{weituojieshushijian,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where JiLuID = #{jiluid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubEntrust" >
+    update hbip_pub_entrust
+    set ShangPinID = #{shangpinid,jdbcType=INTEGER},
+      ShangPinMingCheng = #{shangpinmingcheng,jdbcType=CHAR},
+      ShangPinLeiXingID = #{shangpinleixingid,jdbcType=INTEGER},
+      ShangPinLeiXing = #{shangpinleixing,jdbcType=CHAR},
+      WeiTuoRenID = #{weituorenid,jdbcType=INTEGER},
+      WeiTuoRenXingMing = #{weituorenxingming,jdbcType=CHAR},
+      BeiWeiTuoDianPuID = #{beiweituodianpuid,jdbcType=INTEGER},
+      DianPuMingCheng = #{dianpumingcheng,jdbcType=CHAR},
+      WeiTuoZhuangTai = #{weituozhuangtai,jdbcType=INTEGER},
+      ShenQingWeiTuoShiJian = #{shenqingweituoshijian,jdbcType=TIMESTAMP},
+      WeiTuoKaiShiShiJian = #{weituokaishishijian,jdbcType=TIMESTAMP},
+      ShenQingJieChuWeiTuoShiJian = #{shenqingjiechuweituoshijian,jdbcType=TIMESTAMP},
+      WeiTuoJieShuShiJian = #{weituojieshushijian,jdbcType=TIMESTAMP}
+    where JiLuID = #{jiluid,jdbcType=INTEGER}
+  </update>
+</mapper>

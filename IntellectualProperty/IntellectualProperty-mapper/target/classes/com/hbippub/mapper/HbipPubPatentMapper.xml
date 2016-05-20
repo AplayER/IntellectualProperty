@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubPatentMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubPatent" >
+    <id column="ShangPinID" property="shangpinid" jdbcType="INTEGER" />
+    <result column="DianPuID" property="dianpuid" jdbcType="INTEGER" />
+    <result column="DianPuName" property="dianpuname" jdbcType="CHAR" />
+    <result column="WeiTuoZhuangTai" property="weituozhuangtai" jdbcType="INTEGER" />
+    <result column="JieShouWeiTuoShiJian" property="jieshouweituoshijian" jdbcType="TIMESTAMP" />
+    <result column="YongHuID" property="yonghuid" jdbcType="INTEGER" />
+    <result column="ZhuanLiLeiXingID" property="zhuanlileixingid" jdbcType="INTEGER" />
+    <result column="HangYeLeiXingID" property="hangyeleixingid" jdbcType="INTEGER" />
+    <result column="JiaoYiLeiXingIDs" property="jiaoyileixingids" jdbcType="INTEGER" />
+    <result column="HangYeLeiXingMingCheng" property="hangyeleixingmingcheng" jdbcType="CHAR" />
+    <result column="ShangPinLeiXingID" property="shangpinleixingid" jdbcType="INTEGER" />
+    <result column="PaiMaiMoShiID" property="paimaimoshiid" jdbcType="INTEGER" />
+    <result column="PaiMaiZhuangTaiID" property="paimaizhuangtaiid" jdbcType="INTEGER" />
+    <result column="ShiFouPaiMai" property="shifoupaimai" jdbcType="INTEGER" />
+    <result column="ShangPinMingCheng" property="shangpinmingcheng" jdbcType="CHAR" />
+    <result column="YongHuMingCheng" property="yonghumingcheng" jdbcType="CHAR" />
+    <result column="ShouCangShu" property="shoucangshu" jdbcType="INTEGER" />
+    <result column="CanKaoJia" property="cankaojia" jdbcType="DECIMAL" />
+    <result column="FengMianURL" property="fengmianurl" jdbcType="VARCHAR" />
+    <result column="BaojiaShu" property="baojiashu" jdbcType="INTEGER" />
+    <result column="XiaDanShu" property="xiadanshu" jdbcType="INTEGER" />
+    <result column="PaiMaiChuJiaShu" property="paimaichujiashu" jdbcType="INTEGER" />
+    <result column="QiPaiJiaGe" property="qipaijiage" jdbcType="DECIMAL" />
+    <result column="DangQianJiaGe" property="dangqianjiage" jdbcType="DECIMAL" />
+    <result column="QiPaiShiJian" property="qipaishijian" jdbcType="TIMESTAMP" />
+    <result column="JieShuShiJian" property="jieshushijian" jdbcType="TIMESTAMP" />
+    <result column="ShiFouYiShanChu" property="shifouyishanchu" jdbcType="INTEGER" />
+    <result column="ShiFouXiaJia" property="shifouxiajia" jdbcType="INTEGER" />
+    <result column="BeiZhu" property="beizhu" jdbcType="VARCHAR" />
+    <result column="ZhuanLiHao" property="zhuanlihao" jdbcType="CHAR" />
+    <result column="FaBuShiJian" property="fabushijian" jdbcType="TIMESTAMP" />
+    <result column="BaoJiaJieShuShiJian" property="baojiajieshushijian" jdbcType="DATE" />
+    <result column="ZhuanLiGuoQiShiJian" property="zhuanliguoqishijian" jdbcType="DATE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hbippub.pojo.HbipPubPatent" extends="BaseResultMap" >
+    <result column="ZhuanLiXiangQing" property="zhuanlixiangqing" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ShangPinID, DianPuID, DianPuName, WeiTuoZhuangTai, JieShouWeiTuoShiJian, YongHuID, 
+    ZhuanLiLeiXingID, HangYeLeiXingID, JiaoYiLeiXingIDs, HangYeLeiXingMingCheng, ShangPinLeiXingID, 
+    PaiMaiMoShiID, PaiMaiZhuangTaiID, ShiFouPaiMai, ShangPinMingCheng, YongHuMingCheng, 
+    ShouCangShu, CanKaoJia, FengMianURL, BaojiaShu, XiaDanShu, PaiMaiChuJiaShu, QiPaiJiaGe, 
+    DangQianJiaGe, QiPaiShiJian, JieShuShiJian, ShiFouYiShanChu, ShiFouXiaJia, BeiZhu, 
+    ZhuanLiHao, FaBuShiJian, BaoJiaJieShuShiJian, ZhuanLiGuoQiShiJian
+  </sql>
+  <sql id="Blob_Column_List" >
+    ZhuanLiXiangQing
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.hbippub.pojo.HbipPubPatentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hbip_pub_patent
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubPatentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_patent
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hbip_pub_patent
+    where ShangPinID = #{shangpinid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_patent
+    where ShangPinID = #{shangpinid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubPatentExample" >
+    delete from hbip_pub_patent
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubPatent" >
+    insert into hbip_pub_patent (ShangPinID, DianPuID, DianPuName, 
+      WeiTuoZhuangTai, JieShouWeiTuoShiJian, 
+      YongHuID, ZhuanLiLeiXingID, HangYeLeiXingID, 
+      JiaoYiLeiXingIDs, HangYeLeiXingMingCheng, 
+      ShangPinLeiXingID, PaiMaiMoShiID, PaiMaiZhuangTaiID, 
+      ShiFouPaiMai, ShangPinMingCheng, YongHuMingCheng, 
+      ShouCangShu, CanKaoJia, FengMianURL, 
+      BaojiaShu, XiaDanShu, PaiMaiChuJiaShu, 
+      QiPaiJiaGe, DangQianJiaGe, QiPaiShiJian, 
+      JieShuShiJian, ShiFouYiShanChu, ShiFouXiaJia, 
+      BeiZhu, ZhuanLiHao, FaBuShiJian, 
+      BaoJiaJieShuShiJian, ZhuanLiGuoQiShiJian, ZhuanLiXiangQing
+      )
+    values (#{shangpinid,jdbcType=INTEGER}, #{dianpuid,jdbcType=INTEGER}, #{dianpuname,jdbcType=CHAR}, 
+      #{weituozhuangtai,jdbcType=INTEGER}, #{jieshouweituoshijian,jdbcType=TIMESTAMP}, 
+      #{yonghuid,jdbcType=INTEGER}, #{zhuanlileixingid,jdbcType=INTEGER}, #{hangyeleixingid,jdbcType=INTEGER}, 
+      #{jiaoyileixingids,jdbcType=INTEGER}, #{hangyeleixingmingcheng,jdbcType=CHAR}, 
+      #{shangpinleixingid,jdbcType=INTEGER}, #{paimaimoshiid,jdbcType=INTEGER}, #{paimaizhuangtaiid,jdbcType=INTEGER}, 
+      #{shifoupaimai,jdbcType=INTEGER}, #{shangpinmingcheng,jdbcType=CHAR}, #{yonghumingcheng,jdbcType=CHAR}, 
+      #{shoucangshu,jdbcType=INTEGER}, #{cankaojia,jdbcType=DECIMAL}, #{fengmianurl,jdbcType=VARCHAR}, 
+      #{baojiashu,jdbcType=INTEGER}, #{xiadanshu,jdbcType=INTEGER}, #{paimaichujiashu,jdbcType=INTEGER}, 
+      #{qipaijiage,jdbcType=DECIMAL}, #{dangqianjiage,jdbcType=DECIMAL}, #{qipaishijian,jdbcType=TIMESTAMP}, 
+      #{jieshushijian,jdbcType=TIMESTAMP}, #{shifouyishanchu,jdbcType=INTEGER}, #{shifouxiajia,jdbcType=INTEGER}, 
+      #{beizhu,jdbcType=VARCHAR}, #{zhuanlihao,jdbcType=CHAR}, #{fabushijian,jdbcType=TIMESTAMP}, 
+      #{baojiajieshushijian,jdbcType=DATE}, #{zhuanliguoqishijian,jdbcType=DATE}, #{zhuanlixiangqing,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubPatent" >
+    insert into hbip_pub_patent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shangpinid != null" >
+        ShangPinID,
+      </if>
+      <if test="dianpuid != null" >
+        DianPuID,
+      </if>
+      <if test="dianpuname != null" >
+        DianPuName,
+      </if>
+      <if test="weituozhuangtai != null" >
+        WeiTuoZhuangTai,
+      </if>
+      <if test="jieshouweituoshijian != null" >
+        JieShouWeiTuoShiJian,
+      </if>
+      <if test="yonghuid != null" >
+        YongHuID,
+      </if>
+      <if test="zhuanlileixingid != null" >
+        ZhuanLiLeiXingID,
+      </if>
+      <if test="hangyeleixingid != null" >
+        HangYeLeiXingID,
+      </if>
+      <if test="jiaoyileixingids != null" >
+        JiaoYiLeiXingIDs,
+      </if>
+      <if test="hangyeleixingmingcheng != null" >
+        HangYeLeiXingMingCheng,
+      </if>
+      <if test="shangpinleixingid != null" >
+        ShangPinLeiXingID,
+      </if>
+      <if test="paimaimoshiid != null" >
+        PaiMaiMoShiID,
+      </if>
+      <if test="paimaizhuangtaiid != null" >
+        PaiMaiZhuangTaiID,
+      </if>
+      <if test="shifoupaimai != null" >
+        ShiFouPaiMai,
+      </if>
+      <if test="shangpinmingcheng != null" >
+        ShangPinMingCheng,
+      </if>
+      <if test="yonghumingcheng != null" >
+        YongHuMingCheng,
+      </if>
+      <if test="shoucangshu != null" >
+        ShouCangShu,
+      </if>
+      <if test="cankaojia != null" >
+        CanKaoJia,
+      </if>
+      <if test="fengmianurl != null" >
+        FengMianURL,
+      </if>
+      <if test="baojiashu != null" >
+        BaojiaShu,
+      </if>
+      <if test="xiadanshu != null" >
+        XiaDanShu,
+      </if>
+      <if test="paimaichujiashu != null" >
+        PaiMaiChuJiaShu,
+      </if>
+      <if test="qipaijiage != null" >
+        QiPaiJiaGe,
+      </if>
+      <if test="dangqianjiage != null" >
+        DangQianJiaGe,
+      </if>
+      <if test="qipaishijian != null" >
+        QiPaiShiJian,
+      </if>
+      <if test="jieshushijian != null" >
+        JieShuShiJian,
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu,
+      </if>
+      <if test="shifouxiajia != null" >
+        ShiFouXiaJia,
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu,
+      </if>
+      <if test="zhuanlihao != null" >
+        ZhuanLiHao,
+      </if>
+      <if test="fabushijian != null" >
+        FaBuShiJian,
+      </if>
+      <if test="baojiajieshushijian != null" >
+        BaoJiaJieShuShiJian,
+      </if>
+      <if test="zhuanliguoqishijian != null" >
+        ZhuanLiGuoQiShiJian,
+      </if>
+      <if test="zhuanlixiangqing != null" >
+        ZhuanLiXiangQing,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shangpinid != null" >
+        #{shangpinid,jdbcType=INTEGER},
+      </if>
+      <if test="dianpuid != null" >
+        #{dianpuid,jdbcType=INTEGER},
+      </if>
+      <if test="dianpuname != null" >
+        #{dianpuname,jdbcType=CHAR},
+      </if>
+      <if test="weituozhuangtai != null" >
+        #{weituozhuangtai,jdbcType=INTEGER},
+      </if>
+      <if test="jieshouweituoshijian != null" >
+        #{jieshouweituoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yonghuid != null" >
+        #{yonghuid,jdbcType=INTEGER},
+      </if>
+      <if test="zhuanlileixingid != null" >
+        #{zhuanlileixingid,jdbcType=INTEGER},
+      </if>
+      <if test="hangyeleixingid != null" >
+        #{hangyeleixingid,jdbcType=INTEGER},
+      </if>
+      <if test="jiaoyileixingids != null" >
+        #{jiaoyileixingids,jdbcType=INTEGER},
+      </if>
+      <if test="hangyeleixingmingcheng != null" >
+        #{hangyeleixingmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="shangpinleixingid != null" >
+        #{shangpinleixingid,jdbcType=INTEGER},
+      </if>
+      <if test="paimaimoshiid != null" >
+        #{paimaimoshiid,jdbcType=INTEGER},
+      </if>
+      <if test="paimaizhuangtaiid != null" >
+        #{paimaizhuangtaiid,jdbcType=INTEGER},
+      </if>
+      <if test="shifoupaimai != null" >
+        #{shifoupaimai,jdbcType=INTEGER},
+      </if>
+      <if test="shangpinmingcheng != null" >
+        #{shangpinmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="yonghumingcheng != null" >
+        #{yonghumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="shoucangshu != null" >
+        #{shoucangshu,jdbcType=INTEGER},
+      </if>
+      <if test="cankaojia != null" >
+        #{cankaojia,jdbcType=DECIMAL},
+      </if>
+      <if test="fengmianurl != null" >
+        #{fengmianurl,jdbcType=VARCHAR},
+      </if>
+      <if test="baojiashu != null" >
+        #{baojiashu,jdbcType=INTEGER},
+      </if>
+      <if test="xiadanshu != null" >
+        #{xiadanshu,jdbcType=INTEGER},
+      </if>
+      <if test="paimaichujiashu != null" >
+        #{paimaichujiashu,jdbcType=INTEGER},
+      </if>
+      <if test="qipaijiage != null" >
+        #{qipaijiage,jdbcType=DECIMAL},
+      </if>
+      <if test="dangqianjiage != null" >
+        #{dangqianjiage,jdbcType=DECIMAL},
+      </if>
+      <if test="qipaishijian != null" >
+        #{qipaishijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jieshushijian != null" >
+        #{jieshushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shifouyishanchu != null" >
+        #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="shifouxiajia != null" >
+        #{shifouxiajia,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuanlihao != null" >
+        #{zhuanlihao,jdbcType=CHAR},
+      </if>
+      <if test="fabushijian != null" >
+        #{fabushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baojiajieshushijian != null" >
+        #{baojiajieshushijian,jdbcType=DATE},
+      </if>
+      <if test="zhuanliguoqishijian != null" >
+        #{zhuanliguoqishijian,jdbcType=DATE},
+      </if>
+      <if test="zhuanlixiangqing != null" >
+        #{zhuanlixiangqing,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubPatentExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_patent
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_patent
+    <set >
+      <if test="record.shangpinid != null" >
+        ShangPinID = #{record.shangpinid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dianpuid != null" >
+        DianPuID = #{record.dianpuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dianpuname != null" >
+        DianPuName = #{record.dianpuname,jdbcType=CHAR},
+      </if>
+      <if test="record.weituozhuangtai != null" >
+        WeiTuoZhuangTai = #{record.weituozhuangtai,jdbcType=INTEGER},
+      </if>
+      <if test="record.jieshouweituoshijian != null" >
+        JieShouWeiTuoShiJian = #{record.jieshouweituoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.yonghuid != null" >
+        YongHuID = #{record.yonghuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.zhuanlileixingid != null" >
+        ZhuanLiLeiXingID = #{record.zhuanlileixingid,jdbcType=INTEGER},
+      </if>
+      <if test="record.hangyeleixingid != null" >
+        HangYeLeiXingID = #{record.hangyeleixingid,jdbcType=INTEGER},
+      </if>
+      <if test="record.jiaoyileixingids != null" >
+        JiaoYiLeiXingIDs = #{record.jiaoyileixingids,jdbcType=INTEGER},
+      </if>
+      <if test="record.hangyeleixingmingcheng != null" >
+        HangYeLeiXingMingCheng = #{record.hangyeleixingmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="record.shangpinleixingid != null" >
+        ShangPinLeiXingID = #{record.shangpinleixingid,jdbcType=INTEGER},
+      </if>
+      <if test="record.paimaimoshiid != null" >
+        PaiMaiMoShiID = #{record.paimaimoshiid,jdbcType=INTEGER},
+      </if>
+      <if test="record.paimaizhuangtaiid != null" >
+        PaiMaiZhuangTaiID = #{record.paimaizhuangtaiid,jdbcType=INTEGER},
+      </if>
+      <if test="record.shifoupaimai != null" >
+        ShiFouPaiMai = #{record.shifoupaimai,jdbcType=INTEGER},
+      </if>
+      <if test="record.shangpinmingcheng != null" >
+        ShangPinMingCheng = #{record.shangpinmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="record.yonghumingcheng != null" >
+        YongHuMingCheng = #{record.yonghumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="record.shoucangshu != null" >
+        ShouCangShu = #{record.shoucangshu,jdbcType=INTEGER},
+      </if>
+      <if test="record.cankaojia != null" >
+        CanKaoJia = #{record.cankaojia,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fengmianurl != null" >
+        FengMianURL = #{record.fengmianurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.baojiashu != null" >
+        BaojiaShu = #{record.baojiashu,jdbcType=INTEGER},
+      </if>
+      <if test="record.xiadanshu != null" >
+        XiaDanShu = #{record.xiadanshu,jdbcType=INTEGER},
+      </if>
+      <if test="record.paimaichujiashu != null" >
+        PaiMaiChuJiaShu = #{record.paimaichujiashu,jdbcType=INTEGER},
+      </if>
+      <if test="record.qipaijiage != null" >
+        QiPaiJiaGe = #{record.qipaijiage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dangqianjiage != null" >
+        DangQianJiaGe = #{record.dangqianjiage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.qipaishijian != null" >
+        QiPaiShiJian = #{record.qipaishijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jieshushijian != null" >
+        JieShuShiJian = #{record.jieshushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shifouyishanchu != null" >
+        ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="record.shifouxiajia != null" >
+        ShiFouXiaJia = #{record.shifouxiajia,jdbcType=INTEGER},
+      </if>
+      <if test="record.beizhu != null" >
+        BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhuanlihao != null" >
+        ZhuanLiHao = #{record.zhuanlihao,jdbcType=CHAR},
+      </if>
+      <if test="record.fabushijian != null" >
+        FaBuShiJian = #{record.fabushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.baojiajieshushijian != null" >
+        BaoJiaJieShuShiJian = #{record.baojiajieshushijian,jdbcType=DATE},
+      </if>
+      <if test="record.zhuanliguoqishijian != null" >
+        ZhuanLiGuoQiShiJian = #{record.zhuanliguoqishijian,jdbcType=DATE},
+      </if>
+      <if test="record.zhuanlixiangqing != null" >
+        ZhuanLiXiangQing = #{record.zhuanlixiangqing,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update hbip_pub_patent
+    set ShangPinID = #{record.shangpinid,jdbcType=INTEGER},
+      DianPuID = #{record.dianpuid,jdbcType=INTEGER},
+      DianPuName = #{record.dianpuname,jdbcType=CHAR},
+      WeiTuoZhuangTai = #{record.weituozhuangtai,jdbcType=INTEGER},
+      JieShouWeiTuoShiJian = #{record.jieshouweituoshijian,jdbcType=TIMESTAMP},
+      YongHuID = #{record.yonghuid,jdbcType=INTEGER},
+      ZhuanLiLeiXingID = #{record.zhuanlileixingid,jdbcType=INTEGER},
+      HangYeLeiXingID = #{record.hangyeleixingid,jdbcType=INTEGER},
+      JiaoYiLeiXingIDs = #{record.jiaoyileixingids,jdbcType=INTEGER},
+      HangYeLeiXingMingCheng = #{record.hangyeleixingmingcheng,jdbcType=CHAR},
+      ShangPinLeiXingID = #{record.shangpinleixingid,jdbcType=INTEGER},
+      PaiMaiMoShiID = #{record.paimaimoshiid,jdbcType=INTEGER},
+      PaiMaiZhuangTaiID = #{record.paimaizhuangtaiid,jdbcType=INTEGER},
+      ShiFouPaiMai = #{record.shifoupaimai,jdbcType=INTEGER},
+      ShangPinMingCheng = #{record.shangpinmingcheng,jdbcType=CHAR},
+      YongHuMingCheng = #{record.yonghumingcheng,jdbcType=CHAR},
+      ShouCangShu = #{record.shoucangshu,jdbcType=INTEGER},
+      CanKaoJia = #{record.cankaojia,jdbcType=DECIMAL},
+      FengMianURL = #{record.fengmianurl,jdbcType=VARCHAR},
+      BaojiaShu = #{record.baojiashu,jdbcType=INTEGER},
+      XiaDanShu = #{record.xiadanshu,jdbcType=INTEGER},
+      PaiMaiChuJiaShu = #{record.paimaichujiashu,jdbcType=INTEGER},
+      QiPaiJiaGe = #{record.qipaijiage,jdbcType=DECIMAL},
+      DangQianJiaGe = #{record.dangqianjiage,jdbcType=DECIMAL},
+      QiPaiShiJian = #{record.qipaishijian,jdbcType=TIMESTAMP},
+      JieShuShiJian = #{record.jieshushijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      ShiFouXiaJia = #{record.shifouxiajia,jdbcType=INTEGER},
+      BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      ZhuanLiHao = #{record.zhuanlihao,jdbcType=CHAR},
+      FaBuShiJian = #{record.fabushijian,jdbcType=TIMESTAMP},
+      BaoJiaJieShuShiJian = #{record.baojiajieshushijian,jdbcType=DATE},
+      ZhuanLiGuoQiShiJian = #{record.zhuanliguoqishijian,jdbcType=DATE},
+      ZhuanLiXiangQing = #{record.zhuanlixiangqing,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_patent
+    set ShangPinID = #{record.shangpinid,jdbcType=INTEGER},
+      DianPuID = #{record.dianpuid,jdbcType=INTEGER},
+      DianPuName = #{record.dianpuname,jdbcType=CHAR},
+      WeiTuoZhuangTai = #{record.weituozhuangtai,jdbcType=INTEGER},
+      JieShouWeiTuoShiJian = #{record.jieshouweituoshijian,jdbcType=TIMESTAMP},
+      YongHuID = #{record.yonghuid,jdbcType=INTEGER},
+      ZhuanLiLeiXingID = #{record.zhuanlileixingid,jdbcType=INTEGER},
+      HangYeLeiXingID = #{record.hangyeleixingid,jdbcType=INTEGER},
+      JiaoYiLeiXingIDs = #{record.jiaoyileixingids,jdbcType=INTEGER},
+      HangYeLeiXingMingCheng = #{record.hangyeleixingmingcheng,jdbcType=CHAR},
+      ShangPinLeiXingID = #{record.shangpinleixingid,jdbcType=INTEGER},
+      PaiMaiMoShiID = #{record.paimaimoshiid,jdbcType=INTEGER},
+      PaiMaiZhuangTaiID = #{record.paimaizhuangtaiid,jdbcType=INTEGER},
+      ShiFouPaiMai = #{record.shifoupaimai,jdbcType=INTEGER},
+      ShangPinMingCheng = #{record.shangpinmingcheng,jdbcType=CHAR},
+      YongHuMingCheng = #{record.yonghumingcheng,jdbcType=CHAR},
+      ShouCangShu = #{record.shoucangshu,jdbcType=INTEGER},
+      CanKaoJia = #{record.cankaojia,jdbcType=DECIMAL},
+      FengMianURL = #{record.fengmianurl,jdbcType=VARCHAR},
+      BaojiaShu = #{record.baojiashu,jdbcType=INTEGER},
+      XiaDanShu = #{record.xiadanshu,jdbcType=INTEGER},
+      PaiMaiChuJiaShu = #{record.paimaichujiashu,jdbcType=INTEGER},
+      QiPaiJiaGe = #{record.qipaijiage,jdbcType=DECIMAL},
+      DangQianJiaGe = #{record.dangqianjiage,jdbcType=DECIMAL},
+      QiPaiShiJian = #{record.qipaishijian,jdbcType=TIMESTAMP},
+      JieShuShiJian = #{record.jieshushijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      ShiFouXiaJia = #{record.shifouxiajia,jdbcType=INTEGER},
+      BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      ZhuanLiHao = #{record.zhuanlihao,jdbcType=CHAR},
+      FaBuShiJian = #{record.fabushijian,jdbcType=TIMESTAMP},
+      BaoJiaJieShuShiJian = #{record.baojiajieshushijian,jdbcType=DATE},
+      ZhuanLiGuoQiShiJian = #{record.zhuanliguoqishijian,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubPatent" >
+    update hbip_pub_patent
+    <set >
+      <if test="dianpuid != null" >
+        DianPuID = #{dianpuid,jdbcType=INTEGER},
+      </if>
+      <if test="dianpuname != null" >
+        DianPuName = #{dianpuname,jdbcType=CHAR},
+      </if>
+      <if test="weituozhuangtai != null" >
+        WeiTuoZhuangTai = #{weituozhuangtai,jdbcType=INTEGER},
+      </if>
+      <if test="jieshouweituoshijian != null" >
+        JieShouWeiTuoShiJian = #{jieshouweituoshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yonghuid != null" >
+        YongHuID = #{yonghuid,jdbcType=INTEGER},
+      </if>
+      <if test="zhuanlileixingid != null" >
+        ZhuanLiLeiXingID = #{zhuanlileixingid,jdbcType=INTEGER},
+      </if>
+      <if test="hangyeleixingid != null" >
+        HangYeLeiXingID = #{hangyeleixingid,jdbcType=INTEGER},
+      </if>
+      <if test="jiaoyileixingids != null" >
+        JiaoYiLeiXingIDs = #{jiaoyileixingids,jdbcType=INTEGER},
+      </if>
+      <if test="hangyeleixingmingcheng != null" >
+        HangYeLeiXingMingCheng = #{hangyeleixingmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="shangpinleixingid != null" >
+        ShangPinLeiXingID = #{shangpinleixingid,jdbcType=INTEGER},
+      </if>
+      <if test="paimaimoshiid != null" >
+        PaiMaiMoShiID = #{paimaimoshiid,jdbcType=INTEGER},
+      </if>
+      <if test="paimaizhuangtaiid != null" >
+        PaiMaiZhuangTaiID = #{paimaizhuangtaiid,jdbcType=INTEGER},
+      </if>
+      <if test="shifoupaimai != null" >
+        ShiFouPaiMai = #{shifoupaimai,jdbcType=INTEGER},
+      </if>
+      <if test="shangpinmingcheng != null" >
+        ShangPinMingCheng = #{shangpinmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="yonghumingcheng != null" >
+        YongHuMingCheng = #{yonghumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="shoucangshu != null" >
+        ShouCangShu = #{shoucangshu,jdbcType=INTEGER},
+      </if>
+      <if test="cankaojia != null" >
+        CanKaoJia = #{cankaojia,jdbcType=DECIMAL},
+      </if>
+      <if test="fengmianurl != null" >
+        FengMianURL = #{fengmianurl,jdbcType=VARCHAR},
+      </if>
+      <if test="baojiashu != null" >
+        BaojiaShu = #{baojiashu,jdbcType=INTEGER},
+      </if>
+      <if test="xiadanshu != null" >
+        XiaDanShu = #{xiadanshu,jdbcType=INTEGER},
+      </if>
+      <if test="paimaichujiashu != null" >
+        PaiMaiChuJiaShu = #{paimaichujiashu,jdbcType=INTEGER},
+      </if>
+      <if test="qipaijiage != null" >
+        QiPaiJiaGe = #{qipaijiage,jdbcType=DECIMAL},
+      </if>
+      <if test="dangqianjiage != null" >
+        DangQianJiaGe = #{dangqianjiage,jdbcType=DECIMAL},
+      </if>
+      <if test="qipaishijian != null" >
+        QiPaiShiJian = #{qipaishijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jieshushijian != null" >
+        JieShuShiJian = #{jieshushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="shifouxiajia != null" >
+        ShiFouXiaJia = #{shifouxiajia,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuanlihao != null" >
+        ZhuanLiHao = #{zhuanlihao,jdbcType=CHAR},
+      </if>
+      <if test="fabushijian != null" >
+        FaBuShiJian = #{fabushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baojiajieshushijian != null" >
+        BaoJiaJieShuShiJian = #{baojiajieshushijian,jdbcType=DATE},
+      </if>
+      <if test="zhuanliguoqishijian != null" >
+        ZhuanLiGuoQiShiJian = #{zhuanliguoqishijian,jdbcType=DATE},
+      </if>
+      <if test="zhuanlixiangqing != null" >
+        ZhuanLiXiangQing = #{zhuanlixiangqing,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ShangPinID = #{shangpinid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hbippub.pojo.HbipPubPatent" >
+    update hbip_pub_patent
+    set DianPuID = #{dianpuid,jdbcType=INTEGER},
+      DianPuName = #{dianpuname,jdbcType=CHAR},
+      WeiTuoZhuangTai = #{weituozhuangtai,jdbcType=INTEGER},
+      JieShouWeiTuoShiJian = #{jieshouweituoshijian,jdbcType=TIMESTAMP},
+      YongHuID = #{yonghuid,jdbcType=INTEGER},
+      ZhuanLiLeiXingID = #{zhuanlileixingid,jdbcType=INTEGER},
+      HangYeLeiXingID = #{hangyeleixingid,jdbcType=INTEGER},
+      JiaoYiLeiXingIDs = #{jiaoyileixingids,jdbcType=INTEGER},
+      HangYeLeiXingMingCheng = #{hangyeleixingmingcheng,jdbcType=CHAR},
+      ShangPinLeiXingID = #{shangpinleixingid,jdbcType=INTEGER},
+      PaiMaiMoShiID = #{paimaimoshiid,jdbcType=INTEGER},
+      PaiMaiZhuangTaiID = #{paimaizhuangtaiid,jdbcType=INTEGER},
+      ShiFouPaiMai = #{shifoupaimai,jdbcType=INTEGER},
+      ShangPinMingCheng = #{shangpinmingcheng,jdbcType=CHAR},
+      YongHuMingCheng = #{yonghumingcheng,jdbcType=CHAR},
+      ShouCangShu = #{shoucangshu,jdbcType=INTEGER},
+      CanKaoJia = #{cankaojia,jdbcType=DECIMAL},
+      FengMianURL = #{fengmianurl,jdbcType=VARCHAR},
+      BaojiaShu = #{baojiashu,jdbcType=INTEGER},
+      XiaDanShu = #{xiadanshu,jdbcType=INTEGER},
+      PaiMaiChuJiaShu = #{paimaichujiashu,jdbcType=INTEGER},
+      QiPaiJiaGe = #{qipaijiage,jdbcType=DECIMAL},
+      DangQianJiaGe = #{dangqianjiage,jdbcType=DECIMAL},
+      QiPaiShiJian = #{qipaishijian,jdbcType=TIMESTAMP},
+      JieShuShiJian = #{jieshushijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      ShiFouXiaJia = #{shifouxiajia,jdbcType=INTEGER},
+      BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      ZhuanLiHao = #{zhuanlihao,jdbcType=CHAR},
+      FaBuShiJian = #{fabushijian,jdbcType=TIMESTAMP},
+      BaoJiaJieShuShiJian = #{baojiajieshushijian,jdbcType=DATE},
+      ZhuanLiGuoQiShiJian = #{zhuanliguoqishijian,jdbcType=DATE},
+      ZhuanLiXiangQing = #{zhuanlixiangqing,jdbcType=LONGVARCHAR}
+    where ShangPinID = #{shangpinid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubPatent" >
+    update hbip_pub_patent
+    set DianPuID = #{dianpuid,jdbcType=INTEGER},
+      DianPuName = #{dianpuname,jdbcType=CHAR},
+      WeiTuoZhuangTai = #{weituozhuangtai,jdbcType=INTEGER},
+      JieShouWeiTuoShiJian = #{jieshouweituoshijian,jdbcType=TIMESTAMP},
+      YongHuID = #{yonghuid,jdbcType=INTEGER},
+      ZhuanLiLeiXingID = #{zhuanlileixingid,jdbcType=INTEGER},
+      HangYeLeiXingID = #{hangyeleixingid,jdbcType=INTEGER},
+      JiaoYiLeiXingIDs = #{jiaoyileixingids,jdbcType=INTEGER},
+      HangYeLeiXingMingCheng = #{hangyeleixingmingcheng,jdbcType=CHAR},
+      ShangPinLeiXingID = #{shangpinleixingid,jdbcType=INTEGER},
+      PaiMaiMoShiID = #{paimaimoshiid,jdbcType=INTEGER},
+      PaiMaiZhuangTaiID = #{paimaizhuangtaiid,jdbcType=INTEGER},
+      ShiFouPaiMai = #{shifoupaimai,jdbcType=INTEGER},
+      ShangPinMingCheng = #{shangpinmingcheng,jdbcType=CHAR},
+      YongHuMingCheng = #{yonghumingcheng,jdbcType=CHAR},
+      ShouCangShu = #{shoucangshu,jdbcType=INTEGER},
+      CanKaoJia = #{cankaojia,jdbcType=DECIMAL},
+      FengMianURL = #{fengmianurl,jdbcType=VARCHAR},
+      BaojiaShu = #{baojiashu,jdbcType=INTEGER},
+      XiaDanShu = #{xiadanshu,jdbcType=INTEGER},
+      PaiMaiChuJiaShu = #{paimaichujiashu,jdbcType=INTEGER},
+      QiPaiJiaGe = #{qipaijiage,jdbcType=DECIMAL},
+      DangQianJiaGe = #{dangqianjiage,jdbcType=DECIMAL},
+      QiPaiShiJian = #{qipaishijian,jdbcType=TIMESTAMP},
+      JieShuShiJian = #{jieshushijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      ShiFouXiaJia = #{shifouxiajia,jdbcType=INTEGER},
+      BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      ZhuanLiHao = #{zhuanlihao,jdbcType=CHAR},
+      FaBuShiJian = #{fabushijian,jdbcType=TIMESTAMP},
+      BaoJiaJieShuShiJian = #{baojiajieshushijian,jdbcType=DATE},
+      ZhuanLiGuoQiShiJian = #{zhuanliguoqishijian,jdbcType=DATE}
+    where ShangPinID = #{shangpinid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubConsultMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubConsult" >
+    <id column="ZiXunID" property="zixunid" jdbcType="INTEGER" />
+    <result column="ZiXunZheID" property="zixunzheid" jdbcType="INTEGER" />
+    <result column="ZiXunZheXingMing" property="zixunzhexingming" jdbcType="CHAR" />
+    <result column="ZiXunShiJian" property="zixunshijian" jdbcType="TIMESTAMP" />
+    <result column="HuiFuZheID" property="huifuzheid" jdbcType="INTEGER" />
+    <result column="HuiFuZheXingMing" property="huifuzhexingming" jdbcType="CHAR" />
+    <result column="HuiFuShiJian" property="huifushijian" jdbcType="TIMESTAMP" />
+    <result column="ShiFouYiDu" property="shifouyidu" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hbippub.pojo.HbipPubConsultWithBLOBs" extends="BaseResultMap" >
+    <result column="ZiXunNeiRong" property="zixunneirong" jdbcType="LONGVARCHAR" />
+    <result column="HuiFuNeiRong" property="huifuneirong" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ZiXunID, ZiXunZheID, ZiXunZheXingMing, ZiXunShiJian, HuiFuZheID, HuiFuZheXingMing, 
+    HuiFuShiJian, ShiFouYiDu
+  </sql>
+  <sql id="Blob_Column_List" >
+    ZiXunNeiRong, HuiFuNeiRong
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.hbippub.pojo.HbipPubConsultExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hbip_pub_consult
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubConsultExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_consult
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hbip_pub_consult
+    where ZiXunID = #{zixunid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_consult
+    where ZiXunID = #{zixunid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubConsultExample" >
+    delete from hbip_pub_consult
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubConsultWithBLOBs" >
+    insert into hbip_pub_consult (ZiXunID, ZiXunZheID, ZiXunZheXingMing, 
+      ZiXunShiJian, HuiFuZheID, HuiFuZheXingMing, 
+      HuiFuShiJian, ShiFouYiDu, ZiXunNeiRong, 
+      HuiFuNeiRong)
+    values (#{zixunid,jdbcType=INTEGER}, #{zixunzheid,jdbcType=INTEGER}, #{zixunzhexingming,jdbcType=CHAR}, 
+      #{zixunshijian,jdbcType=TIMESTAMP}, #{huifuzheid,jdbcType=INTEGER}, #{huifuzhexingming,jdbcType=CHAR}, 
+      #{huifushijian,jdbcType=TIMESTAMP}, #{shifouyidu,jdbcType=INTEGER}, #{zixunneirong,jdbcType=LONGVARCHAR}, 
+      #{huifuneirong,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubConsultWithBLOBs" >
+    insert into hbip_pub_consult
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="zixunid != null" >
+        ZiXunID,
+      </if>
+      <if test="zixunzheid != null" >
+        ZiXunZheID,
+      </if>
+      <if test="zixunzhexingming != null" >
+        ZiXunZheXingMing,
+      </if>
+      <if test="zixunshijian != null" >
+        ZiXunShiJian,
+      </if>
+      <if test="huifuzheid != null" >
+        HuiFuZheID,
+      </if>
+      <if test="huifuzhexingming != null" >
+        HuiFuZheXingMing,
+      </if>
+      <if test="huifushijian != null" >
+        HuiFuShiJian,
+      </if>
+      <if test="shifouyidu != null" >
+        ShiFouYiDu,
+      </if>
+      <if test="zixunneirong != null" >
+        ZiXunNeiRong,
+      </if>
+      <if test="huifuneirong != null" >
+        HuiFuNeiRong,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="zixunid != null" >
+        #{zixunid,jdbcType=INTEGER},
+      </if>
+      <if test="zixunzheid != null" >
+        #{zixunzheid,jdbcType=INTEGER},
+      </if>
+      <if test="zixunzhexingming != null" >
+        #{zixunzhexingming,jdbcType=CHAR},
+      </if>
+      <if test="zixunshijian != null" >
+        #{zixunshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="huifuzheid != null" >
+        #{huifuzheid,jdbcType=INTEGER},
+      </if>
+      <if test="huifuzhexingming != null" >
+        #{huifuzhexingming,jdbcType=CHAR},
+      </if>
+      <if test="huifushijian != null" >
+        #{huifushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shifouyidu != null" >
+        #{shifouyidu,jdbcType=INTEGER},
+      </if>
+      <if test="zixunneirong != null" >
+        #{zixunneirong,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="huifuneirong != null" >
+        #{huifuneirong,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubConsultExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_consult
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_consult
+    <set >
+      <if test="record.zixunid != null" >
+        ZiXunID = #{record.zixunid,jdbcType=INTEGER},
+      </if>
+      <if test="record.zixunzheid != null" >
+        ZiXunZheID = #{record.zixunzheid,jdbcType=INTEGER},
+      </if>
+      <if test="record.zixunzhexingming != null" >
+        ZiXunZheXingMing = #{record.zixunzhexingming,jdbcType=CHAR},
+      </if>
+      <if test="record.zixunshijian != null" >
+        ZiXunShiJian = #{record.zixunshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.huifuzheid != null" >
+        HuiFuZheID = #{record.huifuzheid,jdbcType=INTEGER},
+      </if>
+      <if test="record.huifuzhexingming != null" >
+        HuiFuZheXingMing = #{record.huifuzhexingming,jdbcType=CHAR},
+      </if>
+      <if test="record.huifushijian != null" >
+        HuiFuShiJian = #{record.huifushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shifouyidu != null" >
+        ShiFouYiDu = #{record.shifouyidu,jdbcType=INTEGER},
+      </if>
+      <if test="record.zixunneirong != null" >
+        ZiXunNeiRong = #{record.zixunneirong,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.huifuneirong != null" >
+        HuiFuNeiRong = #{record.huifuneirong,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update hbip_pub_consult
+    set ZiXunID = #{record.zixunid,jdbcType=INTEGER},
+      ZiXunZheID = #{record.zixunzheid,jdbcType=INTEGER},
+      ZiXunZheXingMing = #{record.zixunzhexingming,jdbcType=CHAR},
+      ZiXunShiJian = #{record.zixunshijian,jdbcType=TIMESTAMP},
+      HuiFuZheID = #{record.huifuzheid,jdbcType=INTEGER},
+      HuiFuZheXingMing = #{record.huifuzhexingming,jdbcType=CHAR},
+      HuiFuShiJian = #{record.huifushijian,jdbcType=TIMESTAMP},
+      ShiFouYiDu = #{record.shifouyidu,jdbcType=INTEGER},
+      ZiXunNeiRong = #{record.zixunneirong,jdbcType=LONGVARCHAR},
+      HuiFuNeiRong = #{record.huifuneirong,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_consult
+    set ZiXunID = #{record.zixunid,jdbcType=INTEGER},
+      ZiXunZheID = #{record.zixunzheid,jdbcType=INTEGER},
+      ZiXunZheXingMing = #{record.zixunzhexingming,jdbcType=CHAR},
+      ZiXunShiJian = #{record.zixunshijian,jdbcType=TIMESTAMP},
+      HuiFuZheID = #{record.huifuzheid,jdbcType=INTEGER},
+      HuiFuZheXingMing = #{record.huifuzhexingming,jdbcType=CHAR},
+      HuiFuShiJian = #{record.huifushijian,jdbcType=TIMESTAMP},
+      ShiFouYiDu = #{record.shifouyidu,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubConsultWithBLOBs" >
+    update hbip_pub_consult
+    <set >
+      <if test="zixunzheid != null" >
+        ZiXunZheID = #{zixunzheid,jdbcType=INTEGER},
+      </if>
+      <if test="zixunzhexingming != null" >
+        ZiXunZheXingMing = #{zixunzhexingming,jdbcType=CHAR},
+      </if>
+      <if test="zixunshijian != null" >
+        ZiXunShiJian = #{zixunshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="huifuzheid != null" >
+        HuiFuZheID = #{huifuzheid,jdbcType=INTEGER},
+      </if>
+      <if test="huifuzhexingming != null" >
+        HuiFuZheXingMing = #{huifuzhexingming,jdbcType=CHAR},
+      </if>
+      <if test="huifushijian != null" >
+        HuiFuShiJian = #{huifushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shifouyidu != null" >
+        ShiFouYiDu = #{shifouyidu,jdbcType=INTEGER},
+      </if>
+      <if test="zixunneirong != null" >
+        ZiXunNeiRong = #{zixunneirong,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="huifuneirong != null" >
+        HuiFuNeiRong = #{huifuneirong,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ZiXunID = #{zixunid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hbippub.pojo.HbipPubConsultWithBLOBs" >
+    update hbip_pub_consult
+    set ZiXunZheID = #{zixunzheid,jdbcType=INTEGER},
+      ZiXunZheXingMing = #{zixunzhexingming,jdbcType=CHAR},
+      ZiXunShiJian = #{zixunshijian,jdbcType=TIMESTAMP},
+      HuiFuZheID = #{huifuzheid,jdbcType=INTEGER},
+      HuiFuZheXingMing = #{huifuzhexingming,jdbcType=CHAR},
+      HuiFuShiJian = #{huifushijian,jdbcType=TIMESTAMP},
+      ShiFouYiDu = #{shifouyidu,jdbcType=INTEGER},
+      ZiXunNeiRong = #{zixunneirong,jdbcType=LONGVARCHAR},
+      HuiFuNeiRong = #{huifuneirong,jdbcType=LONGVARCHAR}
+    where ZiXunID = #{zixunid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubConsult" >
+    update hbip_pub_consult
+    set ZiXunZheID = #{zixunzheid,jdbcType=INTEGER},
+      ZiXunZheXingMing = #{zixunzhexingming,jdbcType=CHAR},
+      ZiXunShiJian = #{zixunshijian,jdbcType=TIMESTAMP},
+      HuiFuZheID = #{huifuzheid,jdbcType=INTEGER},
+      HuiFuZheXingMing = #{huifuzhexingming,jdbcType=CHAR},
+      HuiFuShiJian = #{huifushijian,jdbcType=TIMESTAMP},
+      ShiFouYiDu = #{shifouyidu,jdbcType=INTEGER}
+    where ZiXunID = #{zixunid,jdbcType=INTEGER}
+  </update>
+</mapper>

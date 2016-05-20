@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubMarketRecommendShopMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubMarketRecommendShop" >
+    <id column="YongHuID" property="yonghuid" jdbcType="INTEGER" />
+    <result column="DianPuMingCheng" property="dianpumingcheng" jdbcType="CHAR" />
+    <result column="DianPuTuBiao" property="dianputubiao" jdbcType="CHAR" />
+    <result column="DianPuJianJie" property="dianpujianjie" jdbcType="VARCHAR" />
+    <result column="BeiZhu" property="beizhu" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    YongHuID, DianPuMingCheng, DianPuTuBiao, DianPuJianJie, BeiZhu
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubMarketRecommendShopExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_market_recommend_shop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hbip_pub_market_recommend_shop
+    where YongHuID = #{yonghuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_market_recommend_shop
+    where YongHuID = #{yonghuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubMarketRecommendShopExample" >
+    delete from hbip_pub_market_recommend_shop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubMarketRecommendShop" >
+    insert into hbip_pub_market_recommend_shop (YongHuID, DianPuMingCheng, DianPuTuBiao, 
+      DianPuJianJie, BeiZhu)
+    values (#{yonghuid,jdbcType=INTEGER}, #{dianpumingcheng,jdbcType=CHAR}, #{dianputubiao,jdbcType=CHAR}, 
+      #{dianpujianjie,jdbcType=VARCHAR}, #{beizhu,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubMarketRecommendShop" >
+    insert into hbip_pub_market_recommend_shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yonghuid != null" >
+        YongHuID,
+      </if>
+      <if test="dianpumingcheng != null" >
+        DianPuMingCheng,
+      </if>
+      <if test="dianputubiao != null" >
+        DianPuTuBiao,
+      </if>
+      <if test="dianpujianjie != null" >
+        DianPuJianJie,
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yonghuid != null" >
+        #{yonghuid,jdbcType=INTEGER},
+      </if>
+      <if test="dianpumingcheng != null" >
+        #{dianpumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="dianputubiao != null" >
+        #{dianputubiao,jdbcType=CHAR},
+      </if>
+      <if test="dianpujianjie != null" >
+        #{dianpujianjie,jdbcType=VARCHAR},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubMarketRecommendShopExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_market_recommend_shop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_market_recommend_shop
+    <set >
+      <if test="record.yonghuid != null" >
+        YongHuID = #{record.yonghuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dianpumingcheng != null" >
+        DianPuMingCheng = #{record.dianpumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="record.dianputubiao != null" >
+        DianPuTuBiao = #{record.dianputubiao,jdbcType=CHAR},
+      </if>
+      <if test="record.dianpujianjie != null" >
+        DianPuJianJie = #{record.dianpujianjie,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beizhu != null" >
+        BeiZhu = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_market_recommend_shop
+    set YongHuID = #{record.yonghuid,jdbcType=INTEGER},
+      DianPuMingCheng = #{record.dianpumingcheng,jdbcType=CHAR},
+      DianPuTuBiao = #{record.dianputubiao,jdbcType=CHAR},
+      DianPuJianJie = #{record.dianpujianjie,jdbcType=VARCHAR},
+      BeiZhu = #{record.beizhu,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubMarketRecommendShop" >
+    update hbip_pub_market_recommend_shop
+    <set >
+      <if test="dianpumingcheng != null" >
+        DianPuMingCheng = #{dianpumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="dianputubiao != null" >
+        DianPuTuBiao = #{dianputubiao,jdbcType=CHAR},
+      </if>
+      <if test="dianpujianjie != null" >
+        DianPuJianJie = #{dianpujianjie,jdbcType=VARCHAR},
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where YongHuID = #{yonghuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubMarketRecommendShop" >
+    update hbip_pub_market_recommend_shop
+    set DianPuMingCheng = #{dianpumingcheng,jdbcType=CHAR},
+      DianPuTuBiao = #{dianputubiao,jdbcType=CHAR},
+      DianPuJianJie = #{dianpujianjie,jdbcType=VARCHAR},
+      BeiZhu = #{beizhu,jdbcType=VARCHAR}
+    where YongHuID = #{yonghuid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubStoreProxyMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubStoreProxy" >
+    <id column="JiLuID" property="jiluid" jdbcType="INTEGER" />
+    <result column="DaiLiRenID" property="dailirenid" jdbcType="INTEGER" />
+    <result column="DianZhuID" property="dianzhuid" jdbcType="INTEGER" />
+    <result column="DaiLiZhuangTai" property="dailizhuangtai" jdbcType="INTEGER" />
+    <result column="DaiLiRenMingCheng" property="dailirenmingcheng" jdbcType="CHAR" />
+    <result column="DianZhuMingCheng" property="dianzhumingcheng" jdbcType="CHAR" />
+    <result column="DianPuMingCheng" property="dianpumingcheng" jdbcType="CHAR" />
+    <result column="ShenQingShiJian" property="shenqingshijian" jdbcType="TIMESTAMP" />
+    <result column="KaiShiShiJian" property="kaishishijian" jdbcType="TIMESTAMP" />
+    <result column="JieShuShiJian" property="jieshushijian" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    JiLuID, DaiLiRenID, DianZhuID, DaiLiZhuangTai, DaiLiRenMingCheng, DianZhuMingCheng, 
+    DianPuMingCheng, ShenQingShiJian, KaiShiShiJian, JieShuShiJian
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubStoreProxyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_store_proxy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hbip_pub_store_proxy
+    where JiLuID = #{jiluid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_store_proxy
+    where JiLuID = #{jiluid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubStoreProxyExample" >
+    delete from hbip_pub_store_proxy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubStoreProxy" >
+    insert into hbip_pub_store_proxy (JiLuID, DaiLiRenID, DianZhuID, 
+      DaiLiZhuangTai, DaiLiRenMingCheng, DianZhuMingCheng, 
+      DianPuMingCheng, ShenQingShiJian, KaiShiShiJian, 
+      JieShuShiJian)
+    values (#{jiluid,jdbcType=INTEGER}, #{dailirenid,jdbcType=INTEGER}, #{dianzhuid,jdbcType=INTEGER}, 
+      #{dailizhuangtai,jdbcType=INTEGER}, #{dailirenmingcheng,jdbcType=CHAR}, #{dianzhumingcheng,jdbcType=CHAR}, 
+      #{dianpumingcheng,jdbcType=CHAR}, #{shenqingshijian,jdbcType=TIMESTAMP}, #{kaishishijian,jdbcType=TIMESTAMP}, 
+      #{jieshushijian,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubStoreProxy" >
+    insert into hbip_pub_store_proxy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jiluid != null" >
+        JiLuID,
+      </if>
+      <if test="dailirenid != null" >
+        DaiLiRenID,
+      </if>
+      <if test="dianzhuid != null" >
+        DianZhuID,
+      </if>
+      <if test="dailizhuangtai != null" >
+        DaiLiZhuangTai,
+      </if>
+      <if test="dailirenmingcheng != null" >
+        DaiLiRenMingCheng,
+      </if>
+      <if test="dianzhumingcheng != null" >
+        DianZhuMingCheng,
+      </if>
+      <if test="dianpumingcheng != null" >
+        DianPuMingCheng,
+      </if>
+      <if test="shenqingshijian != null" >
+        ShenQingShiJian,
+      </if>
+      <if test="kaishishijian != null" >
+        KaiShiShiJian,
+      </if>
+      <if test="jieshushijian != null" >
+        JieShuShiJian,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jiluid != null" >
+        #{jiluid,jdbcType=INTEGER},
+      </if>
+      <if test="dailirenid != null" >
+        #{dailirenid,jdbcType=INTEGER},
+      </if>
+      <if test="dianzhuid != null" >
+        #{dianzhuid,jdbcType=INTEGER},
+      </if>
+      <if test="dailizhuangtai != null" >
+        #{dailizhuangtai,jdbcType=INTEGER},
+      </if>
+      <if test="dailirenmingcheng != null" >
+        #{dailirenmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="dianzhumingcheng != null" >
+        #{dianzhumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="dianpumingcheng != null" >
+        #{dianpumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="shenqingshijian != null" >
+        #{shenqingshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="kaishishijian != null" >
+        #{kaishishijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jieshushijian != null" >
+        #{jieshushijian,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubStoreProxyExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_store_proxy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_store_proxy
+    <set >
+      <if test="record.jiluid != null" >
+        JiLuID = #{record.jiluid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dailirenid != null" >
+        DaiLiRenID = #{record.dailirenid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dianzhuid != null" >
+        DianZhuID = #{record.dianzhuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dailizhuangtai != null" >
+        DaiLiZhuangTai = #{record.dailizhuangtai,jdbcType=INTEGER},
+      </if>
+      <if test="record.dailirenmingcheng != null" >
+        DaiLiRenMingCheng = #{record.dailirenmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="record.dianzhumingcheng != null" >
+        DianZhuMingCheng = #{record.dianzhumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="record.dianpumingcheng != null" >
+        DianPuMingCheng = #{record.dianpumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="record.shenqingshijian != null" >
+        ShenQingShiJian = #{record.shenqingshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.kaishishijian != null" >
+        KaiShiShiJian = #{record.kaishishijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jieshushijian != null" >
+        JieShuShiJian = #{record.jieshushijian,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_store_proxy
+    set JiLuID = #{record.jiluid,jdbcType=INTEGER},
+      DaiLiRenID = #{record.dailirenid,jdbcType=INTEGER},
+      DianZhuID = #{record.dianzhuid,jdbcType=INTEGER},
+      DaiLiZhuangTai = #{record.dailizhuangtai,jdbcType=INTEGER},
+      DaiLiRenMingCheng = #{record.dailirenmingcheng,jdbcType=CHAR},
+      DianZhuMingCheng = #{record.dianzhumingcheng,jdbcType=CHAR},
+      DianPuMingCheng = #{record.dianpumingcheng,jdbcType=CHAR},
+      ShenQingShiJian = #{record.shenqingshijian,jdbcType=TIMESTAMP},
+      KaiShiShiJian = #{record.kaishishijian,jdbcType=TIMESTAMP},
+      JieShuShiJian = #{record.jieshushijian,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubStoreProxy" >
+    update hbip_pub_store_proxy
+    <set >
+      <if test="dailirenid != null" >
+        DaiLiRenID = #{dailirenid,jdbcType=INTEGER},
+      </if>
+      <if test="dianzhuid != null" >
+        DianZhuID = #{dianzhuid,jdbcType=INTEGER},
+      </if>
+      <if test="dailizhuangtai != null" >
+        DaiLiZhuangTai = #{dailizhuangtai,jdbcType=INTEGER},
+      </if>
+      <if test="dailirenmingcheng != null" >
+        DaiLiRenMingCheng = #{dailirenmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="dianzhumingcheng != null" >
+        DianZhuMingCheng = #{dianzhumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="dianpumingcheng != null" >
+        DianPuMingCheng = #{dianpumingcheng,jdbcType=CHAR},
+      </if>
+      <if test="shenqingshijian != null" >
+        ShenQingShiJian = #{shenqingshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="kaishishijian != null" >
+        KaiShiShiJian = #{kaishishijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jieshushijian != null" >
+        JieShuShiJian = #{jieshushijian,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where JiLuID = #{jiluid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubStoreProxy" >
+    update hbip_pub_store_proxy
+    set DaiLiRenID = #{dailirenid,jdbcType=INTEGER},
+      DianZhuID = #{dianzhuid,jdbcType=INTEGER},
+      DaiLiZhuangTai = #{dailizhuangtai,jdbcType=INTEGER},
+      DaiLiRenMingCheng = #{dailirenmingcheng,jdbcType=CHAR},
+      DianZhuMingCheng = #{dianzhumingcheng,jdbcType=CHAR},
+      DianPuMingCheng = #{dianpumingcheng,jdbcType=CHAR},
+      ShenQingShiJian = #{shenqingshijian,jdbcType=TIMESTAMP},
+      KaiShiShiJian = #{kaishishijian,jdbcType=TIMESTAMP},
+      JieShuShiJian = #{jieshushijian,jdbcType=TIMESTAMP}
+    where JiLuID = #{jiluid,jdbcType=INTEGER}
+  </update>
+</mapper>

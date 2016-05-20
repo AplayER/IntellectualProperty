@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubServiceTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubServiceType" >
+    <id column="FuWuLeiXingID" property="fuwuleixingid" jdbcType="INTEGER" />
+    <result column="ShangJiFuWuID" property="shangjifuwuid" jdbcType="INTEGER" />
+    <result column="FuWuDengJi" property="fuwudengji" jdbcType="INTEGER" />
+    <result column="LeiXingMingCheng" property="leixingmingcheng" jdbcType="CHAR" />
+    <result column="ShiFouYiShanChu" property="shifouyishanchu" jdbcType="INTEGER" />
+    <result column="BeiZhu" property="beizhu" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    FuWuLeiXingID, ShangJiFuWuID, FuWuDengJi, LeiXingMingCheng, ShiFouYiShanChu, BeiZhu
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubServiceTypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_service_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hbip_pub_service_type
+    where FuWuLeiXingID = #{fuwuleixingid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_service_type
+    where FuWuLeiXingID = #{fuwuleixingid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubServiceTypeExample" >
+    delete from hbip_pub_service_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubServiceType" >
+    insert into hbip_pub_service_type (FuWuLeiXingID, ShangJiFuWuID, FuWuDengJi, 
+      LeiXingMingCheng, ShiFouYiShanChu, BeiZhu
+      )
+    values (#{fuwuleixingid,jdbcType=INTEGER}, #{shangjifuwuid,jdbcType=INTEGER}, #{fuwudengji,jdbcType=INTEGER}, 
+      #{leixingmingcheng,jdbcType=CHAR}, #{shifouyishanchu,jdbcType=INTEGER}, #{beizhu,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubServiceType" >
+    insert into hbip_pub_service_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fuwuleixingid != null" >
+        FuWuLeiXingID,
+      </if>
+      <if test="shangjifuwuid != null" >
+        ShangJiFuWuID,
+      </if>
+      <if test="fuwudengji != null" >
+        FuWuDengJi,
+      </if>
+      <if test="leixingmingcheng != null" >
+        LeiXingMingCheng,
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu,
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fuwuleixingid != null" >
+        #{fuwuleixingid,jdbcType=INTEGER},
+      </if>
+      <if test="shangjifuwuid != null" >
+        #{shangjifuwuid,jdbcType=INTEGER},
+      </if>
+      <if test="fuwudengji != null" >
+        #{fuwudengji,jdbcType=INTEGER},
+      </if>
+      <if test="leixingmingcheng != null" >
+        #{leixingmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="shifouyishanchu != null" >
+        #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubServiceTypeExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_service_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_service_type
+    <set >
+      <if test="record.fuwuleixingid != null" >
+        FuWuLeiXingID = #{record.fuwuleixingid,jdbcType=INTEGER},
+      </if>
+      <if test="record.shangjifuwuid != null" >
+        ShangJiFuWuID = #{record.shangjifuwuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fuwudengji != null" >
+        FuWuDengJi = #{record.fuwudengji,jdbcType=INTEGER},
+      </if>
+      <if test="record.leixingmingcheng != null" >
+        LeiXingMingCheng = #{record.leixingmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="record.shifouyishanchu != null" >
+        ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="record.beizhu != null" >
+        BeiZhu = #{record.beizhu,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_service_type
+    set FuWuLeiXingID = #{record.fuwuleixingid,jdbcType=INTEGER},
+      ShangJiFuWuID = #{record.shangjifuwuid,jdbcType=INTEGER},
+      FuWuDengJi = #{record.fuwudengji,jdbcType=INTEGER},
+      LeiXingMingCheng = #{record.leixingmingcheng,jdbcType=CHAR},
+      ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      BeiZhu = #{record.beizhu,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubServiceType" >
+    update hbip_pub_service_type
+    <set >
+      <if test="shangjifuwuid != null" >
+        ShangJiFuWuID = #{shangjifuwuid,jdbcType=INTEGER},
+      </if>
+      <if test="fuwudengji != null" >
+        FuWuDengJi = #{fuwudengji,jdbcType=INTEGER},
+      </if>
+      <if test="leixingmingcheng != null" >
+        LeiXingMingCheng = #{leixingmingcheng,jdbcType=CHAR},
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null" >
+        BeiZhu = #{beizhu,jdbcType=INTEGER},
+      </if>
+    </set>
+    where FuWuLeiXingID = #{fuwuleixingid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubServiceType" >
+    update hbip_pub_service_type
+    set ShangJiFuWuID = #{shangjifuwuid,jdbcType=INTEGER},
+      FuWuDengJi = #{fuwudengji,jdbcType=INTEGER},
+      LeiXingMingCheng = #{leixingmingcheng,jdbcType=CHAR},
+      ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      BeiZhu = #{beizhu,jdbcType=INTEGER}
+    where FuWuLeiXingID = #{fuwuleixingid,jdbcType=INTEGER}
+  </update>
+</mapper>

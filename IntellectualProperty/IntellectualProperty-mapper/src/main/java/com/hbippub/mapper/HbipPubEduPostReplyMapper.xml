@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbippub.mapper.HbipPubEduPostReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.hbippub.pojo.HbipPubEduPostReply" >
+    <id column="HuiFuID" property="huifuid" jdbcType="INTEGER" />
+    <result column="TieZiID" property="tieziid" jdbcType="INTEGER" />
+    <result column="HuiFuZheID" property="huifuzheid" jdbcType="INTEGER" />
+    <result column="HuiFuZheXingMing" property="huifuzhexingming" jdbcType="CHAR" />
+    <result column="HuiFuZheURL" property="huifuzheurl" jdbcType="CHAR" />
+    <result column="ShiFouErJiHuiFu" property="shifouerjihuifu" jdbcType="INTEGER" />
+    <result column="BeiHuiFuID" property="beihuifuid" jdbcType="INTEGER" />
+    <result column="ErJiHuiFuShu" property="erjihuifushu" jdbcType="INTEGER" />
+    <result column="HuiFuShiJian" property="huifushijian" jdbcType="TIMESTAMP" />
+    <result column="ShiFouYiShanChu" property="shifouyishanchu" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hbippub.pojo.HbipPubEduPostReply" extends="BaseResultMap" >
+    <result column="HuiFuNeiRong" property="huifuneirong" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    HuiFuID, TieZiID, HuiFuZheID, HuiFuZheXingMing, HuiFuZheURL, ShiFouErJiHuiFu, BeiHuiFuID, 
+    ErJiHuiFuShu, HuiFuShiJian, ShiFouYiShanChu
+  </sql>
+  <sql id="Blob_Column_List" >
+    HuiFuNeiRong
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.hbippub.pojo.HbipPubEduPostReplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hbip_pub_edu_post_reply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbippub.pojo.HbipPubEduPostReplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hbip_pub_edu_post_reply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hbip_pub_edu_post_reply
+    where HuiFuID = #{huifuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hbip_pub_edu_post_reply
+    where HuiFuID = #{huifuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbippub.pojo.HbipPubEduPostReplyExample" >
+    delete from hbip_pub_edu_post_reply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbippub.pojo.HbipPubEduPostReply" >
+    insert into hbip_pub_edu_post_reply (HuiFuID, TieZiID, HuiFuZheID, 
+      HuiFuZheXingMing, HuiFuZheURL, ShiFouErJiHuiFu, 
+      BeiHuiFuID, ErJiHuiFuShu, HuiFuShiJian, 
+      ShiFouYiShanChu, HuiFuNeiRong)
+    values (#{huifuid,jdbcType=INTEGER}, #{tieziid,jdbcType=INTEGER}, #{huifuzheid,jdbcType=INTEGER}, 
+      #{huifuzhexingming,jdbcType=CHAR}, #{huifuzheurl,jdbcType=CHAR}, #{shifouerjihuifu,jdbcType=INTEGER}, 
+      #{beihuifuid,jdbcType=INTEGER}, #{erjihuifushu,jdbcType=INTEGER}, #{huifushijian,jdbcType=TIMESTAMP}, 
+      #{shifouyishanchu,jdbcType=INTEGER}, #{huifuneirong,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbippub.pojo.HbipPubEduPostReply" >
+    insert into hbip_pub_edu_post_reply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="huifuid != null" >
+        HuiFuID,
+      </if>
+      <if test="tieziid != null" >
+        TieZiID,
+      </if>
+      <if test="huifuzheid != null" >
+        HuiFuZheID,
+      </if>
+      <if test="huifuzhexingming != null" >
+        HuiFuZheXingMing,
+      </if>
+      <if test="huifuzheurl != null" >
+        HuiFuZheURL,
+      </if>
+      <if test="shifouerjihuifu != null" >
+        ShiFouErJiHuiFu,
+      </if>
+      <if test="beihuifuid != null" >
+        BeiHuiFuID,
+      </if>
+      <if test="erjihuifushu != null" >
+        ErJiHuiFuShu,
+      </if>
+      <if test="huifushijian != null" >
+        HuiFuShiJian,
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu,
+      </if>
+      <if test="huifuneirong != null" >
+        HuiFuNeiRong,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="huifuid != null" >
+        #{huifuid,jdbcType=INTEGER},
+      </if>
+      <if test="tieziid != null" >
+        #{tieziid,jdbcType=INTEGER},
+      </if>
+      <if test="huifuzheid != null" >
+        #{huifuzheid,jdbcType=INTEGER},
+      </if>
+      <if test="huifuzhexingming != null" >
+        #{huifuzhexingming,jdbcType=CHAR},
+      </if>
+      <if test="huifuzheurl != null" >
+        #{huifuzheurl,jdbcType=CHAR},
+      </if>
+      <if test="shifouerjihuifu != null" >
+        #{shifouerjihuifu,jdbcType=INTEGER},
+      </if>
+      <if test="beihuifuid != null" >
+        #{beihuifuid,jdbcType=INTEGER},
+      </if>
+      <if test="erjihuifushu != null" >
+        #{erjihuifushu,jdbcType=INTEGER},
+      </if>
+      <if test="huifushijian != null" >
+        #{huifushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shifouyishanchu != null" >
+        #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="huifuneirong != null" >
+        #{huifuneirong,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbippub.pojo.HbipPubEduPostReplyExample" resultType="java.lang.Integer" >
+    select count(*) from hbip_pub_edu_post_reply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hbip_pub_edu_post_reply
+    <set >
+      <if test="record.huifuid != null" >
+        HuiFuID = #{record.huifuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.tieziid != null" >
+        TieZiID = #{record.tieziid,jdbcType=INTEGER},
+      </if>
+      <if test="record.huifuzheid != null" >
+        HuiFuZheID = #{record.huifuzheid,jdbcType=INTEGER},
+      </if>
+      <if test="record.huifuzhexingming != null" >
+        HuiFuZheXingMing = #{record.huifuzhexingming,jdbcType=CHAR},
+      </if>
+      <if test="record.huifuzheurl != null" >
+        HuiFuZheURL = #{record.huifuzheurl,jdbcType=CHAR},
+      </if>
+      <if test="record.shifouerjihuifu != null" >
+        ShiFouErJiHuiFu = #{record.shifouerjihuifu,jdbcType=INTEGER},
+      </if>
+      <if test="record.beihuifuid != null" >
+        BeiHuiFuID = #{record.beihuifuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.erjihuifushu != null" >
+        ErJiHuiFuShu = #{record.erjihuifushu,jdbcType=INTEGER},
+      </if>
+      <if test="record.huifushijian != null" >
+        HuiFuShiJian = #{record.huifushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shifouyishanchu != null" >
+        ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="record.huifuneirong != null" >
+        HuiFuNeiRong = #{record.huifuneirong,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update hbip_pub_edu_post_reply
+    set HuiFuID = #{record.huifuid,jdbcType=INTEGER},
+      TieZiID = #{record.tieziid,jdbcType=INTEGER},
+      HuiFuZheID = #{record.huifuzheid,jdbcType=INTEGER},
+      HuiFuZheXingMing = #{record.huifuzhexingming,jdbcType=CHAR},
+      HuiFuZheURL = #{record.huifuzheurl,jdbcType=CHAR},
+      ShiFouErJiHuiFu = #{record.shifouerjihuifu,jdbcType=INTEGER},
+      BeiHuiFuID = #{record.beihuifuid,jdbcType=INTEGER},
+      ErJiHuiFuShu = #{record.erjihuifushu,jdbcType=INTEGER},
+      HuiFuShiJian = #{record.huifushijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER},
+      HuiFuNeiRong = #{record.huifuneirong,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hbip_pub_edu_post_reply
+    set HuiFuID = #{record.huifuid,jdbcType=INTEGER},
+      TieZiID = #{record.tieziid,jdbcType=INTEGER},
+      HuiFuZheID = #{record.huifuzheid,jdbcType=INTEGER},
+      HuiFuZheXingMing = #{record.huifuzhexingming,jdbcType=CHAR},
+      HuiFuZheURL = #{record.huifuzheurl,jdbcType=CHAR},
+      ShiFouErJiHuiFu = #{record.shifouerjihuifu,jdbcType=INTEGER},
+      BeiHuiFuID = #{record.beihuifuid,jdbcType=INTEGER},
+      ErJiHuiFuShu = #{record.erjihuifushu,jdbcType=INTEGER},
+      HuiFuShiJian = #{record.huifushijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{record.shifouyishanchu,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbippub.pojo.HbipPubEduPostReply" >
+    update hbip_pub_edu_post_reply
+    <set >
+      <if test="tieziid != null" >
+        TieZiID = #{tieziid,jdbcType=INTEGER},
+      </if>
+      <if test="huifuzheid != null" >
+        HuiFuZheID = #{huifuzheid,jdbcType=INTEGER},
+      </if>
+      <if test="huifuzhexingming != null" >
+        HuiFuZheXingMing = #{huifuzhexingming,jdbcType=CHAR},
+      </if>
+      <if test="huifuzheurl != null" >
+        HuiFuZheURL = #{huifuzheurl,jdbcType=CHAR},
+      </if>
+      <if test="shifouerjihuifu != null" >
+        ShiFouErJiHuiFu = #{shifouerjihuifu,jdbcType=INTEGER},
+      </if>
+      <if test="beihuifuid != null" >
+        BeiHuiFuID = #{beihuifuid,jdbcType=INTEGER},
+      </if>
+      <if test="erjihuifushu != null" >
+        ErJiHuiFuShu = #{erjihuifushu,jdbcType=INTEGER},
+      </if>
+      <if test="huifushijian != null" >
+        HuiFuShiJian = #{huifushijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shifouyishanchu != null" >
+        ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      </if>
+      <if test="huifuneirong != null" >
+        HuiFuNeiRong = #{huifuneirong,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where HuiFuID = #{huifuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hbippub.pojo.HbipPubEduPostReply" >
+    update hbip_pub_edu_post_reply
+    set TieZiID = #{tieziid,jdbcType=INTEGER},
+      HuiFuZheID = #{huifuzheid,jdbcType=INTEGER},
+      HuiFuZheXingMing = #{huifuzhexingming,jdbcType=CHAR},
+      HuiFuZheURL = #{huifuzheurl,jdbcType=CHAR},
+      ShiFouErJiHuiFu = #{shifouerjihuifu,jdbcType=INTEGER},
+      BeiHuiFuID = #{beihuifuid,jdbcType=INTEGER},
+      ErJiHuiFuShu = #{erjihuifushu,jdbcType=INTEGER},
+      HuiFuShiJian = #{huifushijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER},
+      HuiFuNeiRong = #{huifuneirong,jdbcType=LONGVARCHAR}
+    where HuiFuID = #{huifuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbippub.pojo.HbipPubEduPostReply" >
+    update hbip_pub_edu_post_reply
+    set TieZiID = #{tieziid,jdbcType=INTEGER},
+      HuiFuZheID = #{huifuzheid,jdbcType=INTEGER},
+      HuiFuZheXingMing = #{huifuzhexingming,jdbcType=CHAR},
+      HuiFuZheURL = #{huifuzheurl,jdbcType=CHAR},
+      ShiFouErJiHuiFu = #{shifouerjihuifu,jdbcType=INTEGER},
+      BeiHuiFuID = #{beihuifuid,jdbcType=INTEGER},
+      ErJiHuiFuShu = #{erjihuifushu,jdbcType=INTEGER},
+      HuiFuShiJian = #{huifushijian,jdbcType=TIMESTAMP},
+      ShiFouYiShanChu = #{shifouyishanchu,jdbcType=INTEGER}
+    where HuiFuID = #{huifuid,jdbcType=INTEGER}
+  </update>
+</mapper>
