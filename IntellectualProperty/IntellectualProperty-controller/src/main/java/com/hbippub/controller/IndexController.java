@@ -9,5 +9,9 @@ public class IndexController {
 	public String showIndex(){
 		return "index";
 	}
+	@RequestMapping("/login")
+	public String showLogin(){
+		return "login";
+	}
 
 }
