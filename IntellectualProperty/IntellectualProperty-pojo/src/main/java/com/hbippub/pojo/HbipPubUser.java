@@ -582,4 +582,47 @@ public class HbipPubUser {
     public void setDianpumubanleixing(Integer dianpumubanleixing) {
         this.dianpumubanleixing = dianpumubanleixing;
     }
+
+	@Override
+	public String toString() {
+		return "HbipPubUser [yonghuid=" + yonghuid + ", duanxingyanzheng="
+				+ duanxingyanzheng + ", suozaiquhuaid=" + suozaiquhuaid
+				+ ", jiguanquhuaid=" + jiguanquhuaid + ", yonghuming="
+				+ yonghuming + ", xingming=" + xingming + ", zuzhileixing="
+				+ zuzhileixing + ", lianxirenxingming=" + lianxirenxingming
+				+ ", nicheng=" + nicheng + ", mima=" + mima + ", youxiang="
+				+ youxiang + ", xingbie=" + xingbie + ", lianhedengluid="
+				+ lianhedengluid + ", denglufangshi=" + denglufangshi
+				+ ", touxiangurl=" + touxiangurl + ", renzhengurl2="
+				+ renzhengurl2 + ", renzhengurl1=" + renzhengurl1
+				+ ", yonghuleibie=" + yonghuleibie + ", zhengjianleixing="
+				+ zhengjianleixing + ", zhengjianhao=" + zhengjianhao
+				+ ", zhuangtai=" + zhuangtai + ", heimingdanbiaoji="
+				+ heimingdanbiaoji + ", lianxidianhua=" + lianxidianhua
+				+ ", youzhengbianma=" + youzhengbianma + ", suozaishengfen="
+				+ suozaishengfen + ", suozaichengshi=" + suozaichengshi
+				+ ", jiguanchengshi=" + jiguanchengshi + ", jiguanshengfen="
+				+ jiguanshengfen + ", lianxidizhi=" + lianxidizhi
+				+ ", huoyuedu=" + huoyuedu + ", fensishu=" + fensishu
+				+ ", guanzhushu=" + guanzhushu + ", shifoufuwujigou="
+				+ shifoufuwujigou + ", dianpuzhuangtai=" + dianpuzhuangtai
+				+ ", dianpuliulanshu=" + dianpuliulanshu + ", dianpumingcheng="
+				+ dianpumingcheng + ", dianpuqq=" + dianpuqq
+				+ ", dianputubiao=" + dianputubiao + ", zhuyingyewu="
+				+ zhuyingyewu + ", kaidianshijian=" + kaidianshijian
+				+ ", tijiaoshenheshijian=" + tijiaoshenheshijian
+				+ ", zhuceshijian=" + zhuceshijian + ", zuihoudenglushijian="
+				+ zuihoudenglushijian + ", shengri=" + shengri
+				+ ", dianpujianjie=" + dianpujianjie + ", ziwojieshao="
+				+ ziwojieshao + ", shifouyishanchu=" + shifouyishanchu
+				+ ", beizhu=" + beizhu + ", hangyeleixingid=" + hangyeleixingid
+				+ ", fuwujigouid=" + fuwujigouid + ", jiamengzhuangtai="
+				+ jiamengzhuangtai + ", shifoudingyuexinwen="
+				+ shifoudingyuexinwen + ", chongzhima=" + chongzhima
+				+ ", chongzhimachuangjianshijian="
+				+ chongzhimachuangjianshijian + ", insertFlag=" + insertFlag
+				+ ", updateFlag=" + updateFlag + ", isread=" + isread
+				+ ", dianpumubanleixing=" + dianpumubanleixing + "]";
+	}
+    
 }
