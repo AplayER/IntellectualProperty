@@ -3,8 +3,12 @@
  */
 package com.hbippub.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hbippub.pojo.HbipPubUser;
@@ -64,6 +69,10 @@ public class TestController {
 	@ResponseBody
 	public String object(HbipPubUser hbippubuser){
 		return hbippubuser.toString();
+	}
+	@RequestMapping("object2.do")
+	public @ResponseBody HbipPubUser object2(HbipPubUser hbipPubUser){
+		return hbipPubUser;
 	}
 	@InitBinder("hbippubuser")  
 	public void initUser(WebDataBinder binder){
@@ -117,5 +126,18 @@ public class TestController {
 		mv.setViewName("/index");
 		return mv; 
 	}
-	
+	/*
+	 * 测试文件上传的功能
+	 */
+	@RequestMapping("/file")
+	public String upload(){
+		return "file";
+	}
+	@RequestMapping("/file/upload")
+	public String doUpload(@RequestParam("file") MultipartFile file) throws IOException{
+		if (!file.isEmpty()) {
+			FileUtils.copyInputStreamToFile(file.getInputStream(), new File("c:\\test\\",System.currentTimeMillis()+file.getOriginalFilename()));
+		}
+		return "success";
+	}
 }
