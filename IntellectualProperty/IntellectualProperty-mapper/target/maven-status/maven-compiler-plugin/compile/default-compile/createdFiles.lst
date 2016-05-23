@@ -7,6 +7,7 @@ com\hbippub\mapper\HbipPubAuctionStateMapper.class
 com\hbippub\mapper\HbipPubCommodityDisplayMapper.class
 com\hbippub\mapper\HbipPubMailboxMapper.class
 com\hbippub\mapper\HbipPubNewsSubcategoryMapper.class
+com\hbippub\mapper\SeckillMapper.class
 com\hbippub\mapper\HbipPubShopPictureMapper.class
 com\hbippub\mapper\HbipPubPatentTypeMapper.class
 com\hbippub\mapper\HbipPubServiceMapper.class
@@ -59,6 +60,7 @@ com\hbippub\mapper\HbipPubProjectTemplateMapper.class
 com\hbippub\mapper\HbipPubGovNewsDisplayMapper.class
 com\hbippub\mapper\HbipPubProductMapper.class
 com\hbippub\mapper\HbipPubNoticeMapper.class
+com\hbippub\mapper\SuccessKilledMapper.class
 com\hbippub\mapper\HbipPubComplaintMapper.class
 com\hbippub\mapper\HbipPubNewsHotImageMapper.class
 com\hbippub\mapper\HbipPubShopTemplatePictureMapper.class
