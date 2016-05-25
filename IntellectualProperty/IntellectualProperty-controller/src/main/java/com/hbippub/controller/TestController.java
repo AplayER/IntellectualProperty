@@ -4,12 +4,16 @@
 package com.hbippub.controller;
 
 import java.io.File;
+
 import java.io.IOException;
+import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -27,7 +31,7 @@ import com.hbippub.mapper.SeckillMapper;
 import com.hbippub.mapper.SuccessKilledMapper;
 import com.hbippub.pojo.HbipPubUser;
 import com.hbippub.pojo.Seckill;
-import com.sun.xml.internal.xsom.impl.Ref.ContentType;
+import com.hbippub.pojo.SuccessKilled;
 
 /**
  * @author Peter
@@ -163,8 +167,24 @@ public class TestController {
 	public @ResponseBody Seckill getSeckill(@PathVariable("seckillId")Integer seckillId){
 		return seckillMapper.queryById(seckillId);	
 	}
-	@RequestMapping(value="/miaosha2/{seckillId}")
+	@RequestMapping(value="/miaosha2/{seckillId}",method=RequestMethod.POST)
 	public @ResponseBody Seckill getSeckill2(@PathVariable("seckillId")Integer seckillId){
 		return seckillMapper.selectByPrimaryKey(seckillId);	
+	}
+	@RequestMapping(value="miaosha3.do")
+	public @ResponseBody List<Seckill> getAllInfoBylimit(@RequestParam("offset")int offset,@RequestParam("limit") int limit){
+		return seckillMapper.queryAll(offset, limit);
+	}
+	@RequestMapping("/miaosha4/{seckillId}")
+	public @ResponseBody int reduceNumber(@PathVariable("seckillId")int seckillId){
+		return seckillMapper.reduceNumber(seckillId, new Date(System.currentTimeMillis()));
+	}
+	@RequestMapping("miaosha5.do")
+	public @ResponseBody int insertSuccessKilled(@RequestParam("seckillId")int seckillId,@RequestParam("userPhone") long userPhone){
+		return successKilledMapper.insertSuccessKilled(seckillId, userPhone);
+	}
+	@RequestMapping("miaosha6.do")
+	public @ResponseBody SuccessKilled queryByIdWithSeckill(@RequestParam("seckillId")int seckillId,@RequestParam("userPhone") long userPhone){
+		return successKilledMapper.queryByIdWithSeckill(seckillId, userPhone);
 	}
 }

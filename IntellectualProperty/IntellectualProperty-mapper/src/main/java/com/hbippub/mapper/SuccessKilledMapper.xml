@@ -200,16 +200,16 @@
 	
 	<select id="queryByIdWithSeckill" resultType="com.hbippub.pojo.SuccessKilled">
 		select 
-			sk.seckill_id,
-			sk.user_phone,
-			sk.create_time,
-			sk.state,
-			s.seckill_id "seckill.seckill_id"",
-			s.name "seckill.name",
-			s.number "seckill.number",
-			s.create_time "seckill.create_time",
-		    s.start_time "seckill.start_time",
-			s.end_time "seckill.end_time"
+			sk.seckill_id as "seckillId",
+			sk.user_phone as "userPhone",
+			sk.create_time as "createTime",
+			sk.state as "state",
+			s.seckill_id as "seckill.seckillId",
+			s.name as "seckill.name",
+			s.number as "seckill.number",
+			s.create_time as "seckill.createTime",
+		    s.start_time as "seckill.startTime",
+			s.end_time as "seckill.endTime"
 		from success_killed sk
 		inner join seckill s on s.seckill_id=sk.seckill_id
 		where sk.seckill_id=#{seckillId} and sk.user_phone=#{userPhone}

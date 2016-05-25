@@ -39,5 +39,5 @@ public interface HbipPubUserMapper {
 
     int updateUserInfoByPrimaryKey(HbipPubUser record);
     
-    int updateUserPassword(HbipPubUser record);
+    int updateUserPassword(Integer userId,String newPwd);
 }

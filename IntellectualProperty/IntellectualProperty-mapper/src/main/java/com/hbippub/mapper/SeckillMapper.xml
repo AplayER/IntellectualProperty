@@ -234,16 +234,16 @@
 		and end_time<![CDATA[>=]]>#{killTime}
 		and number>0
 	</update>
-	<select id="queryById" parameterType="java.lang.Integer" resultType="com.hbippub.pojo.Seckill">
+	<select id="queryById" resultType="com.hbippub.pojo.Seckill">
 		select
-		    seckill_id, name, number, create_time, start_time, end_time
+		    seckill_id as seckillId, name, number, create_time as createTime, start_time as startTime, end_time as endTime
 		from seckill
 		where seckill_id=#{seckillId}
 	</select>
 	
-	<select id="queryAll">
+	<select id="queryAll" resultType="com.hbippub.pojo.Seckill">
 		select
-		    seckill_id, name, number, create_time, start_time, end_time
+		    seckill_id as seckillId, name, number, create_time as createTime, start_time as startTime, end_time as endTime
 		from seckill
 		order by create_time desc
 		limit #{offset},#{limit}

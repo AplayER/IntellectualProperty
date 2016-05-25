@@ -1098,9 +1098,9 @@
       DianPuMuBanLeiXing = #{dianpumubanleixing,jdbcType=INTEGER}
     where YongHuID = #{yonghuid,jdbcType=INTEGER}
   </update>
-  <update id="updateUserPassword" parameterType="com.hbippub.pojo.HbipPubUser">
+  <update id="updateUserPassword">
         UPDATE hbip_pub_user
-        SET MiMa=#{mima}
-        WHERE YongHuID=#{yonghuid}
+        SET MiMa=#{newPwd}
+        WHERE YongHuID=#{userId}
     </update>
 </mapper>
