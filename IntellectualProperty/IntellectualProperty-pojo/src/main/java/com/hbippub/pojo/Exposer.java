@@ -13,9 +13,10 @@ public class Exposer {
 		this.isExposed = isExposed;
 		this.md5 = md5;
 	}
-	public Exposer(boolean isExposed, long now, long start, long end) {
+	public Exposer(boolean isExposed, int seckillId,long now, long start, long end) {
 		super();
 		this.isExposed = isExposed;
+		this.seckillId = seckillId;
 		this.now = now;
 		this.start = start;
 		this.end = end;

@@ -1,9 +1,10 @@
 package com.hbippub.mapper;
 
 import com.hbippub.pojo.Seckill;
+
 import com.hbippub.pojo.SeckillExample;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
