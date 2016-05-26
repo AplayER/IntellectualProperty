@@ -1,3 +1,4 @@
 com\hbippub\controller\UserController.class
 com\hbippub\controller\TestController.class
 com\hbippub\controller\IndexController.class
+com\hbippub\controller\FileController.class

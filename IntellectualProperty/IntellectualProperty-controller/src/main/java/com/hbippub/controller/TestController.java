@@ -141,20 +141,7 @@ public class TestController {
 		mv.setViewName("/index");
 		return mv; 
 	}
-	/*
-	 * 测试文件上传的功能
-	 */
-	@RequestMapping("/file")
-	public String upload(){
-		return "file";
-	}
-	@RequestMapping("/file/upload")
-	public String doUpload(@RequestParam("file") MultipartFile file) throws IOException{
-		if (!file.isEmpty()) {
-			FileUtils.copyInputStreamToFile(file.getInputStream(), new File("c:\\test\\",System.currentTimeMillis()+file.getOriginalFilename()));
-		}
-		return "success";
-	}
+	
 	
 	@RequestMapping("/db")
 	@ResponseBody

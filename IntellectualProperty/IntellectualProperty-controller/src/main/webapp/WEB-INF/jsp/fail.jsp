@@ -1,5 +1,4 @@
-<%@page import="org.springframework.web.bind.annotation.ResponseBody"%>
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'success.jsp' starting page</title>
+    <title>Sorry to hear that.</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -24,8 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    You have been succeed. <br>
-    <% String str = (String)request.getAttribute("path"); %>
-    <%=str %>
+    <h1>You failed !!!</h1> <br>
   </body>
 </html>

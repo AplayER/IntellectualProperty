@@ -1,2 +1,4 @@
 com\hbippub\service\UserService.class
 com\hbippub\service\UserServiceImpl.class
+com\hbippub\service\FileService.class
+com\hbippub\service\FileServiceImpl.class
