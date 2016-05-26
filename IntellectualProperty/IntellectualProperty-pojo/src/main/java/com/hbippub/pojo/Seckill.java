@@ -47,7 +47,14 @@ public class Seckill {
         this.createTime = createTime;
     }
 
-    public Date getStartTime() {
+    @Override
+	public String toString() {
+		return "Seckill [seckillId=" + seckillId + ", name=" + name
+				+ ", number=" + number + ", createTime=" + createTime
+				+ ", startTime=" + startTime + ", endTime=" + endTime + "]";
+	}
+
+	public Date getStartTime() {
         return startTime;
     }
 

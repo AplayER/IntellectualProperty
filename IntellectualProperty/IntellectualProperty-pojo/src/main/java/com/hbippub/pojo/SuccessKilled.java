@@ -3,7 +3,13 @@ package com.hbippub.pojo;
 import java.util.Date;
 
 public class SuccessKilled extends SuccessKilledKey {
-    private Byte state;
+    @Override
+	public String toString() {
+		return "SuccessKilled [state=" + state + ", createTime=" + createTime
+				+ ", seckill=" + seckill + "]";
+	}
+
+	private Byte state;
 
     private Date createTime;
     

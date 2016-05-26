@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
@@ -25,6 +26,7 @@ import com.hbippub.pojo.SuccessKilled;
  * @author 梁lab 806
  *
  */
+@Service
 public class SeckillServiceImpl implements SeckillService{
 	@Autowired
 	private SeckillMapper seckillMapper;
@@ -98,10 +100,11 @@ public class SeckillServiceImpl implements SeckillService{
 			throw e2;
 			}
 		catch (Exception e) {
-		}
 			throw new SeckillException("seckill inner error"+e.getMessage());
 		}
+		}
 		
-	}
+	
+
 
 }

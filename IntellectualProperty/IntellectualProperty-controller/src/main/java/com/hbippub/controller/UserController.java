@@ -6,6 +6,8 @@ package com.hbippub.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hbippub.mapper.HbipPubUserMapper;
 import com.hbippub.pojo.HbipPubUser;
 import com.hbippub.pojo.HbipPubUserExample;
+import com.hbippub.pojo.Seckill;
+import com.hbippub.service.SeckillService;
 import com.hbippub.service.UserService;
 
 /**
@@ -26,8 +30,12 @@ import com.hbippub.service.UserService;
 @Controller
 public class UserController {
 	
+//	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private UserService userService;
+//	@Autowired
+//	private SeckillService seckillService;
 	
 	@RequestMapping("/userbyid/{userId}")
     @ResponseBody
@@ -43,18 +51,27 @@ public class UserController {
 	}
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-*.xml");
-		HbipPubUserMapper mapper = applicationContext.getBean(HbipPubUserMapper.class);
-		HbipPubUserExample example = new HbipPubUserExample();
-		example.or().andYonghuleibieEqualTo(1);
-		List<HbipPubUser> list = mapper.getLoginInfoByExample(example);
-//		for (HbipPubUser hbipPubUser : list) {
-//			System.out.println(hbipPubUser.getJiguanquhuaid());
-//		}
-		HashMap<String, String> userInfo = new HashMap<String, String>();
-		userInfo.put("logName", "lww");
-		userInfo.put("pwd", "e10adc3949ba59abbe56e057f20f883e");
-		HbipPubUser user2 = mapper.getLoginInfoByLogNameAndPwd(userInfo);
-			System.out.println(user2.getYonghuid());
+//		/*
+//		 * 测试user表的方法
+//		 */
+//		HbipPubUserMapper mapper = applicationContext.getBean(HbipPubUserMapper.class);
+//		HbipPubUserExample example = new HbipPubUserExample();
+//		example.or().andYonghuleibieEqualTo(1);
+//		List<HbipPubUser> list = mapper.getLoginInfoByExample(example);
+////		for (HbipPubUser hbipPubUser : list) {
+////			System.out.println(hbipPubUser.getJiguanquhuaid());
+////		}
+//		HashMap<String, String> userInfo = new HashMap<String, String>();
+//		userInfo.put("logName", "lww");
+//		userInfo.put("pwd", "e10adc3949ba59abbe56e057f20f883e");
+//		HbipPubUser user2 = mapper.getLoginInfoByLogNameAndPwd(userInfo);
+//			System.out.println(user2.getYonghuid());
+		//测试秒杀表的方法
+		SeckillService seckillService = applicationContext.getBean(SeckillService.class);
+		List<Seckill> seckills = seckillService.getSeckillList();
+		for (Seckill seckill : seckills) {
+			System.out.println(seckill);
+		}
 		
 	}
 }

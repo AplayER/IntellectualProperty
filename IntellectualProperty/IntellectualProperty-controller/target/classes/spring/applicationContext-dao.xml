@@ -30,4 +30,5 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.hbippub.mapper"></property>
 	</bean>
+	<!-- 扫描一些公共包和异常包 -->
 </beans>
