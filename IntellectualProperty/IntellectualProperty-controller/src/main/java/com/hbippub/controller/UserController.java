@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hbippub.mapper.HbipPubUserMapper;
+import com.hbippub.pojo.Exposer;
 import com.hbippub.pojo.HbipPubUser;
 import com.hbippub.pojo.HbipPubUserExample;
 import com.hbippub.pojo.Seckill;
@@ -68,10 +69,21 @@ public class UserController {
 //			System.out.println(user2.getYonghuid());
 		//测试秒杀表的方法
 		SeckillService seckillService = applicationContext.getBean(SeckillService.class);
+		
 		List<Seckill> seckills = seckillService.getSeckillList();
 		for (Seckill seckill : seckills) {
 			System.out.println(seckill);
 		}
+		
+		System.out.println("getSeckillByID Test:");
+		Seckill seckill = seckillService.getSeckillByID(1);
+		System.out.println(seckill);
+		
+		Exposer exposer = seckillService.exportSeckillUrl(1);
+		System.out.println("exportSeckillUrl Test:");
+		System.out.println(exposer);
+		
+		
 		
 	}
 }
