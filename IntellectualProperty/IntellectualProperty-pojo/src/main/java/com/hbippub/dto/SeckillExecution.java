@@ -12,21 +12,21 @@ import com.hbippub.pojo.SuccessKilled;
 public class SeckillExecution {
 	private int seckillID;
 	private int state;
-	private String stateInfoString;
+	private String stateInfo;
 	private SuccessKilled successKilled;
-	public SeckillExecution(int seckillID, int state, String stateInfoString,
+	public SeckillExecution(int seckillID, int state, String stateInfo,
 			SuccessKilled successKilled) {
 		super();
 		this.seckillID = seckillID;
 		this.state = state;
-		this.stateInfoString = stateInfoString;
+		this.stateInfo = stateInfo;
 		this.successKilled = successKilled;
 	}
-	public SeckillExecution(int seckillID, int state, String stateInfoString) {
+	public SeckillExecution(int seckillID, int state, String stateInfo) {
 		super();
 		this.seckillID = seckillID;
 		this.state = state;
-		this.stateInfoString = stateInfoString;
+		this.stateInfo = stateInfo;
 	}
 	public int getSeckillID() {
 		return seckillID;
@@ -40,11 +40,11 @@ public class SeckillExecution {
 	public void setState(int state) {
 		this.state = state;
 	}
-	public String getStateInfoString() {
-		return stateInfoString;
+	public String getstateInfo() {
+		return stateInfo;
 	}
-	public void setStateInfoString(String stateInfoString) {
-		this.stateInfoString = stateInfoString;
+	public void setstateInfo(String stateInfo) {
+		this.stateInfo = stateInfo;
 	}
 	public SuccessKilled getSuccessKilled() {
 		return successKilled;

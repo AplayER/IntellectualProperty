@@ -3,6 +3,7 @@
  */
 package com.hbippub.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.hbippub.dto.Exposer;
 import com.hbippub.dto.SeckillExecution;
 import com.hbippub.dto.SeckillResult;
 import com.hbippub.exception.RepeatKillException;
+import com.hbippub.exception.SeckillCloseException;
 import com.hbippub.pojo.Seckill;
 import com.hbippub.service.SeckillService;
 
@@ -36,7 +36,7 @@ public class SeckillController {
 	public String list(Model model) {
 		List<Seckill> list = seckillService.getSeckillList();
 		model.addAttribute("list",list);
-		return "list";
+		return "seckillList";
 	}
 	@RequestMapping(value="/{seckillId}/detail",method=RequestMethod.GET)
 	public String detail(@PathVariable("seckillId") Integer seckillId,Model model){
@@ -48,7 +48,7 @@ public class SeckillController {
 			return "forward:/seckill/list";
 		}
 		model.addAttribute("seckill", seckill);
-		return "detail";
+		return "seckillDetail";
 	}
 	
 	@RequestMapping(value="/{seckillId}/exposer",
@@ -76,13 +76,26 @@ public class SeckillController {
 			SeckillExecution execution = seckillService.executeSeckill(seckillId, userPhone, md5);
 			result = new SeckillResult<SeckillExecution>(true, execution);
 		} 
-//		catch(RepeatKillException e1){
-////			SeckillExecution execution = new SeckillExecution(seckillId, state, stateInfoString)
-//		}
+		catch(RepeatKillException e1){
+			SeckillExecution execution = new SeckillExecution(seckillId, -1,"重复秒杀");
+			result = new SeckillResult<SeckillExecution>(true, execution);
+
+		}
+		catch (SeckillCloseException e2) {
+			SeckillExecution execution = new SeckillExecution(seckillId, 0, "秒杀结束");
+			result = new SeckillResult<SeckillExecution>(true, execution);
+
+		}
 		catch (Exception e) {
-			result = new SeckillResult<SeckillExecution>(false, e.getMessage());
+			SeckillExecution execution =new SeckillExecution(seckillId, -2, "内部错误");
+			result = new SeckillResult<SeckillExecution>(false, execution);
 		}
 		return result;
+	}
+	@RequestMapping(value ="/time/now",method=RequestMethod.GET)
+	@ResponseBody
+	public SeckillResult<Long> time(){
+		return new SeckillResult<Long>(true, new Date().getTime());
 	}
 	
 

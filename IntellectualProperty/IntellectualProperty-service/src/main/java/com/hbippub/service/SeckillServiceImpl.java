@@ -37,7 +37,7 @@ public class SeckillServiceImpl implements SeckillService{
 
 	@Override
 	public List<Seckill> getSeckillList() {
-		return seckillMapper.queryAll(0, 3);
+		return seckillMapper.queryAll(0, 4);
 	}
 
 	@Override
