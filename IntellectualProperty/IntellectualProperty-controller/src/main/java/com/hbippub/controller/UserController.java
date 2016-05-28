@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hbippub.dto.Exposer;
 import com.hbippub.mapper.HbipPubUserMapper;
-import com.hbippub.pojo.Exposer;
 import com.hbippub.pojo.HbipPubUser;
 import com.hbippub.pojo.HbipPubUserExample;
 import com.hbippub.pojo.Seckill;

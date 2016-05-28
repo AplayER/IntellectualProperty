@@ -1,4 +1,4 @@
-package com.hbippub.pojo;
+package com.hbippub.dto;
 
 public class Exposer {
 	private int seckillId;

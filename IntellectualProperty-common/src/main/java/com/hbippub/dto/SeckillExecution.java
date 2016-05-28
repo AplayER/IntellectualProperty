@@ -1,7 +1,9 @@
 /**
  * 
  */
-package com.hbippub.pojo;
+package com.hbippub.dto;
+
+import com.hbippub.pojo.SuccessKilled;
 
 /**
  * @author 梁lab 806

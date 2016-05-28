@@ -12,14 +12,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
+import com.hbippub.dto.Exposer;
+import com.hbippub.dto.SeckillExecution;
 import com.hbippub.exception.RepeatKillException;
 import com.hbippub.exception.SeckillCloseException;
 import com.hbippub.exception.SeckillException;
 import com.hbippub.mapper.SeckillMapper;
 import com.hbippub.mapper.SuccessKilledMapper;
-import com.hbippub.pojo.Exposer;
 import com.hbippub.pojo.Seckill;
-import com.hbippub.pojo.SeckillExecution;
 import com.hbippub.pojo.SuccessKilled;
 
 /**
