@@ -85,9 +85,9 @@ public class UserController {
 //		System.out.println("exportSeckillUrl Test:");
 //		System.out.println(exposer);
 		//测试秒杀成功表的方法
-		SuccessKilledMapper successKilledMapper = applicationContext.getBean(SuccessKilledMapper.class);
-		successKilledMapper.insertSuccessKilled(1000, "13071287");
-		SuccessKilled successKilled=successKilledMapper.queryByIdWithSeckill(1000, "13071287");
-		System.out.println(successKilled);
+//		SuccessKilledMapper successKilledMapper = applicationContext.getBean(SuccessKilledMapper.class);
+//		successKilledMapper.insertSuccessKilled(1000, "13071287");
+//		SuccessKilled successKilled=successKilledMapper.queryByIdWithSeckill(1000, "13071287");
+//		System.out.println(successKilled);
 	}
 }
