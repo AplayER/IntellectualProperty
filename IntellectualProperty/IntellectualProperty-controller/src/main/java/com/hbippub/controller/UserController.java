@@ -89,5 +89,6 @@ public class UserController {
 //		successKilledMapper.insertSuccessKilled(1000, "13071287");
 //		SuccessKilled successKilled=successKilledMapper.queryByIdWithSeckill(1000, "13071287");
 //		System.out.println(successKilled);
+		
 	}
 }
