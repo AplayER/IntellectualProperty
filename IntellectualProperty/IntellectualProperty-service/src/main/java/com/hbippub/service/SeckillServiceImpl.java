@@ -70,7 +70,7 @@ public class SeckillServiceImpl implements SeckillService{
 
 	@Override
 	@Transactional
-	public SeckillExecution executeSeckill(int seckillId, long userPhone,
+	public SeckillExecution executeSeckill(int seckillId, String userPhone,
 			String md5) throws SeckillException,RepeatKillException,SeckillCloseException{
 		try {
 			if (md5==null||!md5.equals(getMD5(seckillId))) {

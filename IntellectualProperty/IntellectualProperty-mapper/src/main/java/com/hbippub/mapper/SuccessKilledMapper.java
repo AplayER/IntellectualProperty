@@ -38,11 +38,11 @@ public interface SuccessKilledMapper {
      * @param userPhone
      * @return
      */
-    int insertSuccessKilled(@Param("seckillId") int seckillId,@Param("userPhone") long userPhone);
+    int insertSuccessKilled(@Param("seckillId") int seckillId,@Param("userPhone") String userPhone);
     
 	/**
 	 * @param seckillId
 	 * @return
 	 */
-	SuccessKilled queryByIdWithSeckill(@Param("seckillId") int seckillId,@Param("userPhone") long userPhone);
+	SuccessKilled queryByIdWithSeckill(@Param("seckillId") int seckillId,@Param("userPhone")String userPhone);
 }

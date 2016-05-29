@@ -167,11 +167,11 @@ public class TestController {
 		return seckillMapper.reduceNumber(seckillId, new Date(System.currentTimeMillis()));
 	}
 	@RequestMapping("miaosha5.do")
-	public @ResponseBody int insertSuccessKilled(@RequestParam("seckillId")int seckillId,@RequestParam("userPhone") long userPhone){
+	public @ResponseBody int insertSuccessKilled(@RequestParam("seckillId")int seckillId,@RequestParam("userPhone") String userPhone){
 		return successKilledMapper.insertSuccessKilled(seckillId, userPhone);
 	}
 	@RequestMapping("miaosha6.do")
-	public @ResponseBody SuccessKilled queryByIdWithSeckill(@RequestParam("seckillId")int seckillId,@RequestParam("userPhone") long userPhone){
+	public @ResponseBody SuccessKilled queryByIdWithSeckill(@RequestParam("seckillId")int seckillId,@RequestParam("userPhone")String userPhone){
 		return successKilledMapper.queryByIdWithSeckill(seckillId, userPhone);
 	}
 }

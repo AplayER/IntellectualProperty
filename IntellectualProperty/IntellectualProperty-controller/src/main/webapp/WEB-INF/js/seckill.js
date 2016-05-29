@@ -14,19 +14,19 @@ var seckill={
 	handleSeckillkill : function(seckillId,node){
 		node.hide().
 		html('<button class="btn btn-primary btn-lg" id="killBtn">开始秒杀</button>');
-		$.get(seckill.URL.exposer(seckillId),{},function(result){
+		$.post(seckill.URL.exposer(seckillId),{},function(result){
 //			console.log('exposer'+result);
 			if(result&&result['succeed']){
 				var exposer = result['data'];
 				console.log(exposer);
-				if(exposer['isExposed']){
+				if(exposer['exposed']){
 					var md5 = exposer['md5'];
 					var killUrl = seckill.URL.execution(seckillId, md5);
 					console.log(killUrl);
 					$('#killBtn').one('click',function(){
 						//禁用按钮
 						$(this).addClass('disabled');
-						$.get(killUrl,{},function(result){
+						$.post(killUrl,{},function(result){
 							if(result&&result['succeed']){
 								var killResult = result['data'];
 								var state = killResult['state'];
@@ -110,7 +110,7 @@ var seckill={
 			var startTime = params['startTime'];
 			var endTime = params['endTime'];
 			var seckillId = params['seckillId'];
-		$.get(seckill.URL.now(),{},function(result){
+		$.post(seckill.URL.now(),{},function(result){
 			console.log(result);
 
 			if(result&&result['succeed']){

@@ -29,6 +29,6 @@ public interface SeckillService {
 	 */
 	Exposer exportSeckillUrl(int seckillId);
 	
-	SeckillExecution executeSeckill(int seckillId,long userPhone,String md5);
+	SeckillExecution executeSeckill(int seckillId,String userPhone,String md5);
 
 }

@@ -10,29 +10,29 @@ import com.hbippub.pojo.SuccessKilled;
  *
  */
 public class SeckillExecution {
-	private int seckillID;
+	private int seckillId;
 	private int state;
 	private String stateInfo;
 	private SuccessKilled successKilled;
-	public SeckillExecution(int seckillID, int state, String stateInfo,
+	public SeckillExecution(int seckillId, int state, String stateInfo,
 			SuccessKilled successKilled) {
 		super();
-		this.seckillID = seckillID;
+		this.seckillId = seckillId;
 		this.state = state;
 		this.stateInfo = stateInfo;
 		this.successKilled = successKilled;
 	}
-	public SeckillExecution(int seckillID, int state, String stateInfo) {
+	public SeckillExecution(int seckillId, int state, String stateInfo) {
 		super();
-		this.seckillID = seckillID;
+		this.seckillId = seckillId;
 		this.state = state;
 		this.stateInfo = stateInfo;
 	}
-	public int getSeckillID() {
-		return seckillID;
+	public int getSeckillId() {
+		return seckillId;
 	}
-	public void setSeckillID(int seckillID) {
-		this.seckillID = seckillID;
+	public void setSeckillId(int seckillId) {
+		this.seckillId = seckillId;
 	}
 	public int getState() {
 		return state;

@@ -52,7 +52,7 @@ public class SeckillController {
 	}
 	
 	@RequestMapping(value="/{seckillId}/exposer",
-			method=RequestMethod.GET,
+			method=RequestMethod.POST,
 			produces="application/json;charset=utf-8")
 	@ResponseBody
 	public SeckillResult<Exposer> exposer(@PathVariable("seckillId") Integer seckillId){
@@ -67,10 +67,10 @@ public class SeckillController {
 		
 	}
 	@RequestMapping(value="/{seckillId}/{md5}/execution",
-			method=RequestMethod.GET,
+			method=RequestMethod.POST,
 			produces="application/json;charset=utf-8")
 	@ResponseBody
-	public SeckillResult<SeckillExecution> execute(@PathVariable("seckillId") Integer seckillId,@PathVariable("md5")String md5,@CookieValue(value="killPhone",required=false)Long userPhone){
+	public SeckillResult<SeckillExecution> execute(@PathVariable("seckillId") Integer seckillId,@PathVariable("md5")String md5,@CookieValue(value="killPhone",required=false)String userPhone){
 		SeckillResult<SeckillExecution> result;
 		try {
 			SeckillExecution execution = seckillService.executeSeckill(seckillId, userPhone, md5);
@@ -92,7 +92,7 @@ public class SeckillController {
 		}
 		return result;
 	}
-	@RequestMapping(value ="/time/now",method=RequestMethod.GET)
+	@RequestMapping(value ="/time/now",method=RequestMethod.POST)
 	@ResponseBody
 	public SeckillResult<Long> time(){
 		return new SeckillResult<Long>(true, new Date().getTime());

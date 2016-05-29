@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hbippub.dto.Exposer;
 import com.hbippub.mapper.HbipPubUserMapper;
+import com.hbippub.mapper.SuccessKilledMapper;
 import com.hbippub.pojo.HbipPubUser;
 import com.hbippub.pojo.HbipPubUserExample;
 import com.hbippub.pojo.Seckill;
+import com.hbippub.pojo.SuccessKilled;
 import com.hbippub.service.SeckillService;
 import com.hbippub.service.UserService;
 
@@ -68,22 +70,24 @@ public class UserController {
 //		HbipPubUser user2 = mapper.getLoginInfoByLogNameAndPwd(userInfo);
 //			System.out.println(user2.getYonghuid());
 		//测试秒杀表的方法
-		SeckillService seckillService = applicationContext.getBean(SeckillService.class);
-		
-		List<Seckill> seckills = seckillService.getSeckillList();
-		for (Seckill seckill : seckills) {
-			System.out.println(seckill);
-		}
-		
-		System.out.println("getSeckillByID Test:");
-		Seckill seckill = seckillService.getSeckillByID(1);
-		System.out.println(seckill);
-		
-		Exposer exposer = seckillService.exportSeckillUrl(1);
-		System.out.println("exportSeckillUrl Test:");
-		System.out.println(exposer);
-		
-		
-		
+//		SeckillService seckillService = applicationContext.getBean(SeckillService.class);
+//		
+//		List<Seckill> seckills = seckillService.getSeckillList();
+//		for (Seckill seckill : seckills) {
+//			System.out.println(seckill);
+//		}
+//		
+//		System.out.println("getSeckillByID Test:");
+//		Seckill seckill = seckillService.getSeckillByID(1);
+//		System.out.println(seckill);
+//		
+//		Exposer exposer = seckillService.exportSeckillUrl(1);
+//		System.out.println("exportSeckillUrl Test:");
+//		System.out.println(exposer);
+		//测试秒杀成功表的方法
+		SuccessKilledMapper successKilledMapper = applicationContext.getBean(SuccessKilledMapper.class);
+		successKilledMapper.insertSuccessKilled(1000, "13071287");
+		SuccessKilled successKilled=successKilledMapper.queryByIdWithSeckill(1000, "13071287");
+		System.out.println(successKilled);
 	}
 }
