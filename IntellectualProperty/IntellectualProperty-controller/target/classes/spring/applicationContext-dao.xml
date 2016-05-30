@@ -20,6 +20,10 @@
 		<property name="driverClassName" value="${jdbc.driver}" />
 		<property name="maxActive" value="10" />
 		<property name="minIdle" value="5" />
+		<property name="filters" value="stat"
+		<property name="connectionProperties" value="druid.stat.mergeSql=true" />
+		 />
+		
 	</bean>
 	<!-- 配置sqlsessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
