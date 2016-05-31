@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
+import com.hbippub.cache.JedisSeckill;
 import com.hbippub.dto.Exposer;
 import com.hbippub.dto.SeckillExecution;
 import com.hbippub.exception.RepeatKillException;
@@ -32,6 +33,8 @@ public class SeckillServiceImpl implements SeckillService{
 	private SeckillMapper seckillMapper;
 	@Autowired
 	private SuccessKilledMapper successKilledMapper;
+	@Autowired
+	private JedisSeckill jedisSeckill;
 	
 	private final String slat = "asdfsgwegasdbcb3y54fgfg";
 
@@ -42,12 +45,25 @@ public class SeckillServiceImpl implements SeckillService{
 
 	@Override
 	public Seckill getSeckillByID(int seckillId) {
-		return seckillMapper.queryById(seckillId);
+		try {
+			Seckill seckill = jedisSeckill.getSeckill(seckillId);
+			if (seckill!=null) {
+				return seckill;
+			}else{
+				seckill = seckillMapper.queryById(seckillId);
+				jedisSeckill.putSeckill(seckill);
+				return seckill;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			}
+		return null;
 	}
 
 	@Override
 	public Exposer exportSeckillUrl(int seckillId) {
 		Seckill seckill = seckillMapper.queryById(seckillId);
+//		Seckill seckill = getSeckillByID(seckillId);
 		if (seckill==null) {
 			return new Exposer(seckillId, false);
 		}
@@ -101,7 +117,7 @@ public class SeckillServiceImpl implements SeckillService{
 			}
 		catch (Exception e) {
 			throw new SeckillException("seckill inner error"+e.getMessage());
-		}
+			}
 		}
 		
 	

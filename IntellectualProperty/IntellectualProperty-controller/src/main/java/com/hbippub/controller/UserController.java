@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hbippub.cache.JedisSeckill;
 import com.hbippub.dto.Exposer;
 import com.hbippub.mapper.HbipPubUserMapper;
 import com.hbippub.mapper.SuccessKilledMapper;
@@ -70,7 +71,7 @@ public class UserController {
 //		HbipPubUser user2 = mapper.getLoginInfoByLogNameAndPwd(userInfo);
 //			System.out.println(user2.getYonghuid());
 		//测试秒杀表的方法
-//		SeckillService seckillService = applicationContext.getBean(SeckillService.class);
+		SeckillService seckillService = applicationContext.getBean(SeckillService.class);
 //		
 //		List<Seckill> seckills = seckillService.getSeckillList();
 //		for (Seckill seckill : seckills) {
@@ -89,6 +90,11 @@ public class UserController {
 //		successKilledMapper.insertSuccessKilled(1000, "13071287");
 //		SuccessKilled successKilled=successKilledMapper.queryByIdWithSeckill(1000, "13071287");
 //		System.out.println(successKilled);
-		
+		JedisSeckill jedisSeckill = applicationContext.getBean(JedisSeckill.class);
+		Seckill seckill = seckillService.getSeckillByID(1);
+		String res=jedisSeckill.putSeckill(seckill);
+		System.out.println(res);
+		Seckill reSeckill = jedisSeckill.getSeckill(1);
+		System.out.println(reSeckill);
 	}
 }
