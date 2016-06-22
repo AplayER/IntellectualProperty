@@ -5,9 +5,7 @@
     <artifactId>IntellectualProperty-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.IntellectualProperty</groupId>
   <artifactId>IntellectualProperty</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <build>
 		<!-- 配置插件 -->
@@ -27,7 +25,6 @@
   	<module>IntellectualProperty-mapper</module>
   	<module>IntellectualProperty-service</module>
   	<module>IntellectualProperty-controller</module>
-  	<module>DemoForTesting</module>
   </modules>
   <!-- 依赖管理 -->
 	<dependencies>
